@@ -1,12 +1,25 @@
-.navbar-lewagon {
+.navbar {
   justify-content: space-between;
-  background: white;
+  background: $black;
+  color: $neon-green;
+  border-block-end-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: $neon-green;
+  margin-bottom: 8px;
 }
 
-.navbar-lewagon .navbar-collapse {
+.navbar .navbar-collapse {
   flex-grow: 0;
 }
 
-.navbar-lewagon .navbar-brand img {
-  width: 40px;
+.navbar .navbar-brand img {
+  width: 200px;
+}
+
+.nav-link {
+  color: $neon-green;
+
+  &:hover {
+    color: $white
+  }
 }
