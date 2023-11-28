@@ -2,8 +2,8 @@ class Project < ApplicationRecord
   belongs_to :user
   has_many :favorites
 
-  def scrap
-  end
 
-  
+  validates :name, presence: true
+  validates :description, presence: true
+
 end

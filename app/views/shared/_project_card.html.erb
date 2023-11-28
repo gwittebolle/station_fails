@@ -1,0 +1,12 @@
+<div class="project-card">
+  <div class="project-header">
+    <h2><%= project.name %></h2>
+  </div>
+  <div class="project-content">
+    <p><%= project.description %></p>
+    <!-- Ajoutez d'autres informations du projet ici -->
+  </div>
+  <div class="project-footer">
+    <%= link_to 'Voir les détails', project_path(project), class: 'btn btn-primary' %>
+  </div>
+</div>

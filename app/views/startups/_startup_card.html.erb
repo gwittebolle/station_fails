@@ -1,13 +1,11 @@
-<div class="card startup-card bg-image" style="width: 18rem;">
-    <img src="logo.png" class="card-img-top" alt="...">
-    <div class="card-body text-center">
-      <p class="card-text">nom :</p>
-      <p class="card-text">foundateur :</p>
-      <p class="card-text">Année de création :</p>
-      <p class="card-text">Année de faillite :</p>
-      <p class="card-text">Nombre d'employés :</p>
-      <p class="card-text">Adresse :</p>
-      <p class="card-text">Secteur :</p>
-      <p class="card-text">Raisons de la faillite :</p>
+<div class="startup-card ">
+    <div class="text-center">
+      <p><b><%= startup.name %></b></p>
+      <p><%= startup.birth_year %></p>
+      <p><%= startup.death_year %></p>
+      <p><%= startup.sector %></p>
+      <p><%= startup.fail_reason %></p>
+      <h3>R.I.P.</h3>
+      <p></p>
   </div>
 </div>
