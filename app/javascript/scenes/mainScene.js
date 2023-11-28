@@ -7,9 +7,9 @@ export default class MainScene extends Phaser.Scene {
     this.load.image('worm', '/assets/worm.png');
     this.load.image({
       key: 'tiles',
-      url: 'assets/tilemaps/tiles/TilesetGraveyard-16-16.png',
+      url: 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/tilemaps/tiles/TilesetGraveyard-16-16.png',
     });
-    this.load.tilemapTiledJSON('level_1', 'assets/tilemaps/json/level_1.json');
+    this.load.tilemapTiledJSON('level_1', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/tilemaps/json/level_1.json');
   }
 
   create() {
@@ -34,7 +34,6 @@ export default class MainScene extends Phaser.Scene {
     // Enregistrez la position actuelle avant tout mouvement
     this.previousPosition = { x: this.square.x, y: this.square.y };
 
-    if (!this.isColliding) {
       if (cursors.left.isDown) {
         this.square.x -= 2;
       } else if (cursors.right.isDown) {
@@ -65,7 +64,6 @@ export default class MainScene extends Phaser.Scene {
     if (this.square.y > this.sys.game.config.height) {
       this.square.y = 0; // Réapparaissez en haut de l'écran
     }
-    }
 
     // Affichez "WormText" pendant 2 secondes lorsque la touche espace est appuyée
     if (this.input.keyboard.checkDown(this.input.keyboard.addKey('SPACE'), 500)) {
@@ -92,10 +90,11 @@ export default class MainScene extends Phaser.Scene {
 
   initMap() {
     // Initialisation de la carte dans la fonction privée initMap
-    this.map = this.make.tilemap({ key: 'level', tileWidth: 16, tileHeight: 16 });
-    this.tileset = this.map.addTilesetImage('level', 'tiles');
+    this.map = this.make.tilemap({ key: 'level_1', tileWidth: 16, tileHeight: 16 });
+    this.tileset = this.map.addTilesetImage('level_1', 'tiles');
+    const ground = this.map.createDynamicLayer('Ground', this.tileset);
+    const objetsLayer = this.map.createDynamicLayer('tombs', this.tileset);
   }
-
 
 
 }
