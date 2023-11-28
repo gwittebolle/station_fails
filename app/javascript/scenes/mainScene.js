@@ -9,7 +9,7 @@ export default class MainScene extends Phaser.Scene {
       key: 'tiles',
       url: 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/tilemaps/tiles/TilesetGraveyard-16-16.png',
     });
-    this.load.tilemapTiledJSON('level_1', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/tilemaps/json/level_1.json');
+    this.load.tilemapTiledJSON('level_2', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/tilemaps/json/level_2.json');
   }
 
   create() {
@@ -90,8 +90,8 @@ export default class MainScene extends Phaser.Scene {
 
   initMap() {
     // Initialisation de la carte dans la fonction privée initMap
-    this.map = this.make.tilemap({ key: 'level_1', tileWidth: 16, tileHeight: 16 });
-    this.tileset = this.map.addTilesetImage('level_1', 'tiles');
+    this.map = this.make.tilemap({ key: 'level_2', tileWidth: 16, tileHeight: 16 });
+    this.tileset = this.map.addTilesetImage('level_2', 'tiles');
     const ground = this.map.createDynamicLayer('Ground', this.tileset);
     const objetsLayer = this.map.createDynamicLayer('tombs', this.tileset);
   }
