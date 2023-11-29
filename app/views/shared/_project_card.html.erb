@@ -10,3 +10,6 @@
     <%= link_to 'Voir les détails', project_path(project), class: 'btn btn-primary' %>
   </div>
 </div>
+
+
+<%= link_to "Supprimer", destroy_project_path(project), data: {turbo_method: :delete, turbo_confirm: "Etes vous sur ?" }, class: 'btn btn-danger' %>
