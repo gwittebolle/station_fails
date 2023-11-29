@@ -1,6 +1,8 @@
 class StartupsController < ApplicationController
   def index
-    @startups = Startup.all
+    # @startups = FrenchTechApi.get_startups
+
+    # @startups = Startup.all
     # if params[:query].present?
     #   sql_subquery = <<~SQL
     #     startups.name ILIKE :query
