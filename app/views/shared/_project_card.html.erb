@@ -2,9 +2,17 @@
   <div class="project-header">
     <h2><%= project.name %></h2>
   </div>
-  <div class="project-content">
-    <p><%= project.description %></p>
-    <!-- Ajoutez d'autres informations du projet ici -->
+  <div class="row">
+    <div class="project-content col-6 d-flex flex-column justify-content-around">
+      <h4>Secteur : <%= project.sector %></h4>
+      <h4>Localisation : <%= project.localisation %></h4>
+      <h4>Nombre d'employés : <%= project.employees_range%></h4>
+      <h4>Capital : <%= project.funds %> $</h4>
+    </div>
+    <div class="col-6 pt-3">
+      <h3 class="border-bottom text-center"> Description </h3>
+      <h4 class="text-center m-3"> <%= project.description %></h4>
+    </div>
   </div>
   <div class="project-footer">
     <%= link_to 'Voir les détails', project_path(project), class: 'btn btn-primary' %>
