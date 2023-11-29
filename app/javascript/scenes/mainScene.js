@@ -5,7 +5,7 @@ export default class MainScene extends Phaser.Scene {
   preload() {
     this.load.image('worm', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/images/worm.png');
     this.load.image('tiles', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/tilemaps/tiles/TilesetGraveyard-16-16.png');
-    this.load.tilemapTiledJSON('level_2', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/tilemaps/json/level_2.json');
+    this.load.tilemapTiledJSON('level_1', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/tilemaps/json/level_1.json');
     console.log("end of preload")
   }
 
@@ -87,7 +87,7 @@ export default class MainScene extends Phaser.Scene {
 
   initMap() {
     // Initialisation de la carte dans la fonction privée initMap
-    this.map = this.make.tilemap({ key: 'level_2', tileWidth: 16, tileHeight: 16 });
+    this.map = this.make.tilemap({ key: 'level_1', tileWidth: 16, tileHeight: 16 });
     console.log(this.map)
     console.log("-----------")
     // Ici, mettre le nom du jeu de tuiles, identique à celui mentionné
