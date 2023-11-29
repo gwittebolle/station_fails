@@ -6,20 +6,20 @@ export default class MainScene extends Phaser.Scene {
     this.load.image('worm', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/images/worm.png');
     this.load.image('tiles', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/tilemaps/tiles/graveyard-16-16.png');
     this.load.tilemapTiledJSON('station-fails', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/tilemaps/json/station-fails.json');
-    console.log("end of preload")
   }
 
   create() {
     this.initMap();
-    this.square = this.physics.add.image(320, 250, 'worm').setOrigin(0, 0).setScale(0.1);
-    this.square.setDepth(1);
+    this.sprite = this.physics.add.image(320, 250, 'worm').setOrigin(0, 0).setScale(0.1);
+    this.sprite.setDepth(1);
 
     // Activez la physique pour le carré
-    this.physics.world.enable(this.square);
+    this.physics.world.enable(this.sprite);
 
-    this.physics.add.collider(this.square, this.collisionLayer, () => {
+    this.physics.add.collider(this.sprite, this.collisionLayer, () => {
       console.log("Collision détectée !");
-  });
+      console.log("Sprite position: ", this.sprite.x, this.sprite.y);
+    });
 
 
     // Initialisez le texte "Worm" (mais ne l'affichez pas encore)
@@ -34,37 +34,37 @@ export default class MainScene extends Phaser.Scene {
     const cursors = this.input.keyboard.createCursorKeys();
 
     // Enregistrez la position actuelle avant tout mouvement
-    this.previousPosition = { x: this.square.x, y: this.square.y };
+    this.previousPosition = { x: this.sprite.x, y: this.sprite.y };
 
       if (cursors.left.isDown) {
-        this.square.x -= 2;
+        this.sprite.x -= 2;
       } else if (cursors.right.isDown) {
-        this.square.x += 2;
+        this.sprite.x += 2;
       }
 
       if (cursors.up.isDown) {
-        this.square.y -= 2;
+        this.sprite.y -= 2;
       } else if (cursors.down.isDown) {
-        this.square.y += 2;
+        this.sprite.y += 2;
       }
       // Vérifiez si le ver est sorti de l'écran à gauche
-    if (this.square.x < 0) {
-      this.square.x = this.sys.game.config.width; // Réapparaissez à droite de l'écran
+    if (this.sprite.x < 0) {
+      this.sprite.x = this.sys.game.config.width; // Réapparaissez à droite de l'écran
     }
 
     // Vérifiez si le ver est sorti de l'écran à droite
-    if (this.square.x > this.sys.game.config.width) {
-      this.square.x = 0; // Réapparaissez à gauche de l'écran
+    if (this.sprite.x > this.sys.game.config.width) {
+      this.sprite.x = 0; // Réapparaissez à gauche de l'écran
     }
 
     // Vérifiez si le ver est sorti de l'écran en haut
-    if (this.square.y < 0) {
-      this.square.y = this.sys.game.config.height; // Réapparaissez en bas de l'écran
+    if (this.sprite.y < 0) {
+      this.sprite.y = this.sys.game.config.height; // Réapparaissez en bas de l'écran
     }
 
     // Vérifiez si le ver est sorti de l'écran en bas
-    if (this.square.y > this.sys.game.config.height) {
-      this.square.y = 0; // Réapparaissez en haut de l'écran
+    if (this.sprite.y > this.sys.game.config.height) {
+      this.sprite.y = 0; // Réapparaissez en haut de l'écran
     }
 
     // Affichez "WormText" pendant 2 secondes lorsque la touche espace est appuyée
@@ -74,21 +74,7 @@ export default class MainScene extends Phaser.Scene {
 
   }
 
-  showWormText() {
-    // Mettez à jour la position du texte en fonction de la position du ver
-    this.wormText.setPosition(this.square.x + 200, this.square.y - 20);
 
-    // Affichez le texte avec les coordonnées du ver
-    this.wormText.setText(
-      `Position du ver : (${this.square.x.toFixed(2)}, ${this.square.y.toFixed(2)})`
-    );
-
-    // Affichez le texte pendant 2 secondes
-    this.wormText.setVisible(true);
-    this.time.delayedCall(2000, () => {
-      this.wormText.setVisible(false);
-    });
-  }
 
   initMap() {
     //  Initialisation de la carte dans la fonction privée initMap
@@ -103,6 +89,15 @@ export default class MainScene extends Phaser.Scene {
     this.physics.world.setBounds(0, 0, this.collisionLayer.width, this.collisionLayer.height);
     this.map.setCollisionByProperty({ collides: true }, true, true, this.collisionLayer);
 
+    this.collisionLayer.forEachTile((tile) => {
+      const tileProperties = tile.properties;
+        // Si la propriété collides est définie et égale à true
+      if (tileProperties && tileProperties.collides === true) {
+        console.log('Tile with collides = true:', tile);
+      }
+    });
+
+
     this.showDebugWalls();
 
   }
@@ -115,5 +110,20 @@ export default class MainScene extends Phaser.Scene {
     });
   }
 
+  showWormText() {
+    // Mettez à jour la position du texte en fonction de la position du ver
+    this.wormText.setPosition(this.sprite.x + 200, this.sprite.y - 20);
+
+    // Affichez le texte avec les coordonnées du ver
+    this.wormText.setText(
+      `Position du ver : (${this.sprite.x.toFixed(2)}, ${this.sprite.y.toFixed(2)})`
+    );
+
+    // Affichez le texte pendant 2 secondes
+    this.wormText.setVisible(true);
+    this.time.delayedCall(2000, () => {
+      this.wormText.setVisible(false);
+    });
+  }
 
 }
