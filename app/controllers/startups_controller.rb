@@ -17,6 +17,7 @@ class StartupsController < ApplicationController
 
   def show
     @startup = Startup.find(params[:id])
+    @project = Project.find(params[:id])
   end
 
 end
