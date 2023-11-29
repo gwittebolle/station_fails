@@ -1,7 +1,12 @@
 class ProjectsController < ApplicationController
+  before_action :set_project, only: [:destroy]
+
+
   def new
     @project = Project.new
   end
+
+
 
   def create
     @project = Project.new(project_params)
@@ -19,7 +24,20 @@ class ProjectsController < ApplicationController
     @favorites = Favorite.all
   end
 
+
+
+  def destroy
+    @project.destroy
+    redirect_to root_path
+  end
+
+
+
   private
+
+  def set_project
+    @project = Project.find(params[:id])
+  end
 
   def project_params
     params.require(:project).permit(:name, :description)

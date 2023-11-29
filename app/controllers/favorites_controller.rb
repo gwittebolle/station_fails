@@ -1,4 +1,5 @@
 class FavoritesController < ApplicationController
+
   before_action :set_project, :set_startup, only: :create
 
   def index
@@ -37,3 +38,5 @@ class FavoritesController < ApplicationController
 
 
 end
+
+
