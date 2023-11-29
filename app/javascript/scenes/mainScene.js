@@ -11,12 +11,15 @@ export default class MainScene extends Phaser.Scene {
 
   create() {
     this.initMap();
-    this.square = this.physics.add.image(400, 300, 'worm').setOrigin(0.5, 0.5).setScale(0.1);
+    this.square = this.physics.add.image(320, 250, 'worm').setOrigin(0.5, 0.5).setScale(0.1);
     this.square.setDepth(1);
 
+    this.collisionLayer.setCollisionByProperty({ collides: true });
 
     // Activez la physique pour le carré
     this.physics.world.enable(this.square);
+
+
     this.physics.add.collider(this.square, this.collisionLayer, () => {
       console.log("Collision détectée !");
   });
@@ -99,11 +102,19 @@ export default class MainScene extends Phaser.Scene {
     this.tileset = this.map.addTilesetImage('TilesetGraveyard-16-16', 'tiles');
     console.log(this.tileset)
     const ground = this.map.createLayer('Ground', this.tileset);
-    const collisionLayer = this.map.createLayer('tombs', this.tileset);
+    this.collisionLayer = this.map.createLayer('tombs', this.tileset);
+    this.physics.world.setBounds(0, 0, this.collisionLayer.width, this.collisionLayer.height);
+    this.map.setCollisionByProperty({ collides: true }, true, true, this.collisionLayer);
+    this.showDebugWalls();
 
-    this.map.setCollisionByProperty({ collides: true }, true, true, collisionLayer);
+  }
 
-
+  showDebugWalls() {
+    const debugGraphics = this.add.graphics().setAlpha(0.7);
+    this.collisionLayer.renderDebug(debugGraphics, {
+      tileColor: null,
+      collidingTileColor: new Phaser.Display.Color(230, 230, 230, 255),
+    });
   }
 
 
