@@ -14,8 +14,13 @@ export default class MainScene extends Phaser.Scene {
     this.square = this.physics.add.image(400, 300, 'worm').setOrigin(0.5, 0.5).setScale(0.1);
     this.square.setDepth(1);
 
+
     // Activez la physique pour le carré
     this.physics.world.enable(this.square);
+    this.physics.add.collider(this.square, this.collisionLayer, () => {
+      console.log("Collision détectée !");
+  });
+
 
     // Initialisez le texte "Worm" (mais ne l'affichez pas encore)
     this.wormText = this.add.text(0, 0, '', { fontSize: '16px', fill: '#fff' });
@@ -94,7 +99,10 @@ export default class MainScene extends Phaser.Scene {
     this.tileset = this.map.addTilesetImage('TilesetGraveyard-16-16', 'tiles');
     console.log(this.tileset)
     const ground = this.map.createLayer('Ground', this.tileset);
-    const objetsLayer = this.map.createLayer('tombs', this.tileset);
+    const collisionLayer = this.map.createLayer('tombs', this.tileset);
+
+    this.map.setCollisionByProperty({ collides: true }, true, true, collisionLayer);
+
 
   }
 
