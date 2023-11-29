@@ -27,7 +27,3 @@
 #     response = HTTParty.get(ALL_STARTUP_URL, headers: HEADERS)
 #     p response
 #   end
-
-
-
-end
