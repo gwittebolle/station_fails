@@ -2,5 +2,4 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 import "@popperjs/core"
-import "scenes"
 import "bootstrap"
