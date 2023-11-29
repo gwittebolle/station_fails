@@ -2,6 +2,7 @@
 
   <%= render partial: 'shared/project_card', locals: { project: @project } %>
   <!-- Ajoutez d'autres détails du projet ici -->
-  <%= link_to 'Play', project_level_path(@project) %>
-  
+
+  <%= link_to 'Play', project_level_path(@project, @next_level) %>
+
 </div>

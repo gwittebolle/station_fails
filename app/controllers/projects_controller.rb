@@ -22,6 +22,11 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find(params[:id])
     @favorites = Favorite.all
+    @max_level_reached = Level.max_level_reached(@project)
+
+    # Trouver le niveau suivant s'il existe, sinon utiliser le niveau actuel
+    @next_level = Level.find_by(index: @max_level_reached + 1) || Level.find_by(index: @max_level_reached)
+
   end
 
 
