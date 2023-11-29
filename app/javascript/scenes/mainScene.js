@@ -1,4 +1,3 @@
-// app/javascript/packs/mainScene.js
 import Phaser from 'phaser';
 
 export default class MainScene extends Phaser.Scene {
