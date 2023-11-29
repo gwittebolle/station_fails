@@ -2,9 +2,14 @@ class LevelsController < ApplicationController
 
   def show
     @project = Project.find(params[:project_id])
+    # Comment afficher niveau max ?
     @level = Level.first
-    #niveau max ?
 
-  end
+    @attempt = Attempt.new
+    @attempt.project = @project
+    @attempt.level = @level
+    raise
+
+  endgit remote add heroku
 
 end
