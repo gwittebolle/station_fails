@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   resources :pages
+  resources :projects, only: %i[show new create destroy update edit]
+
 
   root to: "pages#home"
 
@@ -25,8 +27,6 @@ Rails.application.routes.draw do
       # end
     end
   end
-
-  resources :projects, only: %i[new delete create]
 
   resources :startups, only: %i[index show] do
     resources :favorites, only: %i[create new index]

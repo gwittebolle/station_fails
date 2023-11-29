@@ -1,4 +1,7 @@
 class ProjectsController < ApplicationController
+  before_action :set_project, only: [:destroy]
+
+
   def new
     @project = Project.new
   end
@@ -20,7 +23,20 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
   end
 
+
+
+  def destroy
+    @project.destroy
+    redirect_to root_path
+  end
+
+
+
   private
+
+  def set_project
+    @project = Project.find(params[:id])
+  end
 
   def project_params
     params.require(:project).permit(:name, :description)
