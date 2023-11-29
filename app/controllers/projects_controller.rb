@@ -1,4 +1,7 @@
 class ProjectsController < ApplicationController
+  before_action :set_project, only: [:edit, :update, :destroy]
+
+
   def new
     @project = Project.new
   end
@@ -18,7 +21,30 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
   end
 
+  def update
+    if @project.update(project_params)
+      redirect_to project_path(@project), notice: "Projet mis à jour avec succès."
+    else
+      render :edit, status: :unprocessable_entity
+      puts "Erreur lors de la mise à jour du projet : #{project.errors.full_messages.join(', ')}"
+    end
+  end
+
+  def destroy
+    @project.destroy
+    redirect_to root_path
+  end
+
+  def edit
+
+  end
+
+
   private
+
+  def set_project
+    @project = Project.find(params[:id])
+  end
 
   def project_params
     params.require(:project).permit(:name, :description)

@@ -2,6 +2,13 @@
 
 require 'faker'
 
+
+
+User.create(name: "Nico", email: 'user1@example.com', password: 'password')
+User.create(name: "Gaetan", email: 'user2@example.com', password: 'password')
+User.create(name: "Alice", email: 'user3@example.com', password: 'password')
+User.create(name: "Liam", email: 'user4@example.com', password: 'password')
+
 localisations = [
     'Bordeaux',
     'Toulouse',
@@ -48,4 +55,3 @@ fail_reason = [
     fail_reason: fail_reason.sample,
   )
 end
-
