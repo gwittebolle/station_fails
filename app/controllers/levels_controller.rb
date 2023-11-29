@@ -10,6 +10,6 @@ class LevelsController < ApplicationController
     @attempt.level = @level
     raise
 
-  endgit remote add heroku
+  end
 
 end
