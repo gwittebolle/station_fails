@@ -86,7 +86,7 @@ export default class MainScene extends Phaser.Scene {
   }
 
   initMap() {
-    // Initialisation de la carte dans la fonction privée initMap
+    //  Initialisation de la carte dans la fonction privée initMap
     this.map = this.make.tilemap({ key: 'level_1', tileWidth: 16, tileHeight: 16 });
     console.log(this.map)
     console.log("-----------")
