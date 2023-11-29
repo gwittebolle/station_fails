@@ -7,7 +7,7 @@ export default class MainScene extends Phaser.Scene {
     this.load.image('worm', '/assets/worm.png');
     this.load.image('tiles', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/tilemaps/tiles/TilesetGraveyard-16-16.png');
     this.load.tilemapTiledJSON('level_2', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/tilemaps/json/level_2.json');
-    console.log("end o preload")
+    console.log("end of preload")
   }
 
   create() {

@@ -2,3 +2,5 @@ class FavoritesController < ApplicationController
 
 
 end
+
+
