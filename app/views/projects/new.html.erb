@@ -1,18 +1,18 @@
-<div class="container py-5">
+<div class="container py-5 ">
   <div class="row">
     <div class="col-12 col-md-6 offset-lg-3">
       <div class="rounded p-3 shadow">
-        <h2>Crée ton projet !</h2>
+        <h2 class='text-center'>Crée ton projet !</h2>
 
         <%= simple_form_for [@project] do |f| %>
-          <%= f.input :name, label: "Nom du projet" %>
-          <%= f.input :sector, label: "Secteur du projet" %>
-          <%= f.input :description %>
-          <%= f.input :employees_range, label: "Nombre d'employés" %>
-          <%= f.input :localisation, label: "Localisation" %>
-          <%= f.input :funds, label: "Capital" %>
-          <%= f.input :photo, as: :file %>
-          <%= f.submit "Valider", class: "btn btn-primary" %>
+          <%= f.input :name, label: "Nom du projet", input_html: {class: "bg-light"} %>
+          <%= f.input :sector, label: "Secteur du projet", input_html: {class: "bg-light"} %>
+          <%= f.input :description, input_html: {class: "bg-light"} %>
+          <%= f.input :employees_range, label: "Nombre d'employés", input_html: {class: "bg-light"} %>
+          <%= f.input :localisation, label: "Localisation", input_html: {class: "bg-light"} %>
+          <%= f.input :funds, label: "Capital", input_html: {class: "bg-light"} %>
+          <%= f.input :photo, as: :file, input_html: {class: "bg-light"} %>
+          <%= f.submit "Valider", class: "button-neon-green" %>
         <% end %>
       </div>
     </div>
