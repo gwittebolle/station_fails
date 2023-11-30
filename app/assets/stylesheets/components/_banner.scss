@@ -1,14 +1,19 @@
 .banner {
   background-size: cover;
   padding: 90px ;
-
   background-color: $gray;
+
 }
 
 .banner h1 {
   padding: 20px;
   color: $white;
   font-size: 80px;
+
+}
+.banner img {
+  height: 80px;
+  margin-top: 20px;
 
 }
 
