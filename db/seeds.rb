@@ -1,7 +1,9 @@
 require 'faker'
 
 Startup.destroy_all
+Attempt.destroy_all
 Level.destroy_all
+
 
 localisations = [
     'Bordeaux',
