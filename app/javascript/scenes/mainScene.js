@@ -7,7 +7,7 @@ export default class MainScene extends Phaser.Scene {
     this.load.image('worm', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/images/worm.png');
     this.load.image('transparent-16px', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/images/transparent-16px.png');
     this.load.image('tiles', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/tilemaps/tiles/TilesetGraveyard-16-16.png');
-    this.load.tilemapTiledJSON('station-fails', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/tilemaps/json/station-fails_231130.json');
+    this.load.tilemapTiledJSON('station-fails', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/tilemaps/json/station-fails_231130_soir.json');
   }
 
   create() {
@@ -15,6 +15,24 @@ export default class MainScene extends Phaser.Scene {
 
     this.worm = this.physics.add.image(100, 140, 'worm').setOrigin(0, 0).setScale(0.1);
     this.worm.setDepth(1);
+
+    const jsonData = require('./app/assets/tilemaps/json/station-fails_231130_soir.json');
+    // Tableau pour stocker les IDs avec la valeur "true"
+    const trueIds = [];
+
+    // Parcours de chaque entrée
+    jsonData.tiles.forEach((tile) => {
+      // Parcours des propriétés de chaque entrée
+      tile.properties.forEach((prop) => {
+        // Vérifie si la propriété "collides" a la valeur "true"
+        if (prop.name === "collides" && prop.value) {
+          // Ajoute l'ID au tableau
+          trueIds.push(tile.id);
+        }
+      });
+    });
+
+    console.log(trueIds)
 
     // Array of tile numbers to add collisions -> Ajouter ici tous les numéros de tuiles qui doivent être des collisions
     const tileNumbersToCollide = [28];
@@ -122,14 +140,16 @@ export default class MainScene extends Phaser.Scene {
     this.tileset = this.map.addTilesetImage('TilesetGraveyard-16-16', 'tiles', 16, 16);
     this.groundLayer = this.map.createLayer('Ground', this.tileset);
     this.physics.world.setBounds(0, 0, this.groundLayer.width, this.groundLayer.height);
+    this.tombsLayer = this.map.createLayer('Tombs', this.tileset);
+    this.physics.world.setBounds(0, 0, this.tombsLayer.width, this.tombsLayer.height);
 
-    this.showDebugWalls();
+    // this.showDebugWalls();
 
   }
 
 addCollisionsToTiles(tileNumbers) {
   this.my_tiles = [];
-  this.groundLayer.forEachTile(tile => {
+  this.tombsLayer.forEachTile(tile => {
     // Check if the tile number is in the array
     if (tileNumbers.includes(tile.index)) {
       const newTile = this.physics.add.image(tile.x * 16, tile.y * 16, 'transparent-16px').setOrigin(0, 0);
