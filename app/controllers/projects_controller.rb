@@ -15,7 +15,7 @@ class ProjectsController < ApplicationController
       redirect_to project_path(@project), notice: "Projet créé avec succès."
     else
       render :new, status: :unprocessable_entity
-      puts "Erreur lors de l'enregistrement du projet : #{project.errors.full_messages.join(', ')}"
+      puts "Erreur lors de l'enregistrement du projet : #{@project.errors.full_messages.join(', ')}"
     end
   end
 
@@ -45,6 +45,7 @@ class ProjectsController < ApplicationController
   end
 
   def project_params
-    params.require(:project).permit(:name, :description)
+    params.require(:project).permit(:name, :description, :sector, :localisation, :employees_range, :funds, :avatar)
   end
+
 end
