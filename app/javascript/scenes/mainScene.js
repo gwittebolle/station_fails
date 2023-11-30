@@ -22,10 +22,10 @@ export default class MainScene extends Phaser.Scene {
   });
 
 
-    // Initialisez le texte "Worm" (mais ne l'affichez pas encore)
+
     this.wormText = this.add.text(0, 0, '', { fontSize: '16px', fill: '#fff' });
     this.wormText.setOrigin(0.5);
-    this.wormText.setDepth(2); // Assurez-vous que la profondeur est plus haute que le carré
+    this.wormText.setDepth(2);
     this.wormText.setVisible(false);
 
   }
@@ -99,9 +99,11 @@ export default class MainScene extends Phaser.Scene {
     this.tileset = this.map.addTilesetImage('TilesetGraveyard-16-16', 'tiles');
     const ground = this.map.createLayer('Ground', this.tileset);
     this.collisionLayer = this.map.createLayer('tombs', this.tileset);
+    this.collisionLayer.setCollisionByProperty({collides: true});
 
-    this.physics.world.setBounds(0, 0, this.collisionLayer.width, this.collisionLayer.height);
-    this.map.setCollisionByProperty({ collides: true }, true, true, this.collisionLayer);
+
+    // this.map.setCollisionByProperty({ collides: true }, true, true, this.collisionLayer);
+    this.map.setCollisionBetween(1,999, true, this.collisionLayer)
 
     this.showDebugWalls();
 
