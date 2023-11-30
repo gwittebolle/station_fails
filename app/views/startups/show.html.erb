@@ -19,4 +19,6 @@
     </div>
   </div>
 </div>
-<div class='text-center'><%= link_to "Ajouter en favori", project_path, class:"button-neon-green" %></div>
+<%= simple_form_for [@startup, @favorite] do |f| %>
+          <%= f.submit "Ajouter en favori", class: "btn btn-dark" %>
+<% end %>

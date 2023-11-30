@@ -1,12 +1,15 @@
-<h1 class="text-center">Le cimetière</h1>
 <div class="container">
-  <div class="row">
+<h1 class="text-center">Le cimetière</h1>
+
+
+  <div class="row mt-5">
 
     <% @startups.each do |startup| %>
       <div class="col-lg-4 d-flex justify-content-center">
         <%= render partial: "startup_card", locals: {startup: startup} %>
 
       </div>
+
     <% end %>
   </div>
 </div>
