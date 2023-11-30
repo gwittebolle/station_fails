@@ -11,4 +11,21 @@ class Level < ApplicationRecord
   end
 
 
+  rails_admin do
+    edit do
+      field :description do
+        render do
+          bindings[:view].render :partial => "bootsy_news_content_field", :locals => {:field => self, :form => bindings[:form]}
+        end
+      end
+    end
+    show do
+      field :content do
+        formatted_value do
+          value.html_safe
+        end
+      end
+    end
+  end
+
 end
