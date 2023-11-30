@@ -11,20 +11,22 @@
   }
 
   .project-header {
-    background-color: $amber-yellow;
+    background-color: $amber-yellow; /* Assurez-vous que $amber-yellow est défini ailleurs dans votre code ou remplacez-le par une couleur valide */
     color: #fff;
     padding: 15px;
     text-align: center;
+
     h2 {
       margin: 0;
       font-size: 1.5em;
     }
   }
 
-  .project-content {
+  .project-details {
     padding: 15px;
-    p {
-      color: $grave-gray;
+
+    h4 {
+      color: $grave-gray; /* Assurez-vous que $grave-gray est défini ailleurs dans votre code ou remplacez-le par une couleur valide */
       margin-bottom: 0;
     }
   }
@@ -35,14 +37,12 @@
 
     .btn {
       display: inline-block;
-      padding: 8px 16px;
+      padding: 12px 24px; /* Mise à jour de la taille des boutons à 2 rem */
       text-decoration: none;
-      background-color: $amber-yellow;
+      background-color: $amber-yellow; /* Assurez-vous que $amber-yellow est défini ailleurs dans votre code ou remplacez-le par une couleur valide */
       color: #fff;
       border-radius: 4px;
       transition: background-color 0.3s ease-in-out;
-
-
     }
   }
 }
