@@ -102,6 +102,7 @@ export default class MainScene extends Phaser.Scene {
     // Ici, mettre le nom du jeu de tuiles, identique à celui mentionné
     this.tileset = this.map.addTilesetImage('graveyard-16-16', 'tiles', 16, 16);
     this.groundLayer = this.map.createLayer('Ground', this.tileset);
+    console.log(this.groundLayer)
     this.collisionLayer = this.map.createLayer('Tombs', this.tileset);
     this.collisionLayer.setCollisionByProperty({collides: true});
 
