@@ -108,7 +108,7 @@ export default class MainScene extends Phaser.Scene {
 
     // this.map.setCollisionByProperty({ collides: true }, true, true, this.collisionLayer);
     this.map.setCollisionBetween(1,999, true, this.collisionLayer)
-    this.showDebugWalls();
+    // this.showDebugWalls();
 
   }
 
