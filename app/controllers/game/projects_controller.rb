@@ -2,28 +2,32 @@ class Game::ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:project_id])
-    @level = Project.find(params[:id])
+    @max_level_reached = Level.max_level_reached(@project)
+    @level = Level.find_by(index: Level.max_level_reached(@project))
+    @next_level = Level.find_by(index: @max_level_reached + 1)
   end
 
   def edit
     @project = Project.find(params[:project_id])
-    @level = Project.find(params[:id])
+    @level = Level.find(params[:id])
+
   end
 
   def update
     @project = Project.find(params[:project_id])
-    @level = Project.find(params[:id])
+    @level = Level.find(params[:id])
 
-    if @project.update(project_params)
-      redirect_to project_level_game_project(@project,@level)
-    else
-      render :edit, status: :unprocessable_entity
-    end
+    # Pour le moment, tout le monde est gagnant
+    @attempt = Attempt.new(result: true)
+    @attempt.project = @project
+    @attempt.level = @level
+    @attempt.save
+    
+    redirect_to project_level_game_project_path(@project, @level)
   end
 
   def project_params
-    # Paramètres autorisés pour la mise à jour du projet
-    params.require(:project).permit(:funds)
+    # Pour le moment, tous les paramètres sont autorisés, voir Jonathan
+    params.require(:project).permit!
   end
-
 end

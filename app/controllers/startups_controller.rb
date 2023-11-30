@@ -3,6 +3,7 @@ class StartupsController < ApplicationController
     # @startups = FrenchTechApi.get_startups
 
     @startups = Startup.all
+
     # if params[:query].present?
     #   sql_subquery = <<~SQL
     #     startups.name ILIKE :query

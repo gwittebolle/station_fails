@@ -1,6 +1,7 @@
-
-
 require 'faker'
+
+Startup.destroy_all
+Level.destroy_all
 
 localisations = [
     'Bordeaux',
@@ -56,6 +57,9 @@ end
 #Manque des favoris
 
 #Manque level
-
+Level.create!(rank: 1, metrics: "funds", index: 1, description: "Niveau 1 - Love Money")
+Level.create!(rank: 1, metrics: "funds", index: 2, description: "Niveau 2 - Bourse BPI")
+Level.create!(rank: 1, metrics: "funds", index: 3, description: "Niveau 3 - Série A")
+Level.create!(rank: 1, metrics: "funds", index: 4, description: "Niveau 4 - IPO")
 
 #Manque attempts

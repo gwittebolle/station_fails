@@ -2,4 +2,6 @@
   <%= f.submit "Envoyer une demande", class: "modal-btn-black mb-1 w-100"%>
 <% end %>
 
-<%= link_to 'Result', project_level_game_project_path(@project, @level) %>
+<!-- Afficher ici le niveau en fonction du level -->
+<div data-controller="game" data-game-target="div">
+</div>

@@ -1,6 +1,6 @@
 import { Controller } from "@hotwired/stimulus"
 import Phaser from 'phaser';
-import MainScene from '../scenes/mainScene';
+import MainScene from '../scenes/mainScene.js';
 
 // Connects to data-controller="game"
 export default class extends Controller {
