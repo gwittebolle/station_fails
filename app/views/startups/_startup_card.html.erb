@@ -1,13 +1,14 @@
 
-  <div class="startup-card">
-  <%= link_to 'see', startup_path(startup)%>
-    <div class="text-center">
-      <p><b><%= startup.name %></b></p>
-      <p><%= startup.birth_year %> - <%= startup.death_year %></p>
-      <p><%= startup.sector %></p>
-      <p><%= startup.fail_reason %></p>
-      <h3>R.I.P.</h3>
-      <i class="fa-solid fa-cross fa-lg"></i>
-    </div>
 
+  <div class="startup-card">
+    <div class="text-center p-3">
+    <%= link_to startup_path(startup) do %>
+      <%= startup.logo.attached? ? cl_image_tag(startup.logo.key, gravity: "face", :crop => "fill", class:"logo") : image_tag('logo.png', width: 200, height: 200, class:"logo") %>
+     <% end  %>
+     <div class=" d-flex flex-column">
+       <div class="div mt-3 mb-3">
+          <h3 class="p-1"><b><%= startup.name %></b></h3>
+       </div>
+     </div>
+   </div>
 </div>
