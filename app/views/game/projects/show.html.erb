@@ -1,4 +1,8 @@
-You win or you loose
+<h2>You win</h2>
 
 
-<%= link_to 'Prochain niveau', project_level_path(@project) %>
+<% if @next_level.present? %>
+  <%= link_to 'Prochain niveau', project_level_path(@project, @next_level) %>
+<% else %>
+  <%= link_to 'Page finale', win_page_path %>
+<% end %>

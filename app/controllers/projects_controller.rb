@@ -15,13 +15,18 @@ class ProjectsController < ApplicationController
       redirect_to project_path(@project), notice: "Projet créé avec succès."
     else
       render :new, status: :unprocessable_entity
-      puts "Erreur lors de l'enregistrement du projet : #{project.errors.full_messages.join(', ')}"
+      puts "Erreur lors de l'enregistrement du projet : #{@project.errors.full_messages.join(', ')}"
     end
   end
 
   def show
     @project = Project.find(params[:id])
     @favorites = Favorite.all
+    @max_level_reached = Level.max_level_reached(@project)
+
+    # Trouver le niveau suivant s'il existe, sinon utiliser le niveau actuel
+    @next_level = Level.find_by(index: @max_level_reached + 1) || Level.find_by(index: @max_level_reached)
+
   end
 
 
@@ -40,6 +45,7 @@ class ProjectsController < ApplicationController
   end
 
   def project_params
-    params.require(:project).permit(:name, :description)
+    params.require(:project).permit(:name, :description, :sector, :localisation, :employees_range, :funds, :avatar)
   end
+
 end

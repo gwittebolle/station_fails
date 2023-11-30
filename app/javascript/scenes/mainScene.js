@@ -1,27 +1,31 @@
-// app/javascript/packs/mainScene.js
 import Phaser from 'phaser';
 
 export default class MainScene extends Phaser.Scene {
 
   preload() {
-    this.load.image('worm', '/assets/worm.png');
+    this.load.image('worm', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/images/worm.png');
     this.load.image('tiles', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/tilemaps/tiles/TilesetGraveyard-16-16.png');
-    this.load.tilemapTiledJSON('level_2', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/tilemaps/json/level_2.json');
+    this.load.tilemapTiledJSON('level_1', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/tilemaps/json/level_1.json');
     console.log("end of preload")
   }
 
   create() {
     this.initMap();
-    this.square = this.physics.add.image(400, 300, 'worm').setOrigin(0.5, 0.5).setScale(0.1);
+    this.square = this.physics.add.image(320, 250, 'worm').setOrigin(0, 0).setScale(0.1);
     this.square.setDepth(1);
 
     // Activez la physique pour le carré
     this.physics.world.enable(this.square);
 
-    // Initialisez le texte "Worm" (mais ne l'affichez pas encore)
+    this.physics.add.collider(this.square, this.collisionLayer, () => {
+      console.log("Collision détectée !");
+  });
+
+
+
     this.wormText = this.add.text(0, 0, '', { fontSize: '16px', fill: '#fff' });
     this.wormText.setOrigin(0.5);
-    this.wormText.setDepth(2); // Assurez-vous que la profondeur est plus haute que le carré
+    this.wormText.setDepth(2);
     this.wormText.setVisible(false);
 
   }
@@ -87,16 +91,30 @@ export default class MainScene extends Phaser.Scene {
   }
 
   initMap() {
-    // Initialisation de la carte dans la fonction privée initMap
-    this.map = this.make.tilemap({ key: 'level_2', tileWidth: 16, tileHeight: 16 });
+    //  Initialisation de la carte dans la fonction privée initMap
+    this.map = this.make.tilemap({ key: 'level_1', tileWidth: 16, tileHeight: 16 });
     console.log(this.map)
     console.log("-----------")
     // Ici, mettre le nom du jeu de tuiles, identique à celui mentionné
     this.tileset = this.map.addTilesetImage('TilesetGraveyard-16-16', 'tiles');
-    console.log(this.tileset)
     const ground = this.map.createLayer('Ground', this.tileset);
-    const objetsLayer = this.map.createLayer('tombs', this.tileset);
+    this.collisionLayer = this.map.createLayer('tombs', this.tileset);
+    this.collisionLayer.setCollisionByProperty({collides: true});
 
+
+    // this.map.setCollisionByProperty({ collides: true }, true, true, this.collisionLayer);
+    this.map.setCollisionBetween(1,999, true, this.collisionLayer)
+
+    this.showDebugWalls();
+
+  }
+
+  showDebugWalls() {
+    const debugGraphics = this.add.graphics().setAlpha(0.7);
+    this.collisionLayer.renderDebug(debugGraphics, {
+      tileColor: null,
+      collidingTileColor: new Phaser.Display.Color(230, 230, 230, 255),
+    });
   }
 
 

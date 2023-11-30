@@ -1,19 +1,24 @@
 .banner {
   background-size: cover;
   padding: 90px ;
-  Height: 250px;
+  background-color: $gray;
 
 }
 
 .banner h1 {
   padding: 20px;
-  color: $neon-green;
+  color: $white;
   font-size: 80px;
+
+}
+.banner img {
+  height: 80px;
+  margin-top: 20px;
 
 }
 
 .banner h3 {
   padding: 20px;
-  color: $neon-green;
+  color: $white;
 
 }

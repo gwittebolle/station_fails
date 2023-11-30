@@ -1,9 +1,11 @@
 <h1 class="text-center">Le cimetière</h1>
 <div class="container">
   <div class="row">
+
     <% @startups.each do |startup| %>
       <div class="col-lg-4 d-flex justify-content-center">
         <%= render partial: "startup_card", locals: {startup: startup} %>
+
       </div>
     <% end %>
   </div>
