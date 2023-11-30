@@ -1,23 +1,24 @@
 <div class="project-card">
   <div class="project-header">
-    <h2><%= project.name %></h2>
+    <h2><%= @project.name %></h2>
   </div>
   <div class="row">
-    <div class="project-content col-6 d-flex flex-column justify-content-around">
-      <h4>Secteur : <%= project.sector %></h4>
-      <h4>Localisation : <%= project.localisation %></h4>
-      <h4>Nombre d'employés : <%= project.employees_range%></h4>
-      <h4>Capital : <%= project.funds %> $</h4>
+    <div class="project-details col-6 d-flex flex-column justify-content-around">
+    <div class="project-details col-6 d-flex flex-column justify-content-around">
+      <h4>Secteur : <%= @project.sector || 'N/A' %></h4>
+      <h4>Localisation : <%= @project.localisation || 'N/A' %></h4>
+      <h4>Nombre d'employés : <%= @project.employees_range || 'N/A' %></h4>
+      <h4>Capital : <%= @project.funds.present? ? @project.funds + '$' : 'N/A' %></h4>
+    </div>
     </div>
     <div class="col-6 pt-3">
       <h3 class="border-bottom text-center"> Description </h3>
-      <h4 class="text-center m-3"> <%= project.description %></h4>
+      <p class="text-center m-3"> <%= @project.description %></p>
     </div>
+    </div>
+  <div class="project-footer d-flex justify-content-between align-items-center">
+    <%= link_to "", project_path(@project), data: { turbo_method: :delete, turbo_confirm: "Êtes-vous sûr ?" } %>
+   <i class="fa fa-trash-alt"></i>
   </div>
-  <div class="project-footer">
-    <%= link_to 'Voir les détails', project_path(project), class: 'btn btn-primary' %>
   </div>
 </div>
-
-
-<%= link_to "Supprimer", project_path(project), data: {turbo_method: :delete, turbo_confirm: "Etes vous sur ?" }, class: 'btn btn-danger' %>
