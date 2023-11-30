@@ -11,13 +11,13 @@ export default class MainScene extends Phaser.Scene {
 
   create() {
     this.initMap();
-    this.square = this.physics.add.image(320, 250, 'worm').setOrigin(0, 0).setScale(0.1);
-    this.square.setDepth(1);
+    this.worm = this.physics.add.image(320, 250, 'worm').setOrigin(0, 0).setScale(0.1);
+    this.worm.setDepth(1);
 
     // Activez la physique pour le carré
-    this.physics.world.enable(this.square);
+    this.physics.world.enable(this.worm);
 
-    this.physics.add.collider(this.square, this.collisionLayer, () => {
+    this.physics.add.collider(this.worm, this.collisionLayer, () => {
       console.log("Collision détectée !");
   });
 
@@ -34,37 +34,37 @@ export default class MainScene extends Phaser.Scene {
     const cursors = this.input.keyboard.createCursorKeys();
 
     // Enregistrez la position actuelle avant tout mouvement
-    this.previousPosition = { x: this.square.x, y: this.square.y };
+    this.previousPosition = { x: this.worm.x, y: this.worm.y };
 
       if (cursors.left.isDown) {
-        this.square.x -= 2;
+        this.worm.x -= 2;
       } else if (cursors.right.isDown) {
-        this.square.x += 2;
+        this.worm.x += 2;
       }
 
       if (cursors.up.isDown) {
-        this.square.y -= 2;
+        this.worm.y -= 2;
       } else if (cursors.down.isDown) {
-        this.square.y += 2;
+        this.worm.y += 2;
       }
       // Vérifiez si le ver est sorti de l'écran à gauche
-    if (this.square.x < 0) {
-      this.square.x = this.sys.game.config.width; // Réapparaissez à droite de l'écran
+    if (this.worm.x < 0) {
+      this.worm.x = this.sys.game.config.width; // Réapparaissez à droite de l'écran
     }
 
     // Vérifiez si le ver est sorti de l'écran à droite
-    if (this.square.x > this.sys.game.config.width) {
-      this.square.x = 0; // Réapparaissez à gauche de l'écran
+    if (this.worm.x > this.sys.game.config.width) {
+      this.worm.x = 0; // Réapparaissez à gauche de l'écran
     }
 
     // Vérifiez si le ver est sorti de l'écran en haut
-    if (this.square.y < 0) {
-      this.square.y = this.sys.game.config.height; // Réapparaissez en bas de l'écran
+    if (this.worm.y < 0) {
+      this.worm.y = this.sys.game.config.height; // Réapparaissez en bas de l'écran
     }
 
     // Vérifiez si le ver est sorti de l'écran en bas
-    if (this.square.y > this.sys.game.config.height) {
-      this.square.y = 0; // Réapparaissez en haut de l'écran
+    if (this.worm.y > this.sys.game.config.height) {
+      this.worm.y = 0; // Réapparaissez en haut de l'écran
     }
 
     // Affichez "WormText" pendant 2 secondes lorsque la touche espace est appuyée
@@ -76,11 +76,11 @@ export default class MainScene extends Phaser.Scene {
 
   showWormText() {
     // Mettez à jour la position du texte en fonction de la position du ver
-    this.wormText.setPosition(this.square.x + 200, this.square.y - 20);
+    this.wormText.setPosition(this.worm.x + 200, this.worm.y - 20);
 
     // Affichez le texte avec les coordonnées du ver
     this.wormText.setText(
-      `Position du ver : (${this.square.x.toFixed(2)}, ${this.square.y.toFixed(2)})`
+      `Position du ver : (${this.worm.x.toFixed(2)}, ${this.worm.y.toFixed(2)})`
     );
 
     // Affichez le texte pendant 2 secondes
@@ -96,7 +96,7 @@ export default class MainScene extends Phaser.Scene {
     console.log(this.map)
     console.log("-----------")
     // Ici, mettre le nom du jeu de tuiles, identique à celui mentionné
-    this.tileset = this.map.addTilesetImage('TilesetGraveyard-16-16', 'tiles');
+    this.tileset = this.map.addTilesetImage('TilesetGraveyard-16-16', 'tiles', 16, 16);
     const ground = this.map.createLayer('Ground', this.tileset);
     this.collisionLayer = this.map.createLayer('tombs', this.tileset);
     this.collisionLayer.setCollisionByProperty({collides: true});
@@ -109,13 +109,26 @@ export default class MainScene extends Phaser.Scene {
 
   }
 
+
+  // Afficher les tiles qui ont la propriété collides = true
   showDebugWalls() {
     const debugGraphics = this.add.graphics().setAlpha(0.7);
+
+    // Iterate through each tile in the collision layer
+    this.collisionLayer.forEachTile(tile => {
+        // Check if the tile has the property 'collides' set to true
+        if (tile.properties.collides === true) {
+            debugGraphics.fillStyle(0xE6E6E6, 1); // Set the colliding tile color
+            debugGraphics.fillRect(tile.pixelX, tile.pixelY, tile.width, tile.height);
+        }
+    }, this);
+
+    // Remove the default debug rendering method
     this.collisionLayer.renderDebug(debugGraphics, {
-      tileColor: null,
-      collidingTileColor: new Phaser.Display.Color(230, 230, 230, 255),
+        tileColor: null,
+        collidingTileColor: null,
     });
-  }
+}
 
 
 }
