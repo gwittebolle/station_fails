@@ -14,12 +14,21 @@
 
         <div class="d-flex justify-content-betnween align-items-center">
           <li class="nav-item active mx-2">
-            <%= image_tag("cementary-icon.png", height: 50) %>
+            <%= link_to startups_path do %>
+              <%= image_tag("cemetary_icon.png", height: 50) %>
+            <% end %>
           </li>
           <li class="nav-item mx-2">
-            <%= link_to new_project_path do %>
-              <%= image_tag("play-logo.png", height: 45) %>
+            <% if current_user.projects.last %>
+              <%= link_to project_path(current_user.projects.last) do %>
+                <%= image_tag("white_game.png", height: 45) %>
+              <% end %>
+            <% else %>
+              <%= link_to new_project_path do %>
+                <%= image_tag("white_game.png", height: 45) %>
+              <% end %>
             <% end %>
+
           </li>
           <li class="nav-item dropdown mx-2">
           <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -30,8 +39,8 @@
             <% end %>
           </a>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "Editer mon profil", edit_user_registration_path, class: "dropdown-item" %>
-              <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
+              <%= link_to "Editer mon profil", edit_user_registration_path, class: "dropdown-item bg-light" %>
+              <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item bg-light" %>
             </div>
           </li>
         </div>

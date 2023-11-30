@@ -8,7 +8,7 @@
       <h4>Secteur : <%= @project.sector || 'N/A' %></h4>
       <h4>Localisation : <%= @project.localisation || 'N/A' %></h4>
       <h4>Nombre d'employés : <%= @project.employees_range || 'N/A' %></h4>
-      <h4>Capital : <%= @project.funds.present? ? @project.funds + '$' : 'N/A' %></h4>
+      <h4>Capital : <%= @project.funds.present? ? @project.funds.to_s + ' $' : 'N/A' %></h4>
     </div>
     </div>
     <div class="col-6 pt-3">

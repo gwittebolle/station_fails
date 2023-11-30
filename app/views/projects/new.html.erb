@@ -4,7 +4,7 @@
       <div class="rounded p-3 shadow">
         <h2 class='text-center'>Crée ton projet !</h2>
 
-        <%= simple_form_for [@project] do |f| %>
+        <%= simple_form_for [@project] do |f|  %>
           <%= f.input :name, label: "Nom du projet", input_html: {class: "bg-light"} %>
           <%= f.input :sector, label: "Secteur du projet", input_html: {class: "bg-light"} %>
           <%= f.input :description, input_html: {class: "bg-light"} %>
