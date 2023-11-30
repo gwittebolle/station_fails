@@ -6,7 +6,7 @@ export default class MainScene extends Phaser.Scene {
     // Chargement des images sur github pour éviter le precompile
     this.load.image('worm', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/images/worm.png');
     this.load.image('tiles', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/tilemaps/tiles/TilesetGraveyard-16-16.png');
-    this.load.tilemapTiledJSON('station-fails', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/tilemaps/json/station-fails.json');
+    this.load.tilemapTiledJSON('station-fails', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/tilemaps/json/station-fails_231130.json');
     console.log("end of preload")
   }
 
@@ -18,7 +18,7 @@ export default class MainScene extends Phaser.Scene {
     this.worm.setDepth(1);
 
     // Array of tile numbers to add collisions -> Ajouter ici tous les numéros de tuiles qui doivent être des collisions
-    const tileNumbersToCollide = [78];
+    const tileNumbersToCollide = [28];
 
     // Call the function to add collisions to specific tiles
     this.addCollisionsToTiles(tileNumbersToCollide);
@@ -26,21 +26,14 @@ export default class MainScene extends Phaser.Scene {
     //Physique
     this.physics.world.enable(this.worm);
 
+    this.groundLayer.setCollisionByProperty({collides: true});
 
-    // Add collisions to given
-    this.my_tiles = []
-    this.groundLayer.forEachTile(tile => {
-      // Check if the tile has the property 'collides' set to true
-        if (tile.index === 78) {
-          this.my_tiles.push(this.physics.add.image(tile.x * 16, tile.y * 16, 'worm').setOrigin(0, 0).setScale(0.1))
-          this.physics.world.enable(this.my_tiles[this.my_tiles.length - 1]);
-        }
-
-      })
-      console.log(this.my_tiles)
+    console.log(this.groundLayer)
 
 
-    this.physics.add.collider(this.worm, this.my_tiles, () => {
+
+
+    this.physics.add.collider(this.worm, this.groundLayer, () => {
       console.log("Collision détectée !");
   });
 
@@ -126,16 +119,11 @@ export default class MainScene extends Phaser.Scene {
     console.log(this.map)
     console.log("-----------")
     // Ici, mettre le nom du jeu de tuiles, identique à celui mentionné
-    this.tileset = this.map.addTilesetImage('graveyard-16-16', 'tiles', 16, 16);
+    this.tileset = this.map.addTilesetImage('TilesetGraveyard-16-16', 'tiles', 16, 16);
     this.groundLayer = this.map.createLayer('Ground', this.tileset);
     console.log(this.groundLayer)
-    this.collisionLayer = this.map.createLayer('Tombs', this.tileset);
-    this.collisionLayer.setCollisionByProperty({collides: true});
-    this.groundLayer.setCollisionByProperty({collides: true});
+    this.physics.world.setBounds(0, 0, this.groundLayer.width, this.groundLayer.height);
 
-
-    // this.map.setCollisionByProperty({ collides: true }, true, true, this.collisionLayer);
-    // this.map.setCollisionBetween(1,999, true, this.groundLayer)
     this.showDebugWalls();
 
   }
@@ -145,7 +133,7 @@ export default class MainScene extends Phaser.Scene {
   showDebugWalls() {
     const debugGraphics = this.add.graphics().setAlpha(0.7);
 
-    // Iterate through each tile in the collision layer
+    // Iterate through each tile in the ground layer
     this.groundLayer.forEachTile(tile => {
         // Check if the tile has the property 'collides' set to true
         if (tile.properties.collides === true) {
@@ -167,6 +155,7 @@ export default class MainScene extends Phaser.Scene {
       // Check if the tile number is in the array
       if (tileNumbers.includes(tile.index)) {
         const newTile = this.physics.add.image(tile.x * 16, tile.y * 16, 'worm').setOrigin(0, 0).setScale(0.1);
+        this.physics.world.enableTile(tile);
         this.my_tiles.push(newTile);
         this.physics.world.enable(newTile);
 
