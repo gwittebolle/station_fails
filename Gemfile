@@ -83,4 +83,3 @@ group :test do
   gem "selenium-webdriver"
 end
 gem "sassc-rails"
-gem "sassc-rails"
