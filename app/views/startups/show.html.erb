@@ -1,23 +1,31 @@
-<div class="container">
-  <div class="d-flex">
-     <div class="grave-card col-4">
-        <%= render partial: "startup_card", locals: {startup: @startup} %>
-     </div>
-     <div class="infos-card col-8">
-        <div class="">
-        <p><b><%= @startup.name %></b></p>
-        <p><%= @startup.founder %></p>
-        <p><%= @startup.employees_range%> employés</p>
-        <p><%= @startup.localisation %></p>
-        <p><%= @startup.sector %></p>
-        <p><%= @startup.fail_reason %></p>
-        <h3>R.I.P.</h3>
-        <i class="fa-solid fa-cross fa-lg"></i>
+<div class="all">
+  <div class="container">
+    <div class="d-flex">
+      <div class="grave-card col-4">
+       <div class="card-gray p-5  mt-5">
+          <%= render partial: "startup_card", locals: {startup: @startup} %>
       </div>
-     </div>
+    </div>
+      <div class="infos-card col-8 d-flex justify-content-around p-5 mt-5">
+          <div class="">
+          <div class="card" style="width: 40rem;">
+            <div class="card-body">
+              <h3 class="card-title"> <b><%= @startup.name %></b> </h3>
+                <div class="d--flex">
+                <h6 class="card-subtitle mb-2 ">fondé par - <%= @startup.founder %> </h6><p><em><%= @startup.birth_year %> - <%= @startup.death_year %> </em></p>
+                </div>
+               <p class="card-text"><%= @startup.sector %></p>
+              <p class="card-text"><%= @startup.name %> comptait <%= @startup.employees_range%> employés, situé.e à
+              <%= @startup.localisation %></p>
+
+              <p class="card-text mb-3">  <i class="fa-solid fa-person-falling-burst"></i>  Raison principale de son échec : <%= @startup.fail_reason %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-
 
 
 
