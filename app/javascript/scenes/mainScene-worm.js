@@ -5,7 +5,6 @@ export default class MainScene extends Phaser.Scene {
   preload() {
     // Chargement des images sur github pour éviter le precompile
     this.load.image('worm', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/images/worm.png');
-    this.load.image('transparent-16px', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/images/transparent-16px.png');
     this.load.image('tiles', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/tilemaps/tiles/TilesetGraveyard-16-16.png');
     this.load.tilemapTiledJSON('station-fails', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/tilemaps/json/station-fails.json');
     console.log("end of preload")
@@ -167,7 +166,7 @@ export default class MainScene extends Phaser.Scene {
     this.groundLayer.forEachTile(tile => {
       // Check if the tile number is in the array
       if (tileNumbers.includes(tile.index)) {
-        const newTile = this.physics.add.image(tile.x * 16, tile.y * 16, 'transparent-16px').setOrigin(0, 0).setScale(0.1);
+        const newTile = this.physics.add.image(tile.x * 16, tile.y * 16, 'worm').setOrigin(0, 0).setScale(0.1);
         this.my_tiles.push(newTile);
         this.physics.world.enable(newTile);
 

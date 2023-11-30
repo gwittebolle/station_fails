@@ -5,40 +5,30 @@ export default class MainScene extends Phaser.Scene {
   preload() {
     // Chargement des images sur github pour éviter le precompile
     this.load.image('worm', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/images/worm.png');
+    this.load.image('transparent-16px', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/images/transparent-16px.png');
     this.load.image('tiles', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/tilemaps/tiles/TilesetGraveyard-16-16.png');
     this.load.tilemapTiledJSON('station-fails', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/tilemaps/json/station-fails_231130.json');
-    console.log("end of preload")
   }
 
   create() {
     this.initMap();
 
     this.worm = this.physics.add.image(100, 140, 'worm').setOrigin(0, 0).setScale(0.1);
-    this.worm2 = this.physics.add.image(200, 240, 'worm').setOrigin(0, 0).setScale(0.1);
     this.worm.setDepth(1);
 
     // Array of tile numbers to add collisions -> Ajouter ici tous les numéros de tuiles qui doivent être des collisions
     const tileNumbersToCollide = [28];
-
     // Call the function to add collisions to specific tiles
     this.addCollisionsToTiles(tileNumbersToCollide);
 
     //Physique
     this.physics.world.enable(this.worm);
 
-    this.groundLayer.setCollisionByProperty({collides: true});
-
-    console.log(this.groundLayer)
-
-
-
-
-    this.physics.add.collider(this.worm, this.groundLayer, () => {
+    this.physics.add.collider(this.worm, this.my_tiles, () => {
       console.log("Collision détectée !");
   });
 
-
-  this.physics.add.collider(this.worm, this.worm2, () => {
+  this.physics.add.collider(this.worm, this.my_tiles, () => {
     console.log("Collision détectée !");
 });
 
@@ -55,6 +45,10 @@ export default class MainScene extends Phaser.Scene {
 
     // Création du curseur
     const cursors = this.input.keyboard.createCursorKeys();
+
+        // Store the previous position of the worm
+        const prevX = this.worm.x;
+        const prevY = this.worm.y;
 
     // Mouvement horizontal
      if (cursors.left.isDown) {
@@ -95,6 +89,14 @@ export default class MainScene extends Phaser.Scene {
       this.showWormText();
     }
 
+    // Check for collisions with my_tiles
+    this.physics.add.collider(this.worm, this.my_tiles, (worm, tile) => {
+      // Handle collision here
+      // For example, prevent movement by reverting to the previous position
+      this.worm.x = prevX;
+      this.worm.y = prevY;
+      console.log("Collision detected!");
+  });
   }
 
   showWormText() {
@@ -116,56 +118,52 @@ export default class MainScene extends Phaser.Scene {
   initMap() {
     //  Initialisation de la carte dans la fonction privée initMap
     this.map = this.make.tilemap({ key: 'station-fails', tileWidth: 16, tileHeight: 16 });
-    console.log(this.map)
-    console.log("-----------")
     // Ici, mettre le nom du jeu de tuiles, identique à celui mentionné
     this.tileset = this.map.addTilesetImage('TilesetGraveyard-16-16', 'tiles', 16, 16);
     this.groundLayer = this.map.createLayer('Ground', this.tileset);
-    console.log(this.groundLayer)
     this.physics.world.setBounds(0, 0, this.groundLayer.width, this.groundLayer.height);
 
     this.showDebugWalls();
 
   }
 
+addCollisionsToTiles(tileNumbers) {
+  this.my_tiles = [];
+  this.groundLayer.forEachTile(tile => {
+    // Check if the tile number is in the array
+    if (tileNumbers.includes(tile.index)) {
+      const newTile = this.physics.add.image(tile.x * 16, tile.y * 16, 'transparent-16px').setOrigin(0, 0);
+      this.my_tiles.push(newTile);
+      this.physics.world.enable(newTile);
 
-  // Afficher les tiles qui ont la propriété collides = true
-  showDebugWalls() {
-    const debugGraphics = this.add.graphics().setAlpha(0.7);
+      // Add collision logic here if needed
+      newTile.setCollideWorldBounds(true);
+      this.physics.add.collider(newTile, /* Other collidable object */);
+    }
+  });
 
-    // Iterate through each tile in the ground layer
-    this.groundLayer.forEachTile(tile => {
-        // Check if the tile has the property 'collides' set to true
-        if (tile.properties.collides === true) {
-            debugGraphics.fillStyle(0xE6E6E6, 1); // Set the colliding tile color
-            debugGraphics.fillRect(tile.pixelX, tile.pixelY, tile.width, tile.height);
-        }
-    }, this);
-
-    // Remove the default debug rendering method
-    this.groundLayer.renderDebug(debugGraphics, {
-        tileColor: null,
-        collidingTileColor: null,
-    });
 }
 
-  addCollisionsToTiles(tileNumbers) {
-    this.my_tiles = [];
-    this.groundLayer.forEachTile(tile => {
-      // Check if the tile number is in the array
-      if (tileNumbers.includes(tile.index)) {
-        const newTile = this.physics.add.image(tile.x * 16, tile.y * 16, 'worm').setOrigin(0, 0).setScale(0.1);
-        this.physics.world.enableTile(tile);
-        this.my_tiles.push(newTile);
-        this.physics.world.enable(newTile);
+// Afficher les tiles qui ont la propriété collides = true
+showDebugWalls() {
+  const debugGraphics = this.add.graphics().setAlpha(0.7);
 
-        // Add collision logic here if needed
-        newTile.setCollideWorldBounds(true);
-        this.physics.add.collider(newTile, /* Other collidable object */);
+  // Iterate through each tile in the ground layer
+  this.groundLayer.forEachTile(tile => {
+      // Check if the tile has the property 'collides' set to true
+      if (tile.properties.collides === true) {
+          debugGraphics.fillStyle(0xE6E6E6, 1); // Set the colliding tile color
+          debugGraphics.fillRect(tile.pixelX, tile.pixelY, tile.width, tile.height);
       }
-    });
+  }, this);
 
-    console.log(this.my_tiles);
-  }
+  // Remove the default debug rendering method
+  this.groundLayer.renderDebug(debugGraphics, {
+      tileColor: null,
+      collidingTileColor: null,
+  });
+}
+
+
 
 }
