@@ -1,5 +1,5 @@
 
-<%= @level.description %>
+<%= @level.description.html_safe %>
 
 <%= link_to 'Play', edit_project_level_game_project_path(@project, @level) %>
 <!-- A modifier par du texte enrichi par un admin ensuite -->
