@@ -14,7 +14,7 @@ class FavoritesController < ApplicationController
     @favorite = Favorite.new(favorite_params)
     @favorite.project = @project
     @favorite.startup = @startup
-    if @project.save
+    if @favorite.save
       redirect_to project_path(@project), notice: "Favori ajouté avec succès."
     else
       render :new, status: :unprocessable_entity
@@ -38,5 +38,3 @@ class FavoritesController < ApplicationController
 
 
 end
-
-

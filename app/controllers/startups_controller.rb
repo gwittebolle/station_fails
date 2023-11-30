@@ -1,6 +1,6 @@
 class StartupsController < ApplicationController
   def index
-    # @startups = FrenchTechApi.get_startups
+    @startups = Startup.all
 
     # @startups = Startup.all
     # if params[:query].present?
@@ -19,7 +19,6 @@ class StartupsController < ApplicationController
 
   def show
     @startup = Startup.find(params[:id])
-    @project = Project.find(params[:id])
   end
 
 end

@@ -1,10 +1,22 @@
-<h1 class="text-center">Le cimetière</h1>
-<div class="container">
-  <div class="row">
-    <div class="col-lg-4">
-      <div class="cards">
-        <%= @startup.name%>
+<h1 class="text-center">Rest In Peace <%= @startup.name%></h1>
+<br>
+<div class="container-fluid d-flex justify-content-around ">
+  <div class="row d-flex">
+    <div class="col-sm-12 startup-logo-parent ">
+      <%= image_tag("ghost.jpeg", class: "startup-logo-child") %>
+    </div>
+    <div class="col-12 col-md-6 offset-lg-2">
+      <div class="text-center">
+        <p><b><%= @startup.name %></b></p>
+        <p><%= @startup.founder %></p>
+        <p><%= @startup.employees_range%> employés</p>
+        <p><%= @startup.localisation %></p>
+        <p><%= @startup.sector %></p>
+        <p><%= @startup.fail_reason %></p>
+        <h3>R.I.P.</h3>
+        <i class="fa-solid fa-cross fa-lg"></i>
       </div>
     </div>
   </div>
 </div>
+<div class='text-center'><%= link_to "Ajouter en favori", project_path, class:"button-neon-green" %></div>
