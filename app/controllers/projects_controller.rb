@@ -26,7 +26,6 @@ class ProjectsController < ApplicationController
 
     # Trouver le niveau suivant s'il existe, sinon utiliser le niveau actuel
     @next_level = Level.find_by(index: @max_level_reached + 1) || Level.find_by(index: @max_level_reached)
-
   end
 
 
