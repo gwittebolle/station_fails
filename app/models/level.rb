@@ -1,5 +1,5 @@
 class Level < ApplicationRecord
-  has_many :attempts
+  has_many :attempts, dependent: :destroy
 
 
   def self.max_level_reached(project_id)
