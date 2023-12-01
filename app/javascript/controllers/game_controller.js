@@ -5,6 +5,7 @@ import MainScene from '../scenes/mainScene.js';
 // Connects to data-controller="game"
 export default class extends Controller {
   static targets = ["div"]
+
   CONFIG = {
     type: Phaser.AUTO,
     width: 640,
@@ -13,7 +14,7 @@ export default class extends Controller {
       default: 'arcade', // You can choose a different physics engine if needed
       arcade: {
         gravity: { y: 0 }, // Set your desired gravity
-        debug: true // Set to true for debugging physics
+        debug: false // Set to true for debugging physics
       }
     },
     scene: MainScene,

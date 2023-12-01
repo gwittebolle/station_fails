@@ -2,52 +2,89 @@
   background-color: $black;
 }
 
+.card-infos {
+  width: 300px;
+  height: 200px;
+  background-color: $gray;
+
+}
+
 .project-card {
-  border: 10px solid #ddd;
+  border: 2px solid $gray;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   transition: transform 0.3s ease-in-out;
   margin-bottom: 20px;
+  margin-top: 50px;
+  width: 1200px;
+  height: 1000px;
+  background-color: $black;
+
+  &:hover {
+    transform: scale(1.02);
+    box-shadow: 0px 0px 40px $neon-green;
+  }
+
+  .project-header {
+    background-color: $black;
+    color: $white;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid $gray;
+
+    h1 {
+      margin: 0;
+      font-size: 1.5em;
+      font-family: 'Bebas Neue', sans-serif;
+    }
+  }
+}
+
+.card {
+  width: 800px;
+
 
   &:hover {
     transform: scale(1.02);
   }
 
-  .project-header {
-    background-color: $neon-green;
-    color: $black;
-    padding: 15px;
-    text-align: center;
+.card-title {
+  color: $white;
+}
 
-    h2 {
-      margin: 0;
-      font-size: 1.5em;
-    }
-  }
+.card-text {
+  color: $white;
+  font-family: 'Bebas Neue', sans-serif;
+}
+.card-subtitle {
+  color: $white;
+  font-family: 'Bebas Neue', sans-serif;
+}
 
-  .project-details {
-    padding: 15px;
 
-    h4 {
-      color: $grave-gray; /* Assurez-vous que $grave-gray est défini ailleurs dans votre code ou remplacez-le par une couleur valide */
-      margin-bottom: 0;
-      font-family: 'Bebas Neue', sans-serif;
-    }
-  }
 
-  .project-footer {
-    padding: 15px;
-    text-align: center;
+.card-header {
+  color: $black;
+}
+.card-body {
+  color: $black;
+}
 
-    .btn {
-      display: inline-block;
-      padding: 12px 24px; /* Mise à jour de la taille des boutons à 2 rem */
-      text-decoration: none;
-      background-color: $amber-yellow; /* Assurez-vous que $amber-yellow est défini ailleurs dans votre code ou remplacez-le par une couleur valide */
-      color: #fff;
-      border-radius: 4px;
-      transition: background-color 0.3s ease-in-out;
-    }
-  }
+}
+
+.gradient-dark-button {
+  background: linear-gradient(to bottom, #444, #222);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.gradient-dark-button:hover {
+  background: linear-gradient(to bottom, #222, #000);
+  text-decoration: none;
 }

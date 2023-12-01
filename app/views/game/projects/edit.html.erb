@@ -4,4 +4,6 @@
 
 <!-- Afficher ici le niveau en fonction du level -->
 <div data-controller="game" data-game-target="div">
+<div id="level" data-project="<%= { name: @project.name, level: @level.index, funds: @project.funds }.to_json %>">
+</div>
 </div>

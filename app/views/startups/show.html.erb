@@ -19,19 +19,14 @@
               <%= @startup.localisation %></p>
 
               <p class="card-text mb-3">  <i class="fa-solid fa-person-falling-burst"></i>  Raison principale de son échec : <%= @startup.fail_reason %></p>
+                    <%= simple_form_for [@startup, @favorite] do |f| %>
+                     <button type="submit", class="btn button-dark">Favori</button>
+                    <% end %>
             </div>
           </div>
         </div>
       </div>
     </div>
+
   </div>
 </div>
-
-
-
-<%= simple_form_for [@startup, @favorite] do |f| %>
-<button type="submit">
- <i class="fa-regular fa-heart fa-lg" style="width: auto"></i>
-  </button>
-
-<% end %>

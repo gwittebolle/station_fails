@@ -49,6 +49,7 @@ fail_reason = [
     localisation: localisations.sample,
     sector: Faker::Company.industry,
     fail_reason: fail_reason.sample,
+
   )
 end
 
