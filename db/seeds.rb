@@ -92,7 +92,7 @@ Level.create(
             boursier grâce à la Bourse BPI.
         </p>",
   rank: 1,
-  metrics: "funds",
+  metrics: "1000",
   index: 2
 )
 
