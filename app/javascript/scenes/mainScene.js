@@ -13,31 +13,18 @@ export default class MainScene extends Phaser.Scene {
   create() {
     this.initMap();
 
-    this.worm = this.physics.add.image(100, 140, 'worm').setOrigin(0, 0).setScale(0.1);
+    this.worm = this.physics.add.image(100, 300, 'worm').setOrigin(0, 0).setScale(0.08);
     this.worm.setDepth(1);
 
-    const jsonData = require('./app/assets/tilemaps/json/station-fails_231130_soir.json');
-    // Tableau pour stocker les IDs avec la valeur "true"
-    const trueIds = [];
+  // Chemin local vers le fichier JSON
+  const jsonPath = 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/tilemaps/json/station-fails_231130_soir.json';
 
-    // Parcours de chaque entrée
-    jsonData.tiles.forEach((tile) => {
-      // Parcours des propriétés de chaque entrée
-      tile.properties.forEach((prop) => {
-        // Vérifie si la propriété "collides" a la valeur "true"
-        if (prop.name === "collides" && prop.value) {
-          // Ajoute l'ID au tableau
-          trueIds.push(tile.id);
-        }
-      });
-    });
-
-    console.log(trueIds)
-
-    // Array of tile numbers to add collisions -> Ajouter ici tous les numéros de tuiles qui doivent être des collisions
-    const tileNumbersToCollide = [28];
-    // Call the function to add collisions to specific tiles
-    this.addCollisionsToTiles(tileNumbersToCollide);
+  // Array of tile numbers to add collisions -> Ajouter ici tous les numéros de tuiles qui doivent être des collisions
+  const tileNumbersToCollide = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143];
+  this.solidTiles(jsonPath).then(data => {
+    const tileNumbersToCollide2 = data
+    this.addCollisionsToTiles(tileNumbersToCollide2);
+  })
 
     //Physique
     this.physics.world.enable(this.worm);
@@ -147,22 +134,64 @@ export default class MainScene extends Phaser.Scene {
 
   }
 
-addCollisionsToTiles(tileNumbers) {
-  this.my_tiles = [];
-  this.tombsLayer.forEachTile(tile => {
-    // Check if the tile number is in the array
-    if (tileNumbers.includes(tile.index)) {
-      const newTile = this.physics.add.image(tile.x * 16, tile.y * 16, 'transparent-16px').setOrigin(0, 0);
-      this.my_tiles.push(newTile);
-      this.physics.world.enable(newTile);
+  solidTiles(jsonPath) {
+    // Retourne une promesse pour permettre l'asynchronisme
+    return new Promise((resolve, reject) => {
+      // Fonction pour traiter le JSON
+      function processJsonData(jsonData) {
+        // Tableau pour stocker les IDs avec la valeur "true"
+        const trueIds = [];
+        jsonData.tilesets[0].tiles.forEach((tile) => {
+          // Vérifie si la propriété "collides" a la valeur "true"
+          if (tile.properties[0].value) {
+            trueIds.push(tile.id);
+          }
+        });
+        // Résout la promesse avec l'array trueIds
+        resolve(trueIds);
+      }
 
-      // Add collision logic here if needed
-      newTile.setCollideWorldBounds(true);
-      this.physics.add.collider(newTile, /* Other collidable object */);
-    }
-  });
+      // Fonction pour récupérer le JSON
+      fetch(jsonPath)
+        .then(response => {
+          // Vérifie si la requête a réussi
+          if (!response.ok) {
+            throw new Error(`Erreur de chargement du JSON : ${response.statusText}`);
+          }
+          // Convertit la réponse en JSON
+          return response.json();
+        })
+        .then(jsonData => {
+          // Appelle la fonction pour traiter le JSON
+          processJsonData(jsonData);
+        })
+        .catch(error => {
+          // Rejette la promesse avec l'erreur
+          reject(`Une erreur s'est produite lors du chargement du JSON : ${error.message}`);
+        });
+    });
+  }
 
-}
+
+  addCollisionsToTiles(tileNumbers) {
+    this.my_tiles = [];
+    this.tombsLayer.forEachTile(tile => {
+      // Check if the tile number is in the array
+      if (tileNumbers.includes(tile.index)) {
+        const newTile = this.physics.add.image(tile.x * 16, tile.y * 16, 'transparent-16px').setOrigin(0, 0);
+        this.my_tiles.push(newTile);
+        this.physics.world.enable(newTile);
+
+        // Add collision logic here if needed
+        newTile.setCollideWorldBounds(true);
+        this.physics.add.collider(newTile, /* Other collidable object */);
+      }
+    });
+
+  }
+
+
+// FONCTIONS DE DEBUGGAGE
 
 // Afficher les tiles qui ont la propriété collides = true
 showDebugWalls() {
