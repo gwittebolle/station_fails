@@ -1,8 +1,31 @@
-<h2>You win</h2>
-
-
-<% if @next_level.present? %>
-  <%= link_to 'Prochain niveau', project_level_path(@project, @next_level) %>
-<% else %>
-  <%= link_to 'Page finale', win_page_path %>
-<% end %>
+<div class="all">
+  <div class="container">
+    <div class="d-flex">
+      <div class="grave-card col-4">
+        <div class="card-gray p-2">
+            <%= render partial: "card_you_win", locals: {level: @level} %>
+        </div>
+      </div>
+      <div class="infos-card col-8 d-flex justify-content-around p-5 mt-5">
+          <div class="">
+          <div class="card" style="width: 40rem;">
+            <div class="card-body">
+              <h3 class="card-title text-center"><b>Statistiques</b></h3>
+                <div class="d--flex">
+                 <h6 class="card-subtitle mb-2 "><p><em> Année  <%= @level.index %> </em></p>
+                </div>
+               <p class="card-text mb-3">Capital : <%= @level.metrics %></p>
+               <div class="d-flex justify-content-center">
+                 <% if @next_level.present? %>
+                   <%= link_to 'Continuer', project_level_path(@project, @next_level), class: "button-dark" %>
+                 <% else %>
+                   <%= link_to 'Page finale', win_page_path, class: "button-dark" %>
+                 <% end %>
+               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
