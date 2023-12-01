@@ -11,7 +11,8 @@ export default class MainScene extends Phaser.Scene {
     this.load.image('worm', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/images/worm.png');
     this.load.image('transparent-16px', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/images/transparent-16px.png');
     this.load.image('tiles', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/tilemaps/tiles/TilesetGraveyard-16-16.png');
-    this.load.tilemapTiledJSON('station-fails', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/tilemaps/json/station-fails_231130_soir.json');
+    this.load.image('characters', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/tilemaps/tiles/05-devout.png');
+    this.load.tilemapTiledJSON('station-fails', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/tilemaps/json/station-fails_231201.json');
   }
 
   create() {
@@ -208,6 +209,8 @@ export default class MainScene extends Phaser.Scene {
     this.physics.world.setBounds(0, 0, this.groundLayer.width, this.groundLayer.height);
     this.tombsLayer = this.map.createLayer('Tombs', this.tileset);
     this.physics.world.setBounds(0, 0, this.tombsLayer.width, this.tombsLayer.height);
+    this.charactersLayer = this.map.createLayer('Characters', this.tileset);
+    this.physics.world.setBounds(0, 0, this.charactersLayer.width, this.charactersLayer.height);
 
     // this.showDebugWalls();
 
