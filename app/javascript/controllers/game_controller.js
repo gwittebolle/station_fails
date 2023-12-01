@@ -21,6 +21,6 @@ export default class extends Controller {
   };
   connect() {
     const game = new Phaser.Game(this.CONFIG);
-    this.divTarget.insertAdjacentHTML("beforeend", game)
+    // this.divTarget.insertAdjacentHTML("beforeend", game)
   }
 }
