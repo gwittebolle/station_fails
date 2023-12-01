@@ -1,5 +1,10 @@
 
 <%= @level.description.html_safe %>
 
+<script>
+  window.levelData = <%= @level.to_json %>; // Assurez-vous que @level est une variable Rails
+</script>
+<script type="module" src="mainScene.js"></script>
+
 <%= link_to 'Play', edit_project_level_game_project_path(@project, @level) %>
 <!-- A modifier par du texte enrichi par un admin ensuite -->

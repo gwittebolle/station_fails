@@ -5,6 +5,7 @@ import MainScene from '../scenes/mainScene.js';
 // Connects to data-controller="game"
 export default class extends Controller {
   static targets = ["div"]
+
   CONFIG = {
     type: Phaser.AUTO,
     width: 640,
