@@ -1,0 +1,21 @@
+.all {
+  background-color: $black;
+  color : $white;
+}
+
+.card {
+  color : $white;
+  background-color: $gray;
+  border-radius: 20px;
+  padding:20px;
+
+}
+
+.card-subtitle {
+  color : $white;
+}
+
+.card h5,h6,h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 30px;
+}

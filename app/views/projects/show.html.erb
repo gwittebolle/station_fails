@@ -1,11 +1,10 @@
-<div class="container project-show p-3 m-3">
-
-  <%= render partial: 'shared/project_card', locals: { project: @project } %>
-  <!-- Ajoutez d'autres détails du projet ici -->
-  <% @favorites.each do |favorite| %>
-    <%= favorite.startup.name%>
-  <% end %>
-  <%= link_to 'Play', project_level_path(@project, @next_level) %>
-
-
+<div class="all">
+  <div class="container p-2 m-2">
+    <%= render partial: 'shared/project_card', locals: { project: @project } %>
+    <!-- Ajoutez d'autres détails du projet ici -->
+    <% @favorites.each do |favorite| %>
+      <%= favorite.startup.name%>
+    <% end %>
+    <%= link_to 'Play', project_level_path(@project, @next_level) %>
+  </div>
 </div>
