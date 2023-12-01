@@ -1,9 +1,11 @@
-<%= simple_form_for [:game, @project, @level], url: project_level_game_project_path(@project, @level), method: :patch do |f| %>
-  <%= f.submit "Envoyer une demande", class: "modal-btn-black mb-1 w-100"%>
-<% end %>
 
 <!-- Afficher ici le niveau en fonction du level -->
 <div data-controller="game" data-game-target="div">
 <div id="level" data-project="<%= { name: @project.name, level: @level.index, funds: @project.funds }.to_json %>">
 </div>
+</div>
+<div>
+<%= simple_form_for [:game, @project, @level], url: project_level_game_project_path(@project, @level), method: :patch do |f| %>
+  <%= f.submit "Analyse de la partie", class: "modal-btn-black mb-1 w-100"%>
+<% end %>
 </div>

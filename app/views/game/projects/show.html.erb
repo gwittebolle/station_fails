@@ -17,7 +17,7 @@
                <p class="card-text mb-3">Capital : <%= @level.metrics %></p>
                <div class="d-flex justify-content-center">
                  <% if @next_level.present? %>
-                   <%= link_to 'Continuer', project_level_path(@project, @next_level), class: "button-dark" %>
+                   <%= link_to 'Continuer', project_level_path(@project, @next_level), class: "btn button-dark" %>
                  <% else %>
                    <%= link_to 'Page finale', win_page_path, class: "button-dark" %>
                  <% end %>

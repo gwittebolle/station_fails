@@ -18,7 +18,7 @@ export default class MainScene extends Phaser.Scene {
   create() {
     this.initMap();
 
-    this.worm = this.physics.add.image(100, 300, 'worm').setOrigin(0, 0).setScale(0.08);
+    this.worm = this.physics.add.image(75, 450, 'worm').setOrigin(0, 0).setScale(0.08);
     this.worm.setDepth(1);
 
     // Ajoutez un texte pour afficher le niveau en haut à gauche
