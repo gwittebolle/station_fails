@@ -53,5 +53,6 @@
     </div>
 
   </div>
+      <%= link_to "Supprimer le projet", project_path(@project), data: {turbo_method: :delete, turbo_confirm: "Etes vous sur ?" }, class: 'btn btn-warning' %>
 </div>
 </div>
