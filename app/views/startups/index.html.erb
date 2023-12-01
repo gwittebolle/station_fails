@@ -6,7 +6,9 @@
     <div class="row mt-2">
       <% @startups.each do |startup| %>
       <div class="col-lg-4 d-flex justify-content-center">
+      <div class="project-wrapper-lg">
         <%= render partial: "startup_card", locals: {startup: startup} %>
+      </div>
       </div>
       <% end %>
     </div>
