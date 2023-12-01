@@ -37,6 +37,7 @@ fail_reason = [
   'Cause judiciaire'
 ]
 
+Startup.create!(name: "Luge parisienne", founder: "Pierre Martin", birth_year: 2017, death_year: 2019, employees_range: 1, localisation: "Paris", sector: "Sport de glisse", fail_reason: "Interdiction des canons à neige par Mme Hidalgo")
 
 20.times do
   year = (2005..2016).to_a.sample
