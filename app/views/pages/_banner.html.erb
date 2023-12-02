@@ -8,11 +8,15 @@
 <div class="container d-flex justify-content-between mt-0">
   <%= link_to "VISITER LE CIMETIERE", startups_path, class:"button-neon-green btn btn-lg" %>
   <div>
+<% if user_signed_in? %>
   <% if current_user.projects.last %>
     <%= link_to "DEFIER L'ECHEC", project_path(current_user.projects.last), class:"big-button-neon-green btn btn-lg" %>
   <% else %>
     <%= link_to "DEFIER L'ECHEC", new_project_path, class:"big-button-neon-green btn btn-lg" %>
   <% end %>
+<% else %>
+  <%= link_to "DEFIER L'ECHEC", new_user_session_path, class:"big-button-neon-green btn btn-lg" %>
+<% end %>
   </div>
 </div>
 </div>
