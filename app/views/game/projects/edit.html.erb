@@ -1,12 +1,12 @@
-<!-- Afficher ici le niveau en fonction du level -->
-<div class="container text-center">
-<div data-controller="game" data-game-target="div">
-  <div id="level" data-project="<%= { name: @project.name, level: @level.index, funds: @project.funds }.to_json %>">
+<div class="container m-0 d-flex flex-column">
+  <div class="col-12" data-controller="game" data-game-target="div">
+    <div id="level" class="canva" data-project="<%= { name: @project.name, level: @level.index, funds: @project.funds }.to_json %>">
+    </div>
   </div>
-</div>
-<div>
-  <%= simple_form_for [:game, @project, @level], url: project_level_game_project_path(@project, @level), method: :patch do |f| %>
-    <%= f.submit "Analyse de la partie", class: "modal-btn-black mb-1 w-100"%>
-  <% end %>
-</div>
+
+  <div class="col-6 mx-auto mt-3">
+    <%= simple_form_for [:game, @project, @level], url: project_level_game_project_path(@project, @level), method: :patch do |f| %>
+      <%= f.submit "Analyse de la partie", class: "big-button-neon-green ml-auto"%>
+    <% end %>
+  </div>
 </div>

@@ -10,6 +10,7 @@ export default class extends Controller {
     type: Phaser.AUTO,
     width: 640,
     height: 480,
+    parent: "level",
     physics: {
       default: 'arcade', // You can choose a different physics engine if needed
       arcade: {
