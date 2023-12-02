@@ -1,12 +1,46 @@
-<div class="bg-dark min-vh-100">
 <div>
-      <%= render partial: "banner" %>
-  </div>
-<div class="container">
+  <div>
+    <%= render partial: "banner" %>
     <div class="text-center">
       <%= render partial: "shared/button" %>
     </div>
-</div>
+  </div>
+  <div class="container-fluid shadow-sm m-3 d-flex justify-content-between">
+    <div class="mx-2 col-6">
+      <div class="banner cim-ban col-5" style="background-color: $black">
+        <h3 class="text-left p-1"><i class="fa-solid fa-skull mx-2"></i>DERNIERS DEFUNTS<i class="fa-solid fa-skull mx-2"></i></h3>
+      </div>
+      <div class="all">
+        <div class="container">
+          <div class="row">
+            <% Startup.last(3).each do |startup| %>
+            <div class="col-lg-4 d-flex justify-content-center">
+              <div class="project-wrapper-lg">
+                <%= render partial: "startups/startup_card", locals: {startup: startup} %>
+              </div>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mx-2 col-4">
+      <div class="banner cim-ban col-5" style="background-color: $black">
+        <h3 class="text-left p-1">DERNIERS ARTICLES </h3>
+      </div>
+      <div class="all">
+        <div class="container article">
+          <div class="row p-4">
+          <ul class="article-list">
+          <li><a href="https://www.usinenouvelle.com/editorial/face-aux-difficultes-de-financement-les-start-up-reclament-davantage-de-commandes-privees-et-publiques.N2170247">Face aux difficultés de financement, les start-up réclament davantage de commandes privées et publiques</a></li>
+          <li><a href="https://business-cool.com/actualites/actu-business/startup-kikikickz-liquidation-judiciaire/">La startup Kikikickz placée en liquidation judiciaire</a></li>
+          <li><a href="https://www.frenchweb.fr/fin-du-dreem-pour-de-nombreuses-startups/443589">Fin du DREEM pour de nombreuses startups.</a></li>
+          <li><a href="https://www.maddyness.com/2023/10/27/luko-rachat-liquidation/">Luko au bord du gouffre : comment la startup en est arrivée là</a></li>
 
-
+          </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

@@ -1,18 +1,17 @@
-<div class="container py-5 ">
+<div class="form-container m-0 p-3">
   <div class="row">
-    <div class="col-12 col-md-6 offset-lg-3">
-      <div class="rounded p-3 shadow">
-        <h2 class='text-center'>Crée ton projet !</h2>
-
+    <div class="col-12 col-md-6 m-5 mx-auto offset-lg-3">
+      <div class="rounded p-3 shadow form-area">
+        <h2 class='text-center'>Prépare ton échec !</h2>
         <%= simple_form_for [@project] do |f|  %>
-          <%= f.input :name, label: "Nom du projet", input_html: {class: "bg-light"} %>
-          <%= f.input :sector, label: "Secteur du projet", input_html: {class: "bg-light"} %>
+          <%= f.input :name, label: "Nom de l'idée vouée à l'échec", input_html: {class: "bg-light"} %>
+          <%= f.input :sector, label: "Secteur", input_html: {class: "bg-light"} %>
           <%= f.input :description, input_html: {class: "bg-light"} %>
-          <%= f.input :employees_range, label: "Nombre d'employés", input_html: {class: "bg-light"} %>
+          <%= f.input :employees_range, label: "Nombre d'employés initial (stagiaires inclus !)", input_html: {class: "bg-light"} %>
           <%= f.input :localisation, label: "Localisation", input_html: {class: "bg-light"} %>
-          <%= f.input :funds, label: "Capital", input_html: {class: "bg-light"} %>
+          <%= f.input :funds, label: "Capital de départ (€)", input_html: {class: "bg-light"} %>
           <%= f.input :photo, as: :file, input_html: {class: "bg-light"} %>
-          <%= f.submit "Valider", class: "button-neon-green" %>
+          <%= f.submit "Valider", class: "form-area button-neon-green" %>
         <% end %>
       </div>
     </div>
