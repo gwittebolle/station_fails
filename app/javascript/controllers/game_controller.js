@@ -1,6 +1,6 @@
 import { Controller } from "@hotwired/stimulus"
 import Phaser from 'phaser';
-import MainScene from '../scenes/mainScene.js';
+import Level1 from '../scenes/level1.js';
 
 // Connects to data-controller="game"
 export default class extends Controller {
@@ -15,10 +15,10 @@ export default class extends Controller {
       default: 'arcade', // You can choose a different physics engine if needed
       arcade: {
         gravity: { y: 0 }, // Set your desired gravity
-        debug: false // Set to true for debugging physics
+        debug: true // Set to true for debugging physics
       }
     },
-    scene: MainScene,
+    scene: Level1,
   };
   connect() {
     const game = new Phaser.Game(this.CONFIG);
