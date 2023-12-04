@@ -16,12 +16,11 @@ class Game::ProjectsController < ApplicationController
   def update
     @level = Level.find(params[:id])
 
-
-
     @level.win?(params) ? @attempt = Attempt.create(result: true) : @attempt = Attempt.create(result: false)
-      @attempt.project = @project
-      @attempt.level = @level
-      @attempt.save
+
+    @attempt.project = @project
+    @attempt.level = @level
+    @attempt.save
 
     redirect_to project_level_game_project_path(@project, @level)
   end
