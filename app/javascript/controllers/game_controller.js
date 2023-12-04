@@ -20,12 +20,12 @@ export default class extends Controller {
         debug: false // Set to true for debugging physics
       }
     },
-    scene: null,
+    scene: Level2,
   };
   connect() {
-    const levelIndex = 1;
-    console.log(levelIndex) ;
-    this.setSceneByIndex(levelIndex);
+    // const levelIndex = 2;
+    // console.log(levelIndex) ;
+    // this.setSceneByIndex(levelIndex);
     const game = new Phaser.Game(this.CONFIG);
     // this.divTarget.insertAdjacentHTML("beforeend", game)
   }

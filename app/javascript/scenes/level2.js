@@ -8,7 +8,7 @@ import * as DebugFunctions from '../shared/debugFunctions.js';
 
 export { MapFunctions, TileFunctions, DebugFunctions };
 
-export default class Level1 extends Phaser.Scene {
+export default class Level2 extends Phaser.Scene {
 
   // Store the previous position of the worm
   prevX;
@@ -21,7 +21,7 @@ export default class Level1 extends Phaser.Scene {
     this.load.image('worm', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/images/worm.png');
     this.load.image('transparent-16px', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/images/transparent-16px.png');
     this.load.image('tiles', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/tilemaps/tiles/TilesetGraveyard-16-16.png');
-    this.load.image('characters', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/tilemaps/tiles/05-devout.png');
+    this.load.image('characters', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/tilemaps/tiles/TTVyDQ.png');
     this.load.tilemapTiledJSON('station-fails', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/tilemaps/json/realLevel_2.json');
   }
 
@@ -29,6 +29,9 @@ export default class Level1 extends Phaser.Scene {
     await MapFunctions.initMap.call(this);
 
     SpriteFunctions.initSprite(this, 75, 450)
+
+
+    console.log(this.worm)
 
     // Ajoutez un texte pour afficher le niveau en haut à gauche
     const infoBackString = document.querySelector("#level").dataset.project;
