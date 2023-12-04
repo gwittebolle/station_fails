@@ -1,0 +1,33 @@
+/* Style pour la barre de souscription à la newsletter */
+.newsletter-subscribe {
+  text-align: center;
+  margin-top: 20px;
+  border-bottom: 3px solid $white;
+}
+
+.newsletter-subscribe h4 {
+  margin-bottom: 10px;
+}
+
+.newsletter-subscribe form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.newsletter-subscribe input {
+  padding: 8px;
+  margin-right: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 70%;
+}
+
+.newsletter-subscribe button {
+  padding: 8px 16px;
+  background-color: $neon-green;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
