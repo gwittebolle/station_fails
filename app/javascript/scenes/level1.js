@@ -23,6 +23,8 @@ export default class Level1 extends Phaser.Scene {
     this.load.image('tiles', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/tilemaps/tiles/TilesetGraveyard-16-16.png');
     this.load.image('characters', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/tilemaps/tiles/05-devout.png');
     this.load.tilemapTiledJSON('station-fails', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/tilemaps/json/station-fails_231201.json');
+    this.load.image('shark', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/images/shark-16.png');
+
   }
 
   async create() {
