@@ -1,5 +1,7 @@
 class Level < ApplicationRecord
+  belongs_to :project
   has_many :attempts, dependent: :destroy
+  has_many :projects
   has_one_attached :photo
 
 

@@ -3,7 +3,11 @@
     <div class="d-flex">
       <div class="grave-card col-4">
         <div class="card-gray p-2">
+          <% if @attempt.result == true %>
             <%= render partial: "card_you_win", locals: {level: @level} %>
+          <% elsif @attempt.result == false %>
+            <%= render partial: "card_you_lose", locals: {level: @level} %>
+          <% end %>
         </div>
       </div>
       <div class="infos-card col-8 d-flex justify-content-around p-5 mt-5">
@@ -12,13 +16,17 @@
             <div class="card-body">
               <h3 class="card-title text-center"><b>Statistiques</b></h3>
                 <div class="d--flex">
-                 <h6 class="card-subtitle mb-2 "><p><em> Année  <%= @level.index %> </em></p>
+                 <h6 class="card-subtitle mb-2 "><p><em> Etape n°<%= @level.index %> </em></p>
                 </div>
-               <p class="card-text mb-3">Capital : <%= @level.metrics %></p>
+               <p class="card-text mb-3">Capital : <%= @level.metrics %> €</p>
+               <p class="card-text mb-3">Tentatives : <%= @attempt_count %></p>
+
                <div class="d-flex justify-content-center">
-                 <% if @next_level.present? %>
+                 <% if @attempt.result == false %>
+                   <%= link_to 'Rejouer', edit_project_level_game_project_path(@project, @level), class: "btn button-dark" %>
+                 <% elsif @next_level.present? && @attempt.result == true  %>
                    <%= link_to 'Continuer', project_level_path(@project, @next_level), class: "btn button-dark" %>
-                 <% else %>
+                 <% elsif !@next_level.present?  %>
                    <%= link_to 'Page finale', win_page_path, class: "button-dark" %>
                  <% end %>
                </div>
