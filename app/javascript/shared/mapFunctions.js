@@ -13,7 +13,6 @@ export function initMap() {
   tombsLayer = this.map.createLayer('Tombs', this.tileset);
   this.physics.world.setBounds(0, 0, tombsLayer.width, tombsLayer.height);
   this.charactersLayer = this.map.createLayer('PNG', this.tileset2);
-  console.log(this.charactersLayer)
   this.physics.world.setBounds(0, 0, this.charactersLayer.width, this.charactersLayer.height);
 
   // this.showDebugWalls();
