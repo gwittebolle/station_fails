@@ -29,7 +29,6 @@ export default class extends Controller {
 
     if(!localStorage.loaded) {
           localStorage.setItem('loaded', 'yes')
-          console.log("coucou")
           window.location.reload();
     }
     else

@@ -11,3 +11,5 @@ export function textSprite(context) {
   context.wormText.setDepth(2);
   context.wormText.setVisible(false);
 }
+
+
