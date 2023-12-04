@@ -1,12 +1,26 @@
 <div class="container m-0 d-flex flex-column">
   <div class="col-12" data-controller="game" data-game-target="div">
-    <div id="level" class="canva" data-project="<%= { name: @project.name, level: @level.index, funds: @project.funds }.to_json %>">
+    <div id="level" class="canva" data-project="<%= { name: @project.name, level: @level.index, funds: @project.funds, rank: @level.rank, metrics:@level.metrics }.to_json %>">
     </div>
   </div>
 
-  <div class="col-6 mx-auto mt-3">
-    <%= simple_form_for [:game, @project, @level], url: project_level_game_project_path(@project, @level), method: :patch do |f| %>
-      <%= f.submit "Analyse de la partie", class: "big-button-neon-green ml-auto"%>
+
+  <div class="form-container bg-light col-6 mx-auto mt-3 d-none">
+    <%= simple_form_for [:game, @project, @level], url: project_level_game_project_path(@project, @level), method: :patch, html: { id: 'game-form' } do |f| %>
+      <%= f.input :rank,
+                  label: "Rang",
+                  required: true,
+                  html: {id: "rank"} %>
+      <%= f.input :metrics,
+                  label: "Métrique",
+                  required: true,
+                  html: {id: "metrics"} %>
+    </div>
+  <div class="form-actions d-none p-3 d-flex justify-content-center align-items-center">
+    <%= f.submit "Analyse de la partie", class: "big-button-neon-green ml-auto", html: {id: "submit"}%>
+  </div>
+
+
     <% end %>
   </div>
 </div>
