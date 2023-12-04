@@ -30,6 +30,9 @@ export default class Level1 extends Phaser.Scene {
 
     SpriteFunctions.initSprite(this, 75, 450)
 
+
+    console.log(this.worm)
+
     // Ajoutez un texte pour afficher le niveau en haut à gauche
     const infoBackString = document.querySelector("#level").dataset.project;
     const infoBack = JSON.parse(infoBackString);
