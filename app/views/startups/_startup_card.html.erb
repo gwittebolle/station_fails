@@ -2,9 +2,12 @@
     <div class="text-center p-3">
     <%= link_to startup_path(startup) do %>
 
-        <img src="<%= [image_path('logo2.png'), image_path('logo3.png'), image_path('logostartup.jpg')].sample %>" class="logo">
 
-      <%#= startup.logo.attached? ? cl_image_tag(startup.logo.key, gravity: "face", :crop => "fill", class:"logo") : image_tag('logo2.png', :crop => "fill",  class:"logo") %>
+         <% if startup.logo.present?%>
+        <img src="<%= startup.logo %>", class="logo">
+        <% end %>
+        <%# <img src="<%= [image_path('logo2.png'), image_path('logo3.png'), image_path('logostartup.jpg')].sample %>
+      <%#= startup.logo.exist ? cl_image_tag(startup.logo.key, gravity: "face", :crop => "fill", class:"logo") : image_tag('logo2.png', :crop => "fill",  class:"logo") %>
      <% end  %>
      <div class=" d-flex flex-column">
        <div class="div mt-3 mb-3">

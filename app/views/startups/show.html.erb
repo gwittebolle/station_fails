@@ -3,34 +3,72 @@
     <div class="d-flex">
       <div class="grave-card col-4">
         <div class="card-gray p-5  mt-5">
-            <%= render partial: "startup_card", locals: {startup: @startup} %>
+          <%= render partial: "startup_card", locals: {startup: @startup} %>
         </div>
       </div>
       <div class="infos-card col-8 d-flex justify-content-around p-5 mt-5">
-          <div class="">
-          <div class="card" style="width: 40rem;">
-            <div class="card-body">
-              <h3 class="card-title"> <b><%= @startup.name %></b> </h3>
-                <div class="d--flex">
-                <h6 class="card-subtitle mb-2 ">fondé par - <%= @startup.founder %> </h6><p><em><%= @startup.birth_year %> - <%= @startup.death_year %> </em></p>
-                </div>
-               <p class="card-text"><%= @startup.sector %></p>
-              <p class="card-text"><%= @startup.name %> comptait <%= @startup.employees_range%> employés, situé.e à
-              <%= @startup.localisation %></p>
 
-            <% if current_user.projects.present? %>
-            <div>
-              <p class="card-text mb-3">  <i class="fa-solid fa-person-falling-burst"></i>  Raison principale de son échec : <%= @startup.fail_reason %></p>
-                    <%= simple_form_for [@startup, @favorite] do |f| %>
-                     <button type="submit", class="btn button-neon-green">Ajouter à mes proches</button>
-                    <% end %>
+          <div class="card card-white" style="width: 40rem;">
+            <div class="card-body ">
+            <div class="tiltle-box ">
+                <h2 class="card-line-title"> <b><%= @startup.name %></b></h2>
             </div>
-            <% end %>
+
+            <p class="card-line">  <% if @startup.description.present? %>
+                  <p class="card-line text-center">  <span class="text-gray"><em> "<%= @startup.description %>" </em> </span></p>
+                  <% else %>
+                  <p></p>
+                  <% end %>
+                </p>
+
+          <div class="tiltle-box d-flex justify-content-between">
+                <p class="card-line p-3"><% if @startup.sector.present? %>
+                <p  class="card-line"> <span class="text-gray">Secteur : </span> <%= @startup.sector.capitalize %></p>
+                <% else %>
+                <p  class="card-line"> <span class="text-gray">Secteur </span> : Divers </p>
+                <% end %>
+              </p>
+               <p class="card-line"> <% if @startup.localisation.present? %>
+                  <p  class="card-line"> <span class="text-gray"> <i class="fa-solid fa-location-dot"></i> : </span>  <%= @startup.localisation.capitalize %></p>
+                  <% else %>
+                  <p class="card-line"> <span class="text-gray"><i class="fa-solid fa-location-dot"></i></span>  Paris</p>
+                  <% end %>
+                </p>
+            </div>
+
+             <hr class="thin-line">
+
+
+              <div class="d--flex">
+                <p class="card-line"> <span class="text-gray"> <b> Fondateurs et employés</b> </span> </p>
+                  <ul>
+                  <li class="card-line "> <span class="text-gray"> Fondateur principal - </span> <%= @startup.founder.capitalize %></li>
+                  <li class="card-line"> <span class="text-gray"> Nombre de fondateurs : </span> <%= @startup.founders_number %></li>
+                  <li  class="card-line"> <span class="text-gray"> Dates : </span> <%= @startup.birth_year %> - <%= @startup.death_year %></li>
+                  </ul>
+              </div>
+
+                <p class="card-line"> <span class="text-gray">Employes : </span><%= @startup.employees %></p>
+
+
+                <p class="card-line">
+                  <% if @startup.funds >  0 %>
+                  <p  class="card-line"> <span class="text-gray"> Funds : </span><%= @startup.funds %> <span class="text-gray"> € </span> </p>
+                  <% else %>
+                  <p></p>
+                  <% end %>
+                </p>
+
+                  <% if current_user.projects.present? %>
+                  <div>
+                    <%= simple_form_for [@startup, @favorite] do |f| %>
+                    <button type="submit" , class="btn button-neon-green">Ajouter à mes proches</button>
+                    <% end %>
+                  </div>
+                  <% end %>
             </div>
           </div>
         </div>
-      </div>
     </div>
-
   </div>
 </div>

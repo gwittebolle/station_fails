@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_30_105229) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_04_141844) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -76,7 +76,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_30_105229) do
     t.string "description"
     t.string "sector"
     t.string "localisation"
-    t.string "employees_range"
+    t.integer "employees"
     t.string "logo"
     t.integer "funds"
     t.bigint "user_id", null: false
@@ -89,7 +89,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_30_105229) do
     t.string "name"
     t.string "founder"
     t.string "logo"
-    t.string "employees_range"
+    t.string "employees"
     t.string "localisation"
     t.string "sector"
     t.string "fail_reason"
@@ -97,6 +97,9 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_30_105229) do
     t.integer "death_year"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "funds"
+    t.text "description"
+    t.integer "founders_number"
   end
 
   create_table "users", force: :cascade do |t|
