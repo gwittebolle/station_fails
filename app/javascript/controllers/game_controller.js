@@ -26,6 +26,18 @@ export default class extends Controller {
     // const levelIndex = 2;
     // console.log(levelIndex) ;
     // this.setSceneByIndex(levelIndex);
+
+    if(!localStorage.loaded) {
+          localStorage.setItem('loaded', 'yes')
+          console.log("coucou")
+          window.location.reload();
+    }
+    else
+    {
+      localStorage.setItem('loaded', '')
+    }
+
+
     const game = new Phaser.Game(this.CONFIG);
     // this.divTarget.insertAdjacentHTML("beforeend", game)
   }
