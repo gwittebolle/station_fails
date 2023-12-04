@@ -11,29 +11,33 @@
           <div class="card card-white" style="width: 40rem;">
             <div class="card-body ">
             <div class="tiltle-box ">
-                <h2 class="card-line-title"> <b><%= @startup.name %></b></h2>
+                <h2 class="card-line-title  text-center"> <b><%= @startup.name %></b></h2>
             </div>
 
-            <p class="card-line">  <% if @startup.description.present? %>
-                  <p class="card-line text-center">  <span class="text-gray"><em> "<%= @startup.description %>" </em> </span></p>
+            <p class="card-line ">  <% if @startup.description.present? %>
+                  <p class="card-line  text-center">  <span class="text-gray"><em> - <%= @startup.description %> - </em> </span></p>
                   <% else %>
                   <p></p>
                   <% end %>
                 </p>
 
-          <div class="tiltle-box d-flex justify-content-between">
-                <p class="card-line p-3"><% if @startup.sector.present? %>
-                <p  class="card-line"> <span class="text-gray">Secteur : </span> <%= @startup.sector.capitalize %></p>
+          <div class="tiltle-box ">
+              <p class="card-line"> <span class="text-gray"> <b> Informations </b> </span> </p>
+
+              <ul>
+                <li class="card-line"><% if @startup.sector.present? %>
+                <li  class="card-line"> <span class="text-gray">Secteur : </span> <%= @startup.sector.capitalize %></li>
                 <% else %>
-                <p  class="card-line"> <span class="text-gray">Secteur </span> : Divers </p>
+                <li  class="card-line"> <span class="text-gray">Secteur </span> : Divers </li>
                 <% end %>
-              </p>
-               <p class="card-line"> <% if @startup.localisation.present? %>
-                  <p  class="card-line"> <span class="text-gray"> <i class="fa-solid fa-location-dot"></i> : </span>  <%= @startup.localisation.capitalize %></p>
+              </li>
+               <li class="card-line"> <% if @startup.localisation.present? %>
+                  <li  class="card-line"> <span class="text-gray"> Position :  </span>  <%= @startup.localisation.capitalize %>, France</li>
                   <% else %>
-                  <p class="card-line"> <span class="text-gray"><i class="fa-solid fa-location-dot"></i></span>  Paris</p>
+                  <li class="card-line"> <span class="text-gray"> Position : </span>  Paris, France</li>
                   <% end %>
-                </p>
+                </li>
+              </ul>
             </div>
 
              <hr class="thin-line">
@@ -42,13 +46,21 @@
               <div class="d--flex">
                 <p class="card-line"> <span class="text-gray"> <b> Fondateurs et employés</b> </span> </p>
                   <ul>
-                  <li class="card-line "> <span class="text-gray"> Fondateur principal - </span> <%= @startup.founder.capitalize %></li>
-                  <li class="card-line"> <span class="text-gray"> Nombre de fondateurs : </span> <%= @startup.founders_number %></li>
+                  <li class="card-line "><% if @startup.founder.present? %>
+                <li  class="card-line"> <span class="text-gray"> Fondateur principal - </span> <%= @startup.founder %></li>
+                <% else %>
+                <li  class="card-line"> <span class="text-gray"> Fondateur principal - </span> : Non renseigné </li>
+                <% end %>
+               <li class="card-line "><% if @startup.founders_number > 0 %>
+                <li  class="card-line"> <span class="text-gray"> Nombre de fondateur.s : </span> <%= @startup.founders_number %></li>
+                <% else %>
+                <li  class="card-line"> </li>
+                <% end %>
                   <li  class="card-line"> <span class="text-gray"> Dates : </span> <%= @startup.birth_year %> - <%= @startup.death_year %></li>
+                <li class="card-line"> <span class="text-gray">Fourchette d'employés : </span><%= @startup.employees %></li>
                   </ul>
               </div>
 
-                <p class="card-line"> <span class="text-gray">Employes : </span><%= @startup.employees %></p>
 
 
                 <p class="card-line">
@@ -62,7 +74,7 @@
                   <% if current_user.projects.present? %>
                   <div>
                     <%= simple_form_for [@startup, @favorite] do |f| %>
-                    <button type="submit" , class="btn button-neon-green">Ajouter à mes proches</button>
+                    <button type="submit" , class="btn  btn-special">Enregistrer</button>
                     <% end %>
                   </div>
                   <% end %>

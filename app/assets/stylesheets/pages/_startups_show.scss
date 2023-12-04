@@ -47,3 +47,25 @@
   border-top: 2px solid #898181;
   margin : 5px 5px;
 }
+
+.btn-special {
+  padding-left:60px;
+  padding-right:60px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  font-size: 14px;
+  border-radius: 10px;
+  text-decoration: none;
+  min-height: 3rem;
+  background-color: $grave-gray;
+  border : 2px solid  #bababa;
+
+  &:hover {
+    transform: scale(1.02);
+    background-color:  $grave-gray;
+    border : 3px solid  #898181;
+    color: $gray;
+    font-weight: bolder;
+
+}
+}
