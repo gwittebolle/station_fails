@@ -5,29 +5,46 @@
       <%= render partial: "shared/button" %>
     </div>
   </div>
-  <div class="container-fluid shadow-sm m-3 d-flex justify-content-between">
+  <div class="container-fluid shadow-sm m-3 d-flex justify-content-evenly">
     <div class="mx-2 col-6">
-      <div class="banner cim-ban col-5" style="background-color: $black">
-        <h3 class="text-left p-1"><i class="fa-solid fa-skull mx-2"></i>DERNIERS DEFUNTS<i class="fa-solid fa-skull mx-2"></i></h3>
+
+      <div class="banner cim-ban-left col-5" style="background-color: $black">
+        <h3 class="text-center p-1"><i class="fa-solid fa-skull mx-2"></i>DERNIERS DEFUNTS<i class="fa-solid fa-skull mx-2"></i></h3>
       </div>
-      <div class="all">
-        <div class="container">
-          <div class="row">
-            <% Startup.last(3).each do |startup| %>
-            <div class="col-lg-4 d-flex justify-content-center">
+
+      <div id="carouselExampleIndicators" class="carousel slide">
+        <div class="carousel-indicators">
+          <button type="button btn-success" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button btn-success" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button btn-success" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+          <% Startup.last(3).each do |startup| %>
+            <div class="carousel-item active">
               <div class="project-wrapper-lg">
                 <%= render partial: "startups/startup_card", locals: {startup: startup} %>
               </div>
             </div>
-            <% end %>
-          </div>
+          <% end %>
         </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
       </div>
+
     </div>
-    <div class="mx-2 col-4">
-      <div class="banner cim-ban col-5" style="background-color: $black">
-        <h3 class="text-left p-1">DERNIERS ARTICLES </h3>
+    <div class="mx-2 col-5 d-flex align-items-center flex-column">
+
+      <div class="banner cim-ban-right col-5 mb-5" style="background-color: $black">
+        <h3 class="text-center p-1">DERNIERS ARTICLES </h3>
       </div>
+
       <div class="all">
         <div class="container article">
           <div class="row p-4">

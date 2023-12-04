@@ -22,7 +22,7 @@ Rails.application.routes.draw do
       namespace :game do
         resources :projects, only: %i[edit update show]
       end
-      resources :attempts, only: %i[index]
+      resources :attempts, only: %i[index create]
       # # Afficher /project/1/level/1/project/1 -> flou, ticket à réaliser
       # namespace :game do
       #   resources :projects, only %i[show update create]

@@ -4,9 +4,17 @@
       <%= image_tag("logo-station-fails.png", width: 350, class: "img-fluid") %>
     <% end %>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    <div class="d-flex">
+      <div class="align-self-center"><h2> - Rechercher une startup sur le site - <h3></div>
+          <%= form_with url: startups_path, method: :get, class: "d-flex" do %>
+        <%= text_field_tag :query,
+              params[:query],
+              class: "search-input mx-3",
+              placeholder: "Nom d'une startup"
+          %>
+        <%= submit_tag "Search", name: "", class: "button-neon-green" %>
+      <% end %>
+    </div>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
