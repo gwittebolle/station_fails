@@ -16,9 +16,8 @@ class Game::ProjectsController < ApplicationController
   def update
     @level = Level.find(params[:id])
 
+    @level.win?(params) ? @attempt = Attempt.create(result: true) : @attempt = Attempt.create(result: false)
 
-    # Pour le moment, tout le monde est gagnant
-    @attempt = Attempt.new(result: true)
     @attempt.project = @project
     @attempt.level = @level
     @attempt.save

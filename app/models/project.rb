@@ -6,8 +6,4 @@ class Project < ApplicationRecord
 
   validates :name, presence: true
   validates :description, presence: true
-
-  def any_attempts?
-    attempts.count.positive?
-  end
 end
