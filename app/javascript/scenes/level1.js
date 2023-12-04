@@ -30,10 +30,20 @@ export default class Level1 extends Phaser.Scene {
   async create() {
     await MapFunctions.initMap.call(this);
 
+
+    this.wormGroup = this.physics.add.group();
+    this.sharkGroup = this.physics.add.group();
+
+
+    SpriteFunctions.initShark(this, 75, 250)
     SpriteFunctions.initSprite(this, 75, 450)
 
+    // Add the sprites to their respective groups
+    this.wormGroup.add(this.worm);
+    this.sharkGroup.add(this.shark);
 
-    console.log(this.worm)
+    // Add collider for the groups
+    this.physics.add.collider(this.wormGroup, this.sharkGroup, this.handleCollision, null, this);
 
     // Ajoutez un texte pour afficher le niveau en haut à gauche
     const infoBackString = document.querySelector("#level").dataset.project;
@@ -189,5 +199,19 @@ export default class Level1 extends Phaser.Scene {
     const tileNumber = tileX + tileY * columns;
 
     return tileNumber;
+  }
+
+  handleCollision(worm, shark) {
+    // This function will be called when a collision occurs
+    // Add your logic here, for example, resetting the worm's position
+
+    // Reset the worm to its initial position
+    this.resetWormPosition();
+    MsgFunctions.bottomText("Projet détruit par un shark !", this)
+  }
+
+  resetWormPosition() {
+    // Set the worm's position back to its initial position
+    this.worm.setPosition(75, 450);
   }
 }

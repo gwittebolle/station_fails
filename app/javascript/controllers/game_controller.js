@@ -17,7 +17,7 @@ export default class extends Controller {
       default: 'arcade', // You can choose a different physics engine if needed
       arcade: {
         gravity: { y: 0 }, // Set your desired gravity
-        debug: false // Set to true for debugging physics
+        debug: true // Set to true for debugging physics
       }
     },
     scene: Level1,
