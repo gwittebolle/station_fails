@@ -56,13 +56,11 @@
                 <% else %>
                 <li  class="card-line"> </li>
                 <% end %>
+
                   <li  class="card-line"> <span class="text-gray"> Dates : </span> <%= @startup.birth_year %> - <%= @startup.death_year %></li>
                 <li class="card-line"> <span class="text-gray">Fourchette d'employés : </span><%= @startup.employees %></li>
                   </ul>
               </div>
-
-
-
                 <p class="card-line">
                   <% if @startup.funds >  0 %>
                   <p  class="card-line"> <span class="text-gray"> Funds : </span><%= @startup.funds %> <span class="text-gray"> € </span> </p>

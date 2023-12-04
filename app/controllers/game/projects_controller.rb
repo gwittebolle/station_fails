@@ -4,6 +4,7 @@ class Game::ProjectsController < ApplicationController
 
   def show
     @max_level_reached = Level.max_level_reached(@project)
+    @attempt = @project.attempts.last
     @level = Level.find_by(index: Level.max_level_reached(@project) + 1) || Level.find_by(index: Level.max_level_reached(@project))
     @next_level = Level.find_by(index: @max_level_reached + 1)
   end
@@ -16,8 +17,16 @@ class Game::ProjectsController < ApplicationController
   def update
     @level = Level.find(params[:id])
 
-    # Pour le moment, tout le monde est gagnant
-    @attempt = Attempt.new(result: true)
+    if @level.win?(params)
+      @attempt = Attempt.create(result: true)
+      if params[:level][:metrics] == "funds"
+        @project.funds = params[:level][:rank]
+        @project.save
+      end
+    else
+      @attempt = Attempt.create(result: false)
+    end
+
     @attempt.project = @project
     @attempt.level = @level
     @attempt.save
