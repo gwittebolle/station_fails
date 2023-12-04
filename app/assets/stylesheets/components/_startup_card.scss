@@ -21,6 +21,7 @@
   border-radius: 50% 50% 10px 10px;
   color: #000000;
   box-shadow: rgba(255, 255, 255, 0.24) 0px 3px 8px;
+  border: 2px solid $dark-gray;
 
   &:hover {
     transform: scale(1.02);
@@ -37,7 +38,7 @@
 
 
 .logo {
-  padding: 10%;
+  padding: 20%;
   border-radius: 50%;
   width: 80%;
   height: 80%;

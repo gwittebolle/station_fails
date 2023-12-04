@@ -1,8 +1,10 @@
 .banner {
   background-size: cover;
-  padding: 90px ;
+  padding: 70px ;
   background-color: $black;
   border-bottom: 3px solid $white;
+  border-top: 3px solid $white;
+
 
 
 }
@@ -23,4 +25,31 @@
   padding: 20px;
   color: $white;
 
+}
+.btn-special-gray {
+  padding-left:60px;
+  padding-right:60px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  font-size: 12px;
+  border-radius: 10px;
+  text-decoration: none;
+  min-height: 3rem;
+  background-color: $black;
+  border : 2px solid #3d3d3d;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20px;
+  color: $white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    transform: scale(1.02);
+    background-color:  $grave-gray;
+    border : 3px solid  #898181;
+    color: $black;
+    font-weight: bolder;
+
+}
 }

@@ -9,8 +9,9 @@
     <div class="mx-2 col-6">
 
       <div class="banner cim-ban-left col-5" style="background-color: $black">
-        <h3 class="text-center p-1"><i class="fa-solid fa-skull mx-2"></i>DERNIERS DEFUNTS<i class="fa-solid fa-skull mx-2"></i></h3>
+        <h3 class="text-center p-1">DERNIERS DEFUNTS</h3>
       </div>
+
 
       <div id="carouselExampleIndicators" class="carousel slide">
         <div class="carousel-indicators">
@@ -18,10 +19,10 @@
           <button type="button btn-success" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
           <button type="button btn-success" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
         </div>
-        <div class="carousel-inner">
+        <div class="carousel-inner d-flex justify-content-center">
           <% Startup.last(3).each do |startup| %>
             <div class="carousel-item active">
-              <div class="project-wrapper-lg">
+              <div class="project-wrapper-lg ">
                 <%= render partial: "startups/startup_card", locals: {startup: startup} %>
               </div>
             </div>
@@ -45,7 +46,7 @@
         <h3 class="text-center p-1">DERNIERS ARTICLES </h3>
       </div>
 
-      <div class="all">
+      <div class="">
         <div class="container article">
           <div class="row p-4">
           <ul class="article-list">
