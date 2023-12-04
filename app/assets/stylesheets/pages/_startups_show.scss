@@ -19,3 +19,31 @@
   font-family: 'Bebas Neue', sans-serif;
   font-size: 30px;
 }
+
+.card-line {
+  color : $black;
+  font-family: 'Poppins', sans-serif;
+  list-style-type: none;
+
+}
+
+
+.card-white {
+  background-color: $grave-gray;
+}
+.text-gray {
+  color : #495057;
+  font-family: 'Poppins', sans-serif;
+
+}
+
+.card-line-title {
+  font-family: 'Dhurjati', sans-serif;
+  color : $black;
+}
+
+.thin-line {
+  border: none;
+  border-top: 2px solid #898181;
+  margin : 5px 5px;
+}
