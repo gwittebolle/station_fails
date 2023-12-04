@@ -13,6 +13,8 @@ export default class Level1 extends Phaser.Scene {
   // Store the previous position of the worm
   prevX;
   prevY;
+  info_sent_to_html = false
+  isMessageDisplayed = false;
 
   preload() {
     // Chargement des images sur github pour éviter le precompile
@@ -31,7 +33,8 @@ export default class Level1 extends Phaser.Scene {
     // Ajoutez un texte pour afficher le niveau en haut à gauche
     const infoBackString = document.querySelector("#level").dataset.project;
     const infoBack = JSON.parse(infoBackString);
-    MsgFunctions.header(infoBack, this)
+    let infoGame = infoBack
+    MsgFunctions.header(infoGame, this)
 
     // Tuiles solides
     // Chemin local vers le fichier JSON
@@ -46,13 +49,42 @@ export default class Level1 extends Phaser.Scene {
 
         // Get the collidable tiles directly
       const my_tiles = TileFunctions.getMyTiles();
-      this.physics.add.collider(this.worm, my_tiles, (worm) => {
+      infoGame.fundsAddedTiles = infoGame.fundsAddedTiles || new Set();
+
+      this.physics.add.collider(this.worm, my_tiles, (worm, collidedTile) => {
         if (!this.collisionDetected) {
-          console.log("Collision détectée !");
+
+          const tileAtCoordinates = tombsLayer.getTileAtWorldXY(collidedTile.x, collidedTile.y);
+
+          if (tileAtCoordinates) {
+            const tileNumber = tileAtCoordinates.index;
+
+            if (tileNumber === 26 && !infoGame.fundsAddedTiles.has(this.getTileNumber(collidedTile.x, collidedTile.y))) {
+              console.log("Collision avec une tombe");
+              // Afficher un message en bas du jeu
+                // Créez un groupe pour le texte et le rectangle
+                this.displayGroup = this.add.group();
+              // Incrémenter d'un chiffre compris entre 0 et 10 info.funds
+              const fundsIncrement = Phaser.Math.Between(2, 10);
+              infoGame.funds += fundsIncrement;
+              // Marquer la tuile comme touchée dans le Set
+              infoGame.fundsAddedTiles.add(this.getTileNumber(collidedTile.x, collidedTile.y));
+              MsgFunctions.header(infoGame, this)
+
+              MsgFunctions.bottomText(`Ci-gît une start-up, ${fundsIncrement}€ par terre, chouette ! `, this)
+              console.log("Nouveaux fonds :", infoGame.funds);
+
+            }
+          } else {
+            console.log("Pas de tuile à la position (", collidedTile.x, ",", collidedTile.y, ")");
+          }
+
           this.collisionDetected = true;
           worm.x = this.prevX;
           worm.y = this.prevY;
+
         }
+
       });
 
     })
@@ -75,50 +107,32 @@ export default class Level1 extends Phaser.Scene {
           this.winningTilesGroup.add(winningTile);
 
           // Ajoutez un collider entre this.worm et le sprite de la tuile gagnante
-          this.physics.add.collider(this.worm, winningTile, () => {
+          const collider = this.physics.add.collider(this.worm, winningTile, () => {
             // Code à exécuter lors de la collision entre this.worm et une tuile gagnante
-            msgText.setText('Victoire');
-            this.tweens.add({
-              targets: this.victoryDisplayGroup.getChildren(),
-              alpha: 1,
-              ease: 'Linear',
-              onComplete: () => {
-                // Masquez à nouveau le rectangle et le texte après quelques secondes
-                this.time.delayedCall(1000, () => {
-                  this.tweens.add({
-                    targets: this.victoryDisplayGroup.getChildren(),
-                    alpha: 0,
-                    ease: 'Linear'
-                  });
-                });
-              }
-            });
+            if (this.info_sent_to_html === false) {
+              document.getElementById('level_rank').value = infoGame.funds;
+              document.getElementById('level_metrics').value = infoGame.metrics;
+              this.info_sent_to_html = true;
+            }
+
+            MsgFunctions.bottomText(`Fin du niveau`, this);
+
+            this.isMessageDisplayed = false;
+
+            // Get the form container by its class
+            const formContainer = document.querySelector('.form-actions');
+            console.log(formContainer)
+
+            // Toggle the visibility of the form based on the game state
+            formContainer.classList.remove('d-none');
+
+            // Désactivez le collider après la collision pour éviter les déclenchements continus
+            collider.destroy();
           });
         }
       });
-
-      // Rectangle de message
-      // Créez un groupe pour le texte et le rectangle
-      this.victoryDisplayGroup = this.add.group();
-
-      // Créez le rectangle avec le fond noir et la bordure en pointillés
-      const backgroundRect = this.add.rectangle(this.sys.game.config.width / 2, this.sys.game.config.height - 25, this.sys.game.config.width - 20, 50, 0x000000);
-      backgroundRect.setStrokeStyle(2, 0xFFFFFF, 1);
-      backgroundRect.setOrigin(0.5, 0.5);
-      backgroundRect.setAlpha(0); // Masquez initialement le rectangle
-
-      // Ajoutez le rectangle au groupe
-      this.victoryDisplayGroup.add(backgroundRect);
-
-      // Créez le texte du message
-      const msgText = this.add.text(this.sys.game.config.width / 2, this.sys.game.config.height - 25, '', { fontSize: '20px', fill: '#FFFFFF' });
-      msgText.setOrigin(0.5, 0.5);
-      msgText.setAlpha(0); // Masquez initialement le texte
-
-      // Ajoutez le texte au groupe
-      this.victoryDisplayGroup.add(msgText);
-
     });
+
 
     // Création du texte (hidden pour faire "parler le ver")
     SpriteFunctions.textSprite(this)
@@ -129,6 +143,12 @@ export default class Level1 extends Phaser.Scene {
     // Store the previous position of the worm
     this.prevX = this.worm.x;
     this.prevY = this.worm.y;
+
+      // Empêchez le mouvement si le message est affiché
+    if (this.isMessageDisplayed) {
+    return;
+    }
+
 
     MoveFunctions.move(this)
 
@@ -143,12 +163,26 @@ export default class Level1 extends Phaser.Scene {
     this.physics.add.collider(this.worm, this.my_tiles, (worm) => {
       if (!this.collisionDetected) {
         // Indiquer la collision
-        console.log("Collision détectée !");
+        console.log("Collision détectée !!!");
         this.collisionDetected = true;
         // Replacer le ver
         worm.x = this.prevX;
         worm.y = this.prevY;
+
       }
     });
+  }
+
+  getTileNumber(x, y) {
+    const tileSize = 16;  // Taille d'une tuile (en pixels)
+    const columns = 40;   // Nombre de colonnes dans la disposition des tuiles
+
+    const tileX = Math.floor(x / tileSize);
+    const tileY = Math.floor(y / tileSize);
+    console.log(x, y, tileX, tileY)
+
+    const tileNumber = tileX + tileY * columns;
+
+    return tileNumber;
   }
 }
