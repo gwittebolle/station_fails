@@ -74,7 +74,7 @@ Level.create(
         </p>
         <p>
             Par exemple, la startup PayFit, spécialisée dans les solutions de paie en ligne, a démarré son parcours avec
-            des fonds de Love Money provenant de membres de la famille et d'amis proches.
+            des fonds de Love Money provenant de meembres de la famille et d'amis proches.
         </p>",
   rank: 1,
   metrics: "funds",
