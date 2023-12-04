@@ -6,16 +6,16 @@ export function move(context) {
 
   // Mouvement horizontal
   if (cursors.left.isDown) {
-    context.worm.x -= 2;
+    context.worm.x -= 4;
   } else if (cursors.right.isDown) {
-    context.worm.x += 2;
+    context.worm.x += 4;
   }
 
   // Mouvement vertical
   if (cursors.up.isDown) {
-    context.worm.y -= 2;
+    context.worm.y -= 4;
   } else if (cursors.down.isDown) {
-    context.worm.y += 2;
+    context.worm.y += 4;
   }
 
   // Vérifier si le ver est sorti de l'écran à gauche

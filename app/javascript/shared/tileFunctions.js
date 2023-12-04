@@ -19,7 +19,7 @@ export function solidTiles(jsonPath) {
       // Résout la promesse avec l'array trueIds
       resolve(trueIds)
     }
-    console.log(jsonPath)
+
     // Fonction pour récupérer le JSON
     fetch(jsonPath)
       .then(response => {
@@ -51,7 +51,7 @@ export function winningTiles(jsonPath) {
       jsonData.tilesets[0].tiles.forEach((tile) => {
         // Vérifie si la propriété "collides" a la valeur "true"
         //Tuiles gagnantes
-        const specialTiles = [33, 34, 45, 46];
+        const specialTiles = [21,22];
         if (specialTiles.includes(tile.id)) {
           winningTiles.push(tile.id);
         }
