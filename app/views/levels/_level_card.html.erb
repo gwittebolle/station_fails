@@ -1,14 +1,14 @@
-  <div class="level-card">
-    <div class="text-center p-3">
-    <% if @level.index % 2 == 0 %>
-       <%=  image_tag('even_level_rank.png', width: 200, height: 200) %>
-    <% elsif @level.index % 2 != 0 %>
-       <%=  image_tag('odd_level_rank.png', width: 200, height: 200) %>
-    <% end %>
-     <div class=" d-flex flex-column">
-       <div class="div mt-3 mb-3 text-white">
-          <h3 class="p-1 level-index"><b><%= @level.index %></b></h3>
-       </div>
-     </div>
-   </div>
+<div class="level-card">
+  <div class="text-center p-3 d-flex align-items-center flex-column">
+    <div>
+      <% if @level.index % 2 == 0 %>
+        <%=  image_tag('even_level_rank.png', width: 480, height: 360, crop: :fill) %>
+      <% elsif @level.index % 2 != 0 %>
+        <%=  image_tag('odd_level_rank.png', width: 400, height: 350, crop: :fill) %>
+      <% end %>
+    </div>
+    <div class="">
+      <h1 class="p-1 level-index "><b><%= @level.index %></b></h1>
+    </div>
+  </div>
 </div>
