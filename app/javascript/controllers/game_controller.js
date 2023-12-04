@@ -20,7 +20,7 @@ export default class extends Controller {
         debug: false // Set to true for debugging physics
       }
     },
-    scene: Level1,
+    scene: Level2,
   };
   connect() {
     // const levelIndex = 2;
