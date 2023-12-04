@@ -1,10 +1,10 @@
 import Phaser from 'phaser';
 import * as MapFunctions from '../shared/mapFunctions.js';
 import * as TileFunctions from '../shared/tileFunctions.js';
-import * as DebugFunctions from '../shared/debugFunctions.js';
-import * as MsgFunctions from '../shared/msgFunctions.js';
-import * as MoveFunctions from '../shared/moveFunctions.js';
 import * as SpriteFunctions from '../shared/spriteFunctions.js';
+import * as MoveFunctions from '../shared/moveFunctions.js';
+import * as MsgFunctions from '../shared/msgFunctions.js';
+import * as DebugFunctions from '../shared/debugFunctions.js';
 
 export { MapFunctions, TileFunctions, DebugFunctions };
 
