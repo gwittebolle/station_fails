@@ -15,19 +15,53 @@ export default class Level3 extends Phaser.Scene {
   prevY;
   info_sent_to_html = false
   isMessageDisplayed = false;
+  keyPressed = false;
 
   preload() {
     // Chargement des images sur github pour éviter le precompile
     this.load.image('worm', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/images/worm.png');
     this.load.image('transparent-16px', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/images/transparent-16px.png');
     this.load.image('tiles', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/tilemaps/tiles/TilesetGraveyard-16-16.png');
-    this.load.image('characters', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/tilemaps/tiles/characters.png');    this.load.tilemapTiledJSON('station-fails', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/tilemaps/json/realLevel_3.json');
+    this.load.image('characters', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/tilemaps/tiles/characters.png');
+    this.load.tilemapTiledJSON('station-fails', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/tilemaps/json/realLevel_3.json');
+    this.load.image('shark', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/images/shark-16.png');
+    this.load.audio('bg-music', ['https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/sounds/LastLevelAmbiance.mp3']);
   }
 
   async create() {
     await MapFunctions.initMap.call(this);
 
-    SpriteFunctions.initSprite(this, 75, 450)
+    // Charger la musique
+    const music = this.sound.add('bg-music', { loop: true });
+
+    // Ajouter un gestionnaire d'événements clavier
+    this.input.keyboard.on('keydown', function(event) {
+      // Vérifier si c'est la première touche enfoncée
+      if (!this.keyPressed) {
+          // Lancer la musique
+          music.play();
+          this.keyPressed = true; // Marquer que la touche a été enfoncée
+      }
+    });
+
+    this.wormGroup = this.physics.add.group();
+    this.sharkGroup = this.physics.add.group();
+
+    // Call initSprite to create the worm
+    SpriteFunctions.initSprite(this, 40, 450);
+    // Add the sprites to their respective groups
+    this.wormGroup.add(this.worm);
+
+    // Declare an array to store references to sharks
+    this.sharks = [];
+    // Create sharks
+    this.sharks.push(SpriteFunctions.initShark(this, 75, 250));
+    this.sharks.push(SpriteFunctions.initShark(this, 520, 400));
+    // Set collide world bounds for the entire group
+    this.physics.world.enable(this.sharks);
+
+    // Add collider for the groups
+    this.physics.add.collider(this.wormGroup, this.sharks, this.handleCollision, null, this);
 
     // Ajoutez un texte pour afficher le niveau en haut à gauche
     const infoBackString = document.querySelector("#level").dataset.project;
@@ -39,12 +73,20 @@ export default class Level3 extends Phaser.Scene {
     // Chemin local vers le fichier JSON
     const jsonPath = 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/tilemaps/json/realLevel_3.json';
     const tombsLayer = MapFunctions.getTombsLayer();
+    const charactersLayer =  MapFunctions.getCharactersLayer();
 
     // Array of tile numbers to add collisions -> Ajouter ici tous les numéros de tuiles qui doivent être des collisions
     TileFunctions.solidTiles(jsonPath).then(data => {
       const tileNumbersToCollide = data
       TileFunctions.addCollisionsToTiles(tileNumbersToCollide, tombsLayer, this);
       this.collisionDetected = false;
+
+      TileFunctions.solidCharactersTiles(jsonPath).then(data => {
+        const tileCharsToCollide = data
+        TileFunctions.addCollisionsToTiles(tileCharsToCollide, charactersLayer, this);
+
+      })
+
 
         // Get the collidable tiles directly
       const my_tiles = TileFunctions.getMyTiles();
@@ -115,7 +157,10 @@ export default class Level3 extends Phaser.Scene {
             }
 
             MsgFunctions.bottomText(`Fin du niveau`, this);
-
+            if (music) {
+              music.stop();
+              this.keyPressed = false; // Réinitialiser la variable keyPressed
+            }
             this.isMessageDisplayed = false;
 
             // Get the form container by its class
@@ -183,5 +228,19 @@ export default class Level3 extends Phaser.Scene {
     const tileNumber = tileX + tileY * columns;
 
     return tileNumber;
+  }
+
+  handleCollision(worm, shark) {
+    // This function will be called when a collision occurs
+    // Add your logic here, for example, resetting the worm's position
+
+    // Reset the worm to its initial position
+    this.resetWormPosition();
+    MsgFunctions.bottomText(" Projet annihilé par un requin 🦈 !", this)
+  }
+
+  resetWormPosition() {
+    // Set the worm's position back to its initial position
+    this.worm.setPosition(40, 450);
   }
 }

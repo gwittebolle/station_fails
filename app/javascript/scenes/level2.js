@@ -15,6 +15,7 @@ export default class Level2 extends Phaser.Scene {
   prevY;
   info_sent_to_html = false
   isMessageDisplayed = false;
+  keyPressed = false;
 
   preload() {
     // Chargement des images sur github pour éviter le precompile
@@ -24,11 +25,24 @@ export default class Level2 extends Phaser.Scene {
     this.load.image('characters', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/tilemaps/tiles/characters.png');
     this.load.tilemapTiledJSON('station-fails', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/tilemaps/json/realLevel_2.json');
     this.load.image('shark', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/images/shark-16.png');
+    this.load.audio('bg-music', ['https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/sounds/LastLevelAmbiance.mp3']);
   }
 
   async create() {
     await MapFunctions.initMap.call(this);
 
+    // Charger la musique
+    const music = this.sound.add('bg-music', { loop: true });
+
+    // Ajouter un gestionnaire d'événements clavier
+    this.input.keyboard.on('keydown', function(event) {
+      // Vérifier si c'est la première touche enfoncée
+      if (!this.keyPressed) {
+          // Lancer la musique
+          music.play();
+          this.keyPressed = true; // Marquer que la touche a été enfoncée
+      }
+    });
 
     this.wormGroup = this.physics.add.group();
     this.sharkGroup = this.physics.add.group();
@@ -143,7 +157,10 @@ export default class Level2 extends Phaser.Scene {
             }
 
             MsgFunctions.bottomText(`Fin du niveau`, this);
-
+            if (music) {
+              music.stop();
+              this.keyPressed = false; // Réinitialiser la variable keyPressed
+            }
             this.isMessageDisplayed = false;
 
             // Get the form container by its class
