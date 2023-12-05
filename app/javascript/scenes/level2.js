@@ -23,14 +23,31 @@ export default class Level2 extends Phaser.Scene {
     this.load.image('tiles', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/tilemaps/tiles/TilesetGraveyard-16-16.png');
     this.load.image('characters', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/tilemaps/tiles/characters.png');
     this.load.tilemapTiledJSON('station-fails', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/tilemaps/json/realLevel_2.json');
+    this.load.image('shark', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/images/shark-16.png');
   }
 
   async create() {
     await MapFunctions.initMap.call(this);
 
-    SpriteFunctions.initSprite(this, 40, 450)
 
-    console.log(this.worm)
+    this.wormGroup = this.physics.add.group();
+    this.sharkGroup = this.physics.add.group();
+
+    // Call initSprite to create the worm
+    SpriteFunctions.initSprite(this, 40, 450);
+    // Add the sprites to their respective groups
+    this.wormGroup.add(this.worm);
+
+    // Declare an array to store references to sharks
+    this.sharks = [];
+    // Create sharks
+    this.sharks.push(SpriteFunctions.initShark(this, 75, 250));
+    this.sharks.push(SpriteFunctions.initShark(this, 520, 400));
+    // Set collide world bounds for the entire group
+    this.physics.world.enable(this.sharks);
+
+    // Add collider for the groups
+    this.physics.add.collider(this.wormGroup, this.sharks, this.handleCollision, null, this);
 
     // Ajoutez un texte pour afficher le niveau en haut à gauche
     const infoBackString = document.querySelector("#level").dataset.project;
@@ -47,7 +64,6 @@ export default class Level2 extends Phaser.Scene {
     // Array of tile numbers to add collisions -> Ajouter ici tous les numéros de tuiles qui doivent être des collisions
     TileFunctions.solidTiles(jsonPath).then(data => {
       const tileNumbersToCollide = data
-      console.log(tileNumbersToCollide)
       TileFunctions.addCollisionsToTiles(tileNumbersToCollide, tombsLayer, this);
       this.collisionDetected = false;
 
@@ -195,5 +211,19 @@ export default class Level2 extends Phaser.Scene {
     const tileNumber = tileX + tileY * columns;
 
     return tileNumber;
+  }
+
+  handleCollision(worm, shark) {
+    // This function will be called when a collision occurs
+    // Add your logic here, for example, resetting the worm's position
+
+    // Reset the worm to its initial position
+    this.resetWormPosition();
+    MsgFunctions.bottomText(" Projet annihilé par un requin 🦈 !", this)
+  }
+
+  resetWormPosition() {
+    // Set the worm's position back to its initial position
+    this.worm.setPosition(40, 450);
   }
 }
