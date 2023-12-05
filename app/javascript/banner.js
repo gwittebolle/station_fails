@@ -1,11 +1,9 @@
 window.addEventListener("DOMContentLoaded", (event) => {
   animate_text();
-  setInterval(animate_text, 5000);
+  // setInterval(animate_text, 5000);
 });
 
-function animate_text()
-
-{
+function animate_text() {
   let delay = 100,
       delay_start = 0,
       contents,
@@ -27,15 +25,16 @@ function animate_text()
     delay_start += delay * letters.length;
   });
 }
-function repeatAnimation() {
 
-  setTimeout(function () {
-    document.querySelectorAll(".animate-text").forEach(function (elem) {
-      elem.textContent = "";
-    });
-    animate_text();
-    repeatAnimation();
-  }, 5000);
+// function repeatAnimation() {
 
-  requestAnimationFrame(animate_text);
-}
+//   setTimeout(function () {
+//     document.querySelectorAll(".animate-text").forEach(function (elem) {
+//       elem.textContent = "";
+//     });
+//     animate_text();
+//     repeatAnimation();
+//   });
+
+//   requestAnimationFrame(animate_text);
+// }
