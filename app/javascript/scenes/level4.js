@@ -8,7 +8,7 @@ import * as DebugFunctions from '../shared/debugFunctions.js';
 
 export { MapFunctions, TileFunctions, DebugFunctions };
 
-export default class Level3 extends Phaser.Scene {
+export default class Level4 extends Phaser.Scene {
 
   // Store the previous position of the worm
   prevX;
@@ -21,7 +21,8 @@ export default class Level3 extends Phaser.Scene {
     this.load.image('worm', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/images/worm.png');
     this.load.image('transparent-16px', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/images/transparent-16px.png');
     this.load.image('tiles', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/tilemaps/tiles/TilesetGraveyard-16-16.png');
-    this.load.image('characters', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/tilemaps/tiles/characters.png');    this.load.tilemapTiledJSON('station-fails', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/tilemaps/json/realLevel_3.json');
+    this.load.image('characters', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/tilemaps/tiles/characters.png');
+    this.load.tilemapTiledJSON('station-fails', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/tilemaps/json/realLevel_4.json');
   }
 
   async create() {
@@ -37,7 +38,7 @@ export default class Level3 extends Phaser.Scene {
 
     // Tuiles solides
     // Chemin local vers le fichier JSON
-    const jsonPath = 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/tilemaps/json/realLevel_3.json';
+    const jsonPath = 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/tilemaps/json/realLevel_4.json';
     const tombsLayer = MapFunctions.getTombsLayer();
 
     // Array of tile numbers to add collisions -> Ajouter ici tous les numéros de tuiles qui doivent être des collisions

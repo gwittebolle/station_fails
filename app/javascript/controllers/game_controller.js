@@ -3,6 +3,7 @@ import Phaser from 'phaser';
 import Level1 from '../scenes/level1.js';
 import Level2 from '../scenes/level2.js';
 import Level3 from '../scenes/level3.js';
+import Level4 from '../scenes/level4.js';
 
 // Connects to data-controller="game"
 export default class extends Controller {
@@ -20,7 +21,7 @@ export default class extends Controller {
         debug: true // Set to true for debugging physics
       }
     },
-    scene: Level3,
+    scene: Level4,
   };
   connect() {
     // const levelIndex = 2;
