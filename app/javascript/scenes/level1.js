@@ -24,12 +24,25 @@ export default class Level1 extends Phaser.Scene {
     this.load.image('characters', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/tilemaps/tiles/characters.png');
     this.load.tilemapTiledJSON('station-fails', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/tilemaps/json/realLevel_1.json');
     this.load.image('shark', 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/images/shark.png');
+    this.load.audio('bg-music', ['https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/sounds/LastLevelAmbiance.mp3']);
 
   }
 
   async create() {
     await MapFunctions.initMap.call(this);
 
+    // Charger la musique
+    const music = this.sound.add('bg-music', { loop: true });
+
+    // Ajouter un gestionnaire d'événements clavier
+    this.input.keyboard.on('keydown', function(event) {
+      // Vérifier si c'est la première touche enfoncée
+      if (!this.keyPressed) {
+          // Lancer la musique
+          music.play();
+          this.keyPressed = true; // Marquer que la touche a été enfoncée
+      }
+    });
 
     this.wormGroup = this.physics.add.group();
     this.sharkGroup = this.physics.add.group();
@@ -61,12 +74,19 @@ export default class Level1 extends Phaser.Scene {
     // Chemin local vers le fichier JSON
     const jsonPath = 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/tilemaps/json/realLevel_1.json';
     const tombsLayer = MapFunctions.getTombsLayer();
+    const charactersLayer =  MapFunctions.getCharactersLayer();
 
     // Array of tile numbers to add collisions -> Ajouter ici tous les numéros de tuiles qui doivent être des collisions
     TileFunctions.solidTiles(jsonPath).then(data => {
       const tileNumbersToCollide = data
       TileFunctions.addCollisionsToTiles(tileNumbersToCollide, tombsLayer, this);
       this.collisionDetected = false;
+
+      TileFunctions.solidCharactersTiles(jsonPath).then(data => {
+        const tileCharsToCollide = data
+        TileFunctions.addCollisionsToTiles(tileCharsToCollide, charactersLayer, this);
+
+      })
 
         // Get the collidable tiles directly
       const my_tiles = TileFunctions.getMyTiles();
