@@ -8,7 +8,7 @@ export function initSprite(context, x, y) {
 }
 
 export function initShark(context, x, y) {
-  context.shark = context.physics.add.image(x, y, 'shark').setOrigin(0, 0).setScale(1.5);
+  context.shark = context.physics.add.image(x, y, 'shark').setOrigin(0, 0).setScale(1);
   context.shark.setDepth(1);
 
   // Store the initial position
