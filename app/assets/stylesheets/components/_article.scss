@@ -2,6 +2,9 @@
 
 .article {
   list-style-type: none;
+  padding:20px;
+  text-align: center;
+
 
   li {
     margin-bottom: 8px;
@@ -11,7 +14,7 @@
   }
 
   .article-list {
-    padding-right: 30px; // Ajouter du padding à droite pour la liste
+    padding: 30px; // Ajouter du padding à droite pour la liste
   }
 
   a {
@@ -22,6 +25,7 @@
 
     &:hover {
       color: $neon-green;
+      font-weight: bolder;
     }
   }
 }
