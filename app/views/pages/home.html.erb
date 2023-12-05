@@ -1,24 +1,64 @@
+<div class="beta-banner">
+  <h3>🎮 Station Fails v1.0 est disponible gratuitement en version bêta jusqu'au 12 décembre minuit ! Profitez-en maintenant ! 🪦</h3>
+</div>
 <div class="banner-div">
   <%= render partial: "banner" %>
 </div>
 
+<div class="white-banner py-5">
+  <h3 class="text-left"><strong>COMMENCE L'AVENTURE ENTREPRENEURIALE MAINTENANT</strong></h3>
+  <h4 class="text-left mb-3">Plonge dans une aventure captivante aux graphismes époustouflants. <br>Profitez dès maintenant de l'expérience de jeu rétro qui vous transporte dans un univers unique !</h4>
+    <% if user_signed_in? %>
+      <% if current_user.projects.last %>
+        <%= link_to "JOUER MAINTENANT", project_path(current_user.projects.last), class:"btn-green-banner mx-3" %>
+      <% else %>
+        <%= link_to "JOUER MAINTENANT", new_project_path, class:"btn-green-banner mx-3" %>
+      <% end %>
+    <% else %>
+      <%= link_to "JOUER MAINTENANT", new_user_session_path, class:"btn-green-banner mx-3" %>
+    <% end %>
+</div>
+
+<div class="green-banner">
+  <!-- Carte 1 -->
+  <div class="info-card">
+    <h1>90%</h1>
+    <p>Taux d'échec des startups</p>
+    <p class="explanation">Environ 90% des startups échouent au cours de leurs premières années, mettant en lumière les défis du démarrage d'une nouvelle entreprise.</p>
+  </div>
+
+  <!-- Carte 2 -->
+  <div class="info-card">
+    <h1>Technologie</h1>
+    <p>Secteur le plus touché</p>
+    <p class="explanation">La technologie est le secteur où les startups connaissent le plus d'échecs, malgré son potentiel innovant.</p>
+  </div>
+
+  <!-- Carte 3 -->
+  <div class="info-card">
+    <h1>2 ans</h1>
+    <p>Durée de vie moyenne</p>
+    <p class="explanation">En moyenne, les startups survivent pendant environ 2 ans avant de faire face à des défis insurmontables, soulignant la nécessité d'une croissance rapide.</p>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
 <div class="d-flex p-3 m-3 align-items-start">
 <div class="col-9 d-flex flex-column">
 <div>
-      <div class="text-center ">
-        <h3 class="text-center p-1 text-white">STATION FAILS - FACE AUX ECHECS </h3>
+  <div class="container mt-4">
+    <div class="container mt-4">
+      <div class="">
+        <h3 class="p-1 text-white text-left ml-5">CHRONIQUES DU REPOS ETERNEL </h3>
       </div>
-      <hr class="ligne">
-          <div class="article">
-            <p class="text-white p-3 m-5">
-              Station Fails transcende le simple jeu pour offrir une plongée immersive dans l'univers captivant, parfois impitoyable, des startups françaises. L'objectif principal est de défier l'échec entrepreneurial en explorant un cimetière virtuel de startups éteintes. En adoptant le rôle d'un entrepreneur audacieux, les joueurs comprennent les raisons des échecs passés, tirent des leçons, et tissent leur propre success story. Une expérience engageante où l'échec devient une étape cruciale vers le succès.</p>
-            </div>
-    </div>
-    <div>
-      <div class=" text-center ">
-        <h3 class="text-center p-1 text-white">ARTICLES </h3>
-      </div>
-      <hr class="ligne">
+      <hr class="p-0 m-0 ligne">
           <div class="article">
             <ul class="article-list">
               <li><a
@@ -39,49 +79,85 @@
             </ul>
           </div>
     </div>
-</div>
-<div class="d-flex col-3 flex-column">
-
-<div class="col-12 shadow-sm m-3 d-flex justify-content-evenly">
-  <div class="mx-2 col-3 d-flex align-items-center flex-column">
-      <div class=" text-center">
-        <h3 class="text-center p-1 text-white">DERNIER ENTERREMENT</h3>
+<div class="container mt-4">
+      <div class=" ">
+        <h3 class="p-1 text-white text-left ml-5">CHAMBRE FUNERAIRE DES CRITIQUES </h3>
       </div>
-      <div class="d-flex">
-          <div class="project-wrapper-lg">
-              <%= render partial: "startups/startup_card", locals: {startup: Startup.last} %>
-          </div>
-          </div>
-      </div>
-</div>
-<div class="col-12 shadow-sm m-3 d-flex justify-content-evenly border">
-  <div class="mx-2 col-12 d-flex align-items-center flex-column">
-        <h2 class="text-white my-3">PARIE SUR LE PROCHAIN DEFUNT !</h2>
-        <div class="col-8 d-flex justify-content-between align-items-center">
-          <div class="d-flex flex-column align-items-center">
-            <h6 class="text-white">Wakely</h6>
-            <h3 class="text-white">1.96</h3>
-          </div>
-          <div><h3 class="text-white">OU</h3></div>
-          <div class="d-flex flex-column align-items-center">
-            <h6 class="text-white">Astreinte</h6>
-            <h3 class="text-white">1.92</h3>
-          </div>
+  <hr class="p-0 m-0 ligne">
+  <div class="row d-flex">
+      <div class="col-md-4">
+        <div class="review text-white">
+          <h5>JeuxMasters</h5>
+          <p class="comment">Station Fails offre une expérience de jeu captivante avec des graphismes époustouflants. La narration immersive et les mécaniques de jeu innovantes en font un incontournable pour les amateurs de jeux d'aventure. Un joyau du rétro gaming!"</p>
+          <p class="rating">8.9/10</p>
         </div>
-        <p class="text-white"><i>Cotes fournies par Betfriends</i></p>
       </div>
+
+      <div class="col-md-4 text-white">
+        <div class="review">
+          <h5>Joystick Fantastique</h5>
+          <p class="comment">"Station Fails est une perle rare dans l'industrie du jeu. Les concepteurs ont réussi à créer un monde fantastique avec des énigmes stimulantes. Les graphismes sont à couper le souffle, et la bande-son ajoute une dimension supplémentaire à l'expérience. Une ode aux classiques du jeu vidéo!"</p>
+          <p class="rating">9.5/10</p>
+        </div>
+      </div>
+
+      <div class="col-md-4 text-white">
+        <div class="review">
+          <h5>GamingMagique</h5>
+          <p class="comment">"Station Fails brille par son originalité et son gameplay captivant. Les personnages bien développés et l'intrigue immersive en font un jeu exceptionnel. Les joueurs seront absorbés par l'univers riche et les défis stimulants. Une expérience rétro qui mérite d'être vécue!"</p>
+          <p class="rating">9.2/10</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+</div>
+
+</div>
+<div class="d-flex sidebar-column col-3 flex-column">
+  <div class="col-12 shadow-sm m-3 d-flex justify-content-evenly">
+    <div class="mx-2 col-3 d-flex align-items-center flex-column">
+        <div class=" text-center">
+          <h3 class="text-center p-1 text-white">DERNIER ENTERREMENT</h3>
+        </div>
+        <div class="d-flex">
+          <div class="d-flex flex-column">
+            <div class="project-wrapper-lg mb-2">
+                <%= render partial: "startups/startup_card", locals: {startup: Startup.last} %>
+            </div>
+              <%= link_to "VISITER LE CIMETIERE", startups_path, class:"btn-special-gray mx-3" %>
+            </div>
+            </div>
+        </div>
+  </div>
+  <div class="col-12 shadow-sm m-3 d-flex justify-content-evenly">
+    <div class="mx-2 col-12 d-flex align-items-center flex-column">
+          <h3 class="text-white my-3">PARIE SUR LE PROCHAIN DEFUNT !</h3>
+          <div class="col-8 d-flex justify-content-between align-items-center">
+            <div class="d-flex flex-column align-items-center">
+              <h6 class="text-white">Wakely</h6>
+              <h3 class="text-white">1.96</h3>
+            </div>
+            <div><h3 class="text-white">OU</h3></div>
+            <div class="d-flex flex-column align-items-center">
+              <h6 class="text-white">Astreinte</h6>
+              <h3 class="text-white">1.92</h3>
+            </div>
+          </div>
+          <p class="text-white"><i>Cotes fournies par Betfriends</i></p>
+        </div>
+  </div>
 </div>
 </div>
 </div>
 
 
-<div class="col-12 newsletter-subscribe p-2 pb-5 m-3 d-flex flex-column text-start">
+<div class="col-12 newsletter-subscribe p-0 pb-5 mx-0 my-2 d-flex flex-column text-start">
   <div>
     <h4 class="text-white mx-5">La nécrologie des startups dans tes mails chaque dernier vendredi du mois ! </h4>
   </div>
   <div>
-    <form action="<%= new_user_session_path %>" method="get" class="mx-5 d-flex w-100 justify-content-start  ">
+    <form action="<%= new_user_session_path %>" method="get" class="mx-5 d-flex justify-content-start  ">
       <input type="email" name="email" placeholder="Votre adresse e-mail" required />
       <button type="submit" class="btn-special-gray">S'abonner</button>
     </form>

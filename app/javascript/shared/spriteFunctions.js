@@ -1,11 +1,11 @@
 export function initSprite(context, x, y) {
-  context.worm = context.physics.add.image(x, y, 'worm').setOrigin(0, 0).setScale(0.08);
+  context.worm = context.physics.add.image(x, y, 'worm').setOrigin(0, 0).setScale(0.06);
   context.worm.setDepth(1);
   context.physics.world.enable(context.worm);
 }
 
-export function initShark(context, x, y) {
-  context.shark = context.physics.add.image(x, y, 'shark').setOrigin(0, 0).setScale(1);
+export function initShark(context, x, y, z) {
+  context.shark = context.physics.add.image(x, y, 'shark').setOrigin(0, 0).setScale(0.4);
   context.shark.setDepth(1);
 
   // Store the initial position
@@ -13,9 +13,9 @@ export function initShark(context, x, y) {
   context.shark.initialY = y;
 
   // Set up a tween to make the shark oscillate within a random 64-pixel range
-  const randomX = Phaser.Math.RND.between(0, 32);
-  const randomY = Phaser.Math.RND.between(0, 32);
-  const randomSpeed = Phaser.Math.RND.between(100, 3000);
+  const randomX = Phaser.Math.RND.between(0, z);
+  const randomY = Phaser.Math.RND.between(0, z);
+  const randomSpeed = Phaser.Math.RND.between(1000, 3000);
 
 
   // Set up a tween to make the shark oscillate within a 64-pixel range
@@ -32,8 +32,8 @@ export function initShark(context, x, y) {
   return context.shark;
 }
 
-export function initXShark(context, x, y) {
-  context.shark = context.physics.add.image(x, y, 'shark').setOrigin(0, 0).setScale(1);
+export function initXShark(context, x, y, z) {
+  context.shark = context.physics.add.image(x, y, 'shark').setOrigin(0, 0).setScale(0.4);
   context.shark.setDepth(1);
 
   // Store the initial position
@@ -41,9 +41,9 @@ export function initXShark(context, x, y) {
   context.shark.initialY = y;
 
   // Set up a tween to make the shark oscillate within a random 64-pixel range
-  const randomX = Phaser.Math.RND.between(0, 32);
+  const randomX = z
   const randomY = 0
-  const randomSpeed = Phaser.Math.RND.between(100, 3000);
+  const randomSpeed = Phaser.Math.RND.between(1000, 3000);
 
 
   // Set up a tween to make the shark oscillate within a 64-pixel range
@@ -60,8 +60,8 @@ export function initXShark(context, x, y) {
   return context.shark;
 }
 
-export function initYShark(context, x, y) {
-  context.shark = context.physics.add.image(x, y, 'shark').setOrigin(0, 0).setScale(1);
+export function initYShark(context, x, y, z) {
+  context.shark = context.physics.add.image(x, y, 'shark').setOrigin(0, 0).setScale(0.4);
   context.shark.setDepth(1);
 
   // Store the initial position
@@ -70,8 +70,8 @@ export function initYShark(context, x, y) {
 
   // Set up a tween to make the shark oscillate within a random 64-pixel range
   const randomX = 0;
-  const randomY = Phaser.Math.RND.between(0, 32);
-  const randomSpeed = Phaser.Math.RND.between(100, 3000);
+  const randomY = z
+  const randomSpeed = Phaser.Math.RND.between(1000, 3000);
 
 
   // Set up a tween to make the shark oscillate within a 64-pixel range
