@@ -1,4 +1,4 @@
-<div class="all">
+<div class="all-game">
   <div class="container">
     <div class="d-flex justify-content-center">
 
@@ -14,16 +14,16 @@
 
       <div class="infos-card col-8 d-flex justify-content-around p-5 mt-5">
           <div class="">
-          <div class="card" style="width: 40rem;">
+          <div class="game-card" style="width: 40rem;">
             <div class="card-body">
-              <h3 class="card-title text-center"><b>Statistiques</b></h3>
+              <h3 class="game-card-title text-center"><b>Statistiques</b></h3>
                 <div class="d--flex">
-                 <h6 class="card-subtitle mb-2 "><p><em> Etape n°<%= @level.index %> </em></p>
+                 <h6 class="game-card-title mb-2"><p>Etape n°<%= @level.index %></p>
                 </div>
                <p class="card-text mb-3">Capital : <%= @project.funds %> €</p>
                <p class="card-text mb-3">Elles ont échoué avant vous :</p>
 
-               <div class="d-flex justify-content-center">
+               <div class="d-flex justify-content-end">
                  <% if @attempt.result == false %>
                    <%= link_to 'Rejouer', edit_project_level_game_project_path(@project, @level), class: "btn button-dark" %>
                  <% elsif @next_level.present? && @attempt.result == true  %>

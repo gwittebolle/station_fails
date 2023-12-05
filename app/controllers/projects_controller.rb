@@ -26,6 +26,8 @@ class ProjectsController < ApplicationController
     @next_level = Level.find_by(index: @max_level_reached + 1) || Level.find_by(index: @max_level_reached)
   end
 
+
+
   def destroy
     @project.destroy
     redirect_to root_path

@@ -1,4 +1,6 @@
-
+ .all {
+  background-color: $gray;
+}
 
 .cim-ban-left {
   background-size: cover;
@@ -9,35 +11,8 @@
 
 .cim-ban-right {
   background-size: cover;
-  padding: 50px ;
+  padding: 15px ;
   background-color: $black;
   border-bottom: 0,5rem solid $white;
-
-}
-
-.search-bar {
-  position: relative;
-  display: flex;
-  align-items: center;
-  margin: 10%;
-
-}
-
-.search-input {
-  width: 50%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  outline: none;
-}
-
-
-
-.search-button:hover {
-  background-color: #2980b9;
-}
-
-.search-light {
-  width: 50%;
 
 }
