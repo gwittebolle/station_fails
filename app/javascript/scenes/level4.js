@@ -75,7 +75,7 @@ export default class Level4 extends Phaser.Scene {
     this.sharkGroup = this.physics.add.group();
 
     // Call initSprite to create the worm
-    SpriteFunctions.initSprite(this, 75, 450);
+    SpriteFunctions.initSprite(this, 300, 450);
     // Add the sprites to their respective groups
     this.wormGroup.add(this.worm);
 
@@ -156,8 +156,6 @@ export default class Level4 extends Phaser.Scene {
               // Créez un groupe pour le texte et le rectangle
               this.displayGroup = this.add.group();
               // Incrémenter d'un chiffre compris entre 0 et 10 info.funds
-              const fundsIncrement = Phaser.Math.Between(500, 1000);
-              infoGame.project_funds += fundsIncrement;
               // Marquer la tuile comme touchée dans le Set
               infoGame.fundsAddedTiles.add(
                 this.getTileNumber(collidedTile.x, collidedTile.y)
@@ -165,10 +163,9 @@ export default class Level4 extends Phaser.Scene {
               MsgFunctions.header(infoGame, this);
 
               MsgFunctions.bottomText(
-                `Ci-gît une start-up, ${fundsIncrement}€ par terre, chouette ! `,
+                `Plus rien à récupérer ici! `,
                 this
               );
-              console.log("Nouveaux fonds :", infoGame.funds);
             }
           } else {
             console.log(
@@ -183,24 +180,26 @@ export default class Level4 extends Phaser.Scene {
           if (tileCharacterAtCoordinates) {
             const tileNumber = tileCharacterAtCoordinates.index;
             console.log(tileNumber)
-            if (tileNumber === 3901 || tileNumber === 3902 || tileNumber === 3935 || tileNumber === 3936) {
+            if (tileNumber === 3697 || tileNumber === 3698 || tileNumber === 3731 || tileNumber === 3732) {
               // Afficher un message en bas du jeu
               // Créez un groupe pour le texte et le rectangle
               this.displayGroup = this.add.group();
+              infoGame.project_funds = 0;
+              MsgFunctions.header(infoGame, this);
               MsgFunctions.bottomText(
-                `Bienvenu au cimetière ! Bonne déambulation ! `,
+                `Crack boursier ! `,
                 this
               );
             }
-            if (tileNumber === 2677 || tileNumber === 2678 || tileNumber === 2711 || tileNumber === 2712) {
-              const laughSound = this.sound.add("laugh");
-              laughSound.play();
+            if (tileNumber === 3753 || tileNumber === 3754 || tileNumber === 3787 || tileNumber === 3788) {
 
               // Afficher un message en bas du jeu
               // Créez un groupe pour le texte et le rectangle
               this.displayGroup = this.add.group();
+              infoGame.project_funds = 999_999_999;
+              MsgFunctions.header(infoGame, this);
               MsgFunctions.bottomText(
-                `Moi aussi je fouille les tombes pour me lancer ! `,
+                `Belle introduction en bourse ! `,
                 this
               );
             }
@@ -337,6 +336,6 @@ export default class Level4 extends Phaser.Scene {
 
   resetWormPosition() {
     // Set the worm's position back to its initial position
-    this.worm.setPosition(75, 450);
+    this.worm.setPosition(300, 450);
   }
 }

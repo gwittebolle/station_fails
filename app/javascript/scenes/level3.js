@@ -155,8 +155,9 @@ export default class Level3 extends Phaser.Scene {
               // Afficher un message en bas du jeu
               // Créez un groupe pour le texte et le rectangle
               this.displayGroup = this.add.group();
-              // Incrémenter d'un chiffre compris entre 0 et 10 info.funds
-              const fundsIncrement = Phaser.Math.Between(500, 1000);
+              // Incrémenter
+              const fundsIncrement = Phaser.Math.Between(1, 20)*1000000;
+
               infoGame.project_funds += fundsIncrement;
               // Marquer la tuile comme touchée dans le Set
               infoGame.fundsAddedTiles.add(
@@ -183,29 +184,44 @@ export default class Level3 extends Phaser.Scene {
           if (tileCharacterAtCoordinates) {
             const tileNumber = tileCharacterAtCoordinates.index;
             console.log(tileNumber)
-            if (tileNumber === 3901 || tileNumber === 3902 || tileNumber === 3935 || tileNumber === 3936) {
-              console.log("Collision avec un PNJ");
+            if (tileNumber === 1861 || tileNumber === 1862 || tileNumber === 1895 || tileNumber === 1896) {
               const diggingSound = this.sound.add("laugh");
               diggingSound.play();
 
               // Afficher un message en bas du jeu
               // Créez un groupe pour le texte et le rectangle
               this.displayGroup = this.add.group();
+
+              if (infoGame.project_funds > 10000000) {
+
+              const fundsIncrement = 10000000;
+              infoGame.project_funds -= fundsIncrement;
+              infoGame.project_employees += 100;
+              MsgFunctions.header(infoGame, this);
+
+
               MsgFunctions.bottomText(
-                `Bienvenu au cimetière ! Bonne déambulation ! `,
+                `Tiens, mes 100 employés!`,
                 this
               );
+              }
+              else {
+                MsgFunctions.bottomText(
+                  `Je te vends mes 100 employés pour 10 millions !`,
+                  this
+                );
+              }
             }
-            if (tileNumber === 2677 || tileNumber === 2678 || tileNumber === 2711 || tileNumber === 2712) {
-              console.log("Collision avec un PNJ");
-              const diggingSound = this.sound.add("laugh");
-              diggingSound.play();
-
+            if (tileNumber === 2065 || tileNumber === 2066 || tileNumber === 2099 || tileNumber === 2100) {
               // Afficher un message en bas du jeu
               // Créez un groupe pour le texte et le rectangle
               this.displayGroup = this.add.group();
+              const fundsIncrement = 10_000_000;
+
+              infoGame.project_funds += fundsIncrement;
+              MsgFunctions.header(infoGame, this);
               MsgFunctions.bottomText(
-                `Moi aussi je fouille les tombes pour me lancer ! `,
+                `J'investis 10 millions ! `,
                 this
               );
             }

@@ -82,8 +82,9 @@ export default class Level1 extends Phaser.Scene {
     // Declare an array to store references to sharks
     this.sharks = [];
     // Create sharks
-    this.sharks.push(SpriteFunctions.initShark(this, 75, 250));
-    this.sharks.push(SpriteFunctions.initShark(this, 520, 400));
+    this.sharks.push(SpriteFunctions.initXShark(this, 50, 300));
+    this.sharks.push(SpriteFunctions.initXShark(this, 520, 400));
+    this.sharks.push(SpriteFunctions.initXShark(this, 50, 100));
     // Set collide world bounds for the entire group
     this.physics.world.enable(this.sharks);
 

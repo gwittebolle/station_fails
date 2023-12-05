@@ -37,23 +37,22 @@ class Level < ApplicationRecord
         false
       end
     when 2
-      raise
-      # Niveau 2 : Win si € > 120 €
-      if params[:level][:funds].to_i > 120 && params[:level][:employees].to_i.positive?
+      # Niveau 2 : Win si 25 000 € & un stagiaire
+      if params[:level][:funds].to_i > 25_000 && params[:level][:employees].to_i.positive?
         true
       else
         false
       end
     when 3
-      # Niveau 3 : Win si € > 130 €
-      if params[:level][:funds].to_i > 130
+      # Niveau 3 : Win si 10 M€ & 100 employés
+      if params[:level][:funds].to_i > 10_000_000 && params[:level][:employees].to_i >= 100
         true
       else
         false
       end
     when 4
-      # Niveau 4 : Win si € > 140 €
-      if params[:level][:funds].to_i > 140
+      # Niveau 4 : Win si € > 100 M€
+      if params[:level][:funds].to_i > 100_000_000
         true
       else
         false

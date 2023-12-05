@@ -82,7 +82,7 @@ export default class Level2 extends Phaser.Scene {
     // Declare an array to store references to sharks
     this.sharks = [];
     // Create sharks
-    this.sharks.push(SpriteFunctions.initShark(this, 75, 250));
+    this.sharks.push(SpriteFunctions.initYShark(this, 80, 200));
     this.sharks.push(SpriteFunctions.initShark(this, 520, 400));
     // Set collide world bounds for the entire group
     this.physics.world.enable(this.sharks);
@@ -156,7 +156,7 @@ export default class Level2 extends Phaser.Scene {
               // Créez un groupe pour le texte et le rectangle
               this.displayGroup = this.add.group();
               // Incrémenter d'un chiffre compris entre 0 et 10 info.funds
-              const fundsIncrement = Phaser.Math.Between(500, 1000);
+              const fundsIncrement = Phaser.Math.Between(2000, 10000);
               infoGame.project_funds += fundsIncrement;
               // Marquer la tuile comme touchée dans le Set
               infoGame.fundsAddedTiles.add(
@@ -213,15 +213,16 @@ export default class Level2 extends Phaser.Scene {
 
             }
             if (tileNumber === 2677 || tileNumber === 2678 || tileNumber === 2711 || tileNumber === 2712) {
-              console.log("Collision avec un PNJ");
-              const diggingSound = this.sound.add("laugh");
-              diggingSound.play();
 
               // Afficher un message en bas du jeu
               // Créez un groupe pour le texte et le rectangle
               this.displayGroup = this.add.group();
+
+              infoGame.project_funds += 30000;
+              MsgFunctions.header(infoGame, this);
+
               MsgFunctions.bottomText(
-                `Moi aussi je fouille les tombes pour me lancer ! `,
+                `Tiens, une bourse BPI France de 30 000 €, ça devrait t'aider ! `,
                 this
               );
             }
