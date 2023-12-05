@@ -5,7 +5,7 @@
   </div>
 
 
-  <div class="form-container bg-light col-6 mx-auto mt-3 ">
+  <div class="form-container bg-light col-6 mx-auto mt-3 d-none ">
     <%= simple_form_for [:game, @project, @level], url: project_level_game_project_path(@project, @level), method: :patch, html: { id: 'game-form' } do |f| %>
       <%= f.input :funds,
                   label: "Funds",
@@ -15,7 +15,7 @@
                   required: true,
                   html: {id: "employees"} %>
     </div>
-  <div class="form-actions  p-3 d-flex justify-content-center align-items-center">
+  <div class="form-actions  p-3 d-flex justify-content-center align-items-center d-none">
     <%= f.submit "Analyse de la partie", class: "big-button-neon-green ml-auto", html: {id: "submit"}%>
   </div>
 
