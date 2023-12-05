@@ -239,12 +239,6 @@ export default class Level1 extends Phaser.Scene {
     SpriteFunctions.textSprite(this);
   }
 
-  lowerVolume() {
-    // Baisser le volume de 0.1 (vous pouvez ajuster cette valeur selon vos besoins)
-    this.bgMusicVolume = Phaser.Math.Clamp(this.bgMusicVolume - 0.1, 0, 1);
-    this.music.setVolume(this.bgMusicVolume);
-  }
-
   update() {
     // Store the previous position of the worm
     this.prevX = this.worm.x;
