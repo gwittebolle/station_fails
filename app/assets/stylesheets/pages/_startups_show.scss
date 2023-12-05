@@ -1,5 +1,5 @@
 .all {
-  background-color: $black;
+  background-color: $dark-gray;
   color : $white;
 }
 
@@ -7,7 +7,8 @@
   color : $white;
   background-color: $gray;
   border-radius: 20px;
-  padding:20px;
+  padding:10px;
+  border: 2px solid $dark-gray;
 
 }
 
@@ -33,7 +34,6 @@
 }
 .text-gray {
   color : #495057;
-  font-family: 'Poppins', sans-serif;
 
 }
 
@@ -59,12 +59,15 @@
   min-height: 3rem;
   background-color: $grave-gray;
   border : 2px solid  #bababa;
+  font-family: 'Dhurjati', sans-serif;
+  font-size: 20px;
+  color: $gray;
 
   &:hover {
     transform: scale(1.02);
     background-color:  $grave-gray;
     border : 3px solid  #898181;
-    color: $gray;
+    color: $black;
     font-weight: bolder;
 
 }
