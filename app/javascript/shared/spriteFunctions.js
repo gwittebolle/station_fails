@@ -1,3 +1,6 @@
+import * as MsgFunctions from './msgFunctions.js';
+
+
 export function initSprite(context, x, y) {
   context.worm = context.physics.add.image(x, y, 'worm').setOrigin(0, 0).setScale(0.08);
   context.worm.setDepth(1);

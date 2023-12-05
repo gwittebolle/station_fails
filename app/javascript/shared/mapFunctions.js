@@ -1,6 +1,7 @@
 // mapFunctions.js
 
 let tombsLayer
+let charactersLayer
 
 export function initMap() {
   //  Initialisation de la carte dans la fonction privée initMap
@@ -12,8 +13,8 @@ export function initMap() {
   this.physics.world.setBounds(0, 0, this.groundLayer.width, this.groundLayer.height);
   tombsLayer = this.map.createLayer('Tombs', this.tileset);
   this.physics.world.setBounds(0, 0, tombsLayer.width, tombsLayer.height);
-  this.charactersLayer = this.map.createLayer('PNJ', this.tileset2);
-  this.physics.world.setBounds(0, 0, this.charactersLayer.width, this.charactersLayer.height);
+  charactersLayer = this.map.createLayer('PNJ', this.tileset2);
+  this.physics.world.setBounds(0, 0, charactersLayer.width, charactersLayer.height);
 
   // this.showDebugWalls();
 }
@@ -21,4 +22,8 @@ export function initMap() {
 
 export const getTombsLayer = () => {
   return tombsLayer;
+};
+
+export const getCharactersLayer = () => {
+  return charactersLayer;
 };
