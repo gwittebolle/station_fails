@@ -186,6 +186,10 @@ export default class Level1 extends Phaser.Scene {
         }
       });
     });
+    if (tileNumber === 1308 || 1309 || 1342 || 1343) {
+      const laughSound = this.sound.add("laugh");
+      laughSound.play();
+    }
 
     // Array of winning numbers-> Ajouter ici tous les numéros de tuiles qui doivent être des tuiles gagnantes
     TileFunctions.winningTiles(jsonPath).then((data) => {
@@ -213,8 +217,10 @@ export default class Level1 extends Phaser.Scene {
             () => {
               // Code à exécuter lors de la collision entre this.worm et une tuile gagnante
               if (this.info_sent_to_html === false) {
-              document.getElementById('level_funds').value = infoGame.project_funds;
-              document.getElementById('level_employees').value = infoGame.project_employees;
+                document.getElementById("level_funds").value =
+                  infoGame.project_funds;
+                document.getElementById("level_employees").value =
+                  infoGame.project_employees;
                 this.info_sent_to_html = true;
               }
 
