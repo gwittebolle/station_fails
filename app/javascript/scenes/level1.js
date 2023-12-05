@@ -59,7 +59,7 @@ export default class Level1 extends Phaser.Scene {
     await MapFunctions.initMap.call(this);
 
     // Charger la musique
-    const music = this.sound.add("bg-music", { loop: true });
+    //const music = this.sound.add("bg-music", { loop: true });
 
     // Ajouter un gestionnaire d'événements clavier
     this.input.keyboard.on("keydown", function (event) {
@@ -149,6 +149,9 @@ export default class Level1 extends Phaser.Scene {
               )
             ) {
               console.log("Collision avec une tombe");
+              const diggingSound = this.sound.add("digging");
+              diggingSound.play();
+
               // Afficher un message en bas du jeu
               // Créez un groupe pour le texte et le rectangle
               this.displayGroup = this.add.group();
@@ -239,12 +242,6 @@ export default class Level1 extends Phaser.Scene {
     SpriteFunctions.textSprite(this);
   }
 
-  lowerVolume() {
-    // Baisser le volume de 0.1 (vous pouvez ajuster cette valeur selon vos besoins)
-    this.bgMusicVolume = Phaser.Math.Clamp(this.bgMusicVolume - 0.1, 0, 1);
-    this.music.setVolume(this.bgMusicVolume);
-  }
-
   update() {
     // Store the previous position of the worm
     this.prevX = this.worm.x;
@@ -270,6 +267,7 @@ export default class Level1 extends Phaser.Scene {
     this.physics.add.collider(this.worm, this.my_tiles, (worm) => {
       if (!this.collisionDetected) {
         // Indiquer la collision
+
         console.log("Collision détectée !!!");
         this.collisionDetected = true;
         // Replacer le ver
