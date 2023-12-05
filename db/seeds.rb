@@ -78,7 +78,7 @@ Level.create(
             Par exemple, la startup PayFit, spécialisée dans les solutions de paie en ligne, a démarré son parcours avec
             des fonds de Love Money provenant de membres de la famille et d'amis proches.
         </p>",
-  rank: 1,
+
   metrics: "funds",
   index: 1
 )
@@ -95,7 +95,7 @@ Level.create(
             Un exemple notable est la startup Criteo, qui a réussi à lever des fonds significatifs en entrant sur le marché
             boursier grâce à la Bourse BPI.
         </p>",
-  rank: 1,
+
   metrics: "1000",
   index: 2
 )
@@ -111,7 +111,7 @@ Level.create(
             Une illustration de cette étape est la startup BlaBlaCar, qui a attiré des investisseurs de Série A pour accélérer son
             expansion.
         </p>",
-  rank: 1,
+
   metrics: "funds",
   index: 3
 )
@@ -128,7 +128,7 @@ Level.create(
             Un exemple célèbre d'IPO est la société Deezer, qui a connu un succès fulgurant sur le marché. L'IPO a permis à la
             société de lever des fonds importants.
         </p>",
-  rank: 1,
+
   metrics: "funds",
   index: 4
 )

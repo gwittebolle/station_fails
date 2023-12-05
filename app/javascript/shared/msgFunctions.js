@@ -1,4 +1,5 @@
 export function header(info, context) {
+  console.log(info)
 // Supprimez les textes existants s'ils existent déjà
 if (context.nameText) {
   context.nameText.destroy();
@@ -12,12 +13,18 @@ if (context.foundText) {
   context.foundText.destroy();
 }
 
+if (context.employeesText) {
+  context.employeesText.destroy();
+}
+
 context.nameText = context.add.text(10, 10, 'Projet ' + info.name, { fontSize: '25px', fill: '#fff' });
 context.nameText.setDepth(2);
 context.levelText = context.add.text(10, 40, 'Niveau ' + info.level, { fontSize: '20px', fill: '#1EDD88' });
 context.levelText.setDepth(2);
-context.foundText = context.add.text(10, 60, 'Fonds ' + info.funds + ' €', { fontSize: '20px', fill: '#1EDD88' });
-context.foundText.setDepth(2)
+context.foundText = context.add.text(10, 60, 'Fonds ' + info.project_funds + ' €', { fontSize: '20px', fill: '#1EDD88' });
+context.foundText.setDepth(2);
+context.employeesText = context.add.text(10, 80, 'Employés : ' + info.project_employees, { fontSize: '20px', fill: '#1EDD88' });
+context.employeesText.setDepth(2)
 }
 
 export function showWormText(context) {
