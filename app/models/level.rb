@@ -37,8 +37,9 @@ class Level < ApplicationRecord
         false
       end
     when 2
+      raise
       # Niveau 2 : Win si € > 120 €
-      if params[:level][:funds].to_i > 120
+      if params[:level][:funds].to_i > 120 && params[:level][:employees].to_i.positive?
         true
       else
         false
