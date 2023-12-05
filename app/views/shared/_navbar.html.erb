@@ -4,38 +4,27 @@
       <%= image_tag("logo-station-fails.png", width: 350, class: "img-fluid") %>
     <% end %>
 
-    <div class="d-flex">
-      <div class="align-self-center"><h2> - Rechercher une startup sur le site - <h3></div>
-          <%= form_with url: startups_path, method: :get, class: "d-flex" do %>
-        <%= text_field_tag :query,
-              params[:query],
-              class: "search-input mx-3",
-              placeholder: "Nom d'une startup"
-          %>
-        <%= submit_tag "Search", name: "", class: "button-neon-green" %>
-      <% end %>
-    </div>
+
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
 
         <div class="d-flex justify-content-betnween align-items-center">
-          <li class="nav-item active mx-2">
-            <%= link_to startups_path do %>
-              <%= image_tag("cemetary_icon.png", height: 50) %>
-            <% end %>
-          </li>
+
           <li class="nav-item mx-2">
             <% if current_user.projects.last %>
-              <%= link_to project_path(current_user.projects.last) do %>
-                <%= image_tag("white_game.png", height: 45) %>
-              <% end %>
+              <%= link_to "Le Jeu", project_path(current_user.projects.last), class:"nav-link" %>
+
             <% else %>
-              <%= link_to new_project_path do %>
-                <%= image_tag("white_game.png", height: 45) %>
-              <% end %>
+              <%= link_to "Le Jeu", new_project_path, class:"nav-link" %>
+
+
             <% end %>
+
+              <li class="nav-item active mx-2">
+            <%= link_to "Cimetière", startups_path, class:"nav-link" %>
+          </li>
 
           </li>
           <li class="nav-item dropdown mx-2">
