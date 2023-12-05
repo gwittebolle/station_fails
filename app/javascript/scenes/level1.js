@@ -47,7 +47,6 @@ export default class Level1 extends Phaser.Scene {
     this.wormGroup = this.physics.add.group();
     this.sharkGroup = this.physics.add.group();
 
-
     // Call initSprite to create the worm
     SpriteFunctions.initSprite(this, 75, 450);
     // Add the sprites to their respective groups
@@ -62,7 +61,7 @@ export default class Level1 extends Phaser.Scene {
     this.physics.world.enable(this.sharks);
 
     // Add collider for the groups
-    this.physics.add.collider(this.wormGroup, this.sharks, this.handleCollision, null, this);
+    this.physics.add.collider(this.wormGroup, this.sharks, this.characters, this.handleCollision, null, this);
 
     // Ajoutez un texte pour afficher le niveau en haut à gauche
     const infoBackString = document.querySelector("#level").dataset.project;
