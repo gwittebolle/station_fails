@@ -153,7 +153,7 @@ export default class Level1 extends Phaser.Scene {
               // Créez un groupe pour le texte et le rectangle
               this.displayGroup = this.add.group();
               // Incrémenter d'un chiffre compris entre 0 et 10 info.funds
-              const fundsIncrement = Phaser.Math.Between(2, 10);
+              const fundsIncrement = Phaser.Math.Between(500, 1000);
               infoGame.project_funds += fundsIncrement;
               // Marquer la tuile comme touchée dans le Set
               infoGame.fundsAddedTiles.add(
