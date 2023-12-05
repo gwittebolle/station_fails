@@ -139,7 +139,7 @@
          "imageheight":200,
          "imagewidth":200,
          "margin":0,
-         "name":"tilesetgraveyard-16-16",
+         "name":"TilesetGraveyard-16-16",
          "spacing":0,
          "tilecount":144,
          "tileheight":16,
@@ -456,7 +456,7 @@
                         {
                          "name":"collides",
                          "type":"bool",
-                         "value":true
+                         "value":false
                         }]
                 },
                 {
