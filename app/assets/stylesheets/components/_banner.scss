@@ -2,30 +2,36 @@
   background-size: cover;
   padding: 70px ;
   background-color: $black;
-  border-bottom: 3px solid $white;
-  border-top: 3px solid $white;
-
-
-
+  border-bottom: 1px solid rgb(151, 151, 151);
+  border-top: 3px solid rgb(151, 151, 151);
 }
 
 .banner h1 {
   padding: 20px;
   color: $white;
   font-size: 80px;
+  // color:#c9ffc6;
+  // text-shadow:
+  //   0 0 4px rgba(202,228,225,0.92),
+  //   0 0 30px rgba(202,228,225,0.34),
+  //   0 0 12px rgba(0, 255, 0, 0.52),
+  //   0 0 21px rgba(17, 255, 0, 0.92),
+  //   0 0 34px rgba(76, 242, 30, 0.78),
+  //   0 0 54px rgba(38, 255, 0, 0.92);
 
 }
 .banner img {
   height: 80px;
   margin-top: 20px;
-
 }
 
 .banner h3 {
-  padding: 20px;
-  color: $white;
+    padding: 20px;
 
-}
+  }
+
+
+
 .btn-special-gray {
   padding-left:60px;
   padding-right:60px;
@@ -44,12 +50,27 @@
   align-items: center;
   justify-content: center;
 
+
   &:hover {
     transform: scale(1.02);
     background-color:  $grave-gray;
     border : 3px solid  #898181;
     color: $black;
     font-weight: bolder;
+      border: 4px solid #fff;
+      border-radius: 12px;
+      box-shadow:
+        0 0 8px #fff,
+        inset 0 0 8px #fff,
+        0 0 16px #37f713,
+        inset 0 0 16px #37f713,
+        0 0 32px #37f713,
+        inset 0 0 32px #37f713;
+    }
 
 }
-}
+
+.animate-text {
+	visibility:hidden;
+
+  color: $white}

@@ -1,7 +1,14 @@
 // Specific CSS for your home-page
 body {
-  background-color: $light-gray;
+  background-color: $grave-gray;
 }
 .carousel-item {
   flex: 0 0 auto;
+}
+
+.ligne {
+  border: none;
+  border-top: 3px solid $grave-gray;
+  width: 80%; /* Ajustez la largeur selon vos besoins */
+  margin: 0 auto; /* Centre la ligne horizontalement */
 }

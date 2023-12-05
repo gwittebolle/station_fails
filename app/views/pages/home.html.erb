@@ -1,62 +1,48 @@
-<div>
-  <div>
-    <%= render partial: "banner" %>
-    <div class="text-center">
-      <%= render partial: "shared/button" %>
-    </div>
-  </div>
+<div class="banner-div">
+  <%= render partial: "banner" %>
+</div>
 
-  <div class="col-12 newsletter-subscribe p-2 pb-5 d-flex flex-column text-start">
-    <div>
-      <h4 class="text-white mx-5">La nécrologie des startups dans tes mails chaque dernier vendredi du mois ! </h4>
-    </div>
-    <div>
-      <form action="<%= new_user_session_path %>" method="get" class="mx-5 d-flex w-100 justify-content-start ">
-        <input type="email" name="email" placeholder="Votre adresse e-mail" required />
-        <button type="submit">S'abonner</button>
-      </form>
-    </div>
-  </div>
 
-<div class="d-flex">
-<div>
-  <div class="container-fluid shadow-sm m-3 d-flex justify-content-evenly">
-    <div class="mx-2 col-6">
-      <div class="banner cim-ban-left col-5" style="background-color: $black">
-        <h3 class="text-center p-1">DERNIERS DEFUNTS</h3>
 
+      <div class=" text-center p-5 ">
+        <h3 class="text-center p-1 text-white">ARTICLES </h3>
       </div>
+      <hr class="ligne">
 
-      <div class="d-flex flex-column">
-        <div class="mx-2 col-12 d-flex align-items-center flex-column">
-          <div id="carouselExampleIndicators" class="carousel slide">
-            <div class="carousel-indicators">
-              <button type="button btn-success" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-              <button type="button btn-success" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-              <button type="button btn-success" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-            </div>
-            <div class="carousel-inner">
-              <% Startup.last(3).each do |startup| %>
-                <div class="carousel-item active">
-                  <div class="project-wrapper-lg">
-                    <%= render partial: "startups/startup_card", locals: {startup: startup} %>
-                  </div>
-                </div>
-              <% end %>
-            </div>
-
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button>
+          <div class="article">
+            <ul class="article-list">
+              <li><a
+                  href="https://www.usinenouvelle.com/editorial/face-aux-difficultes-de-financement-les-start-up-reclament-davantage-de-commandes-privees-et-publiques.N2170247">Face
+                  aux difficultés de financement, les start-up réclament davantage de commandes privées et publiques</a>
+              </li>
+              <li><a
+                  href="https://business-cool.com/actualites/actu-business/startup-kikikickz-liquidation-judiciaire/">La
+                  startup Kikikickz placée en liquidation judiciaire</a></li>
+              <li><a href="https://www.frenchweb.fr/fin-du-dreem-pour-de-nombreuses-startups/443589">Fin du DREEM pour
+                  de nombreuses startups.</a></li>
+              <li><a href="https://www.maddyness.com/2023/10/27/luko-rachat-liquidation/">Luko au bord du gouffre :
+                  comment la startup en est arrivée là</a></li>
+                   <li><a href="https://www.maddyness.com/2022/10/28/liquidation-next-station/">La liquidation de Next
+                  Station racontée par un de ses cofondateurs</a></li>
+              <li><a href="https://www.frenchweb.fr/jai-22-ans-et-jai-plante-ma-premiere-start-up/302083">J’ai 22 ans et
+                  j’ai planté ma première start-up</a></li>
+            </ul>
           </div>
-        </div>
+    </div>
+<div class="col-12 newsletter-subscribe p-2 pb-5 d-flex flex-column text-start">
+  <div>
+    <h4 class="text-white mx-5">La nécrologie des startups dans tes mails chaque dernier vendredi du mois ! </h4>
+  </div>
+  <div>
+    <form action="<%= new_user_session_path %>" method="get" class="mx-5 d-flex w-100 justify-content-start  ">
+      <input type="email" name="email" placeholder="Votre adresse e-mail" required />
+      <button type="submit" class="btn-special-gray">S'abonner</button>
+    </form>
+  </div>
+</div>
 
-      <div class="mx-2 col-12 d-flex align-items-center flex-column">
+  <%#div class="container-fluid shadow-sm m-3 d-flex justify-content-evenly">
+  <%# <div class="mx-2 col-12 d-flex align-items-center flex-column">
         <h2 class="text-white mb-3">PARI SUR LE PROCHAIN DEFUNT !</h2>
         <div class="col-6 d-flex justify-content-between align-items-center">
           <div class="d-flex flex-column align-items-center">
@@ -70,55 +56,4 @@
           </div>
         </div>
         <p class="text-white"><i>Cotes fournies par Betfriends</i></p>
-      </div>
-    </div>
-    <div class="mx-2 col-4">
-      <div class="banner cim-ban-right p-3">
-          <h3 class="text-center p-1">SOUVENIRS </h3>
-      </div>
-    </div>
-    <div class="mx-2 col-4 d-flex align-items-center flex-column">
-      </div>
-</div>
-<div>
-      <div class="d-flex flex-column">
-        <div class="mx-2 col-12 d-flex align-items-center flex-column">
-          <div class="banner cim-ban-right col-5 mb-5" style="background-color: $black">
-            <h3 class="text-center p-1">DERNIERS ARTICLES </h3>
-          </div>
-          <div class="all">
-            <div class="container article">
-              <div class="row p-4">
-                <ul class="article-list">
-                  <li><a href="https://www.usinenouvelle.com/editorial/face-aux-difficultes-de-financement-les-start-up-reclament-davantage-de-commandes-privees-et-publiques.N2170247">Face aux difficultés de financement, les start-up réclament davantage de commandes privées et publiques</a></li>
-                  <li><a href="https://business-cool.com/actualites/actu-business/startup-kikikickz-liquidation-judiciaire/">La startup Kikikickz placée en liquidation judiciaire</a></li>
-                  <li><a href="https://www.frenchweb.fr/fin-du-dreem-pour-de-nombreuses-startups/443589">Fin du DREEM pour de nombreuses startups.</a></li>
-                  <li><a href="https://www.maddyness.com/2023/10/27/luko-rachat-liquidation/">Luko au bord du gouffre : comment la startup en est arrivée là</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="mx-2 col-12 d-flex align-items-center flex-column">
-          <div class="banner cim-ban-right col-5 mb-5" style="background-color: $black">
-            <h3 class="text-center p-1">DERNIERS TEMOIGNAGES </h3> <h5 class="text-white">... DES PARENTS DE STARTUPS DECEDEES</h5>
-          </div>
-          <div class="all">
-            <div class="container article">
-              <div class="row p-4">
-                <ul class="article-list">
-                  <li><a href="https://www.maddyness.com/2022/10/28/liquidation-next-station/">La liquidation de Next Station racontée par un de ses cofondateurs</a></li>
-                  <li><a href="https://www.frenchweb.fr/jai-22-ans-et-jai-plante-ma-premiere-start-up/302083">J’ai 22 ans et j’ai planté ma première start-up</a></li>
-                </ul>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-</div>
+      </div> %>
