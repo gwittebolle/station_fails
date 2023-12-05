@@ -59,7 +59,7 @@ export default class Level1 extends Phaser.Scene {
     await MapFunctions.initMap.call(this);
 
     // Charger la musique
-    const music = this.sound.add("bg-music", { loop: true });
+    //const music = this.sound.add("bg-music", { loop: true });
 
     // Ajouter un gestionnaire d'événements clavier
     this.input.keyboard.on("keydown", function (event) {
@@ -149,12 +149,15 @@ export default class Level1 extends Phaser.Scene {
               )
             ) {
               console.log("Collision avec une tombe");
+              const diggingSound = this.sound.add("digging");
+              diggingSound.play();
+
               // Afficher un message en bas du jeu
               // Créez un groupe pour le texte et le rectangle
               this.displayGroup = this.add.group();
               // Incrémenter d'un chiffre compris entre 0 et 10 info.funds
               const fundsIncrement = Phaser.Math.Between(2, 10);
-              infoGame.funds += fundsIncrement;
+              infoGame.project_funds += fundsIncrement;
               // Marquer la tuile comme touchée dans le Set
               infoGame.fundsAddedTiles.add(
                 this.getTileNumber(collidedTile.x, collidedTile.y)
@@ -210,9 +213,8 @@ export default class Level1 extends Phaser.Scene {
             () => {
               // Code à exécuter lors de la collision entre this.worm et une tuile gagnante
               if (this.info_sent_to_html === false) {
-                document.getElementById("level_rank").value = infoGame.funds;
-                document.getElementById("level_metrics").value =
-                  infoGame.metrics;
+              document.getElementById('level_funds').value = infoGame.project_funds;
+              document.getElementById('level_employees').value = infoGame.project_employees;
                 this.info_sent_to_html = true;
               }
 
@@ -237,12 +239,6 @@ export default class Level1 extends Phaser.Scene {
 
     // Création du texte (hidden pour faire "parler le ver")
     SpriteFunctions.textSprite(this);
-  }
-
-  lowerVolume() {
-    // Baisser le volume de 0.1 (vous pouvez ajuster cette valeur selon vos besoins)
-    this.bgMusicVolume = Phaser.Math.Clamp(this.bgMusicVolume - 0.1, 0, 1);
-    this.music.setVolume(this.bgMusicVolume);
   }
 
   update() {
@@ -270,6 +266,7 @@ export default class Level1 extends Phaser.Scene {
     this.physics.add.collider(this.worm, this.my_tiles, (worm) => {
       if (!this.collisionDetected) {
         // Indiquer la collision
+
         console.log("Collision détectée !!!");
         this.collisionDetected = true;
         // Replacer le ver
