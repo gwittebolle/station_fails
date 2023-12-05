@@ -23,7 +23,7 @@ context.levelText = context.add.text(10, 40, 'Niveau ' + info.level, { fontSize:
 context.levelText.setDepth(2);
 context.foundText = context.add.text(10, 60, 'Fonds ' + info.project_funds + ' €', { fontSize: '20px', fill: '#1EDD88' });
 context.foundText.setDepth(2);
-context.employeesText = context.add.text(10, 80, 'Employés : ' + info.project_employees, { fontSize: '20px', fill: '#1EDD88' });
+context.employeesText = context.add.text(10, 80, 'Employé(s) : ' + info.project_employees, { fontSize: '20px', fill: '#1EDD88' });
 context.employeesText.setDepth(2)
 }
 
