@@ -87,7 +87,7 @@ export default class Level1 extends Phaser.Scene {
                 this.displayGroup = this.add.group();
               // Incrémenter d'un chiffre compris entre 0 et 10 info.funds
               const fundsIncrement = Phaser.Math.Between(2, 10);
-              infoGame.funds += fundsIncrement;
+              infoGame.project_funds += fundsIncrement;
               // Marquer la tuile comme touchée dans le Set
               infoGame.fundsAddedTiles.add(this.getTileNumber(collidedTile.x, collidedTile.y));
               MsgFunctions.header(infoGame, this)
@@ -131,8 +131,8 @@ export default class Level1 extends Phaser.Scene {
           const collider = this.physics.add.collider(this.worm, winningTile, () => {
             // Code à exécuter lors de la collision entre this.worm et une tuile gagnante
             if (this.info_sent_to_html === false) {
-              document.getElementById('level_rank').value = infoGame.funds;
-              document.getElementById('level_metrics').value = infoGame.metrics;
+              document.getElementById('level_funds').value = infoGame.project_funds;
+              document.getElementById('level_employees').value = infoGame.project_employees;
               this.info_sent_to_html = true;
             }
 

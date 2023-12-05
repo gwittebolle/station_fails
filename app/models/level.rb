@@ -2,7 +2,6 @@ class Level < ApplicationRecord
   has_many :attempts, dependent: :destroy
   has_one_attached :photo
 
-
   def self.max_level_reached(project_id)
     max_level = joins(:attempts)
       .where('attempts.project_id = ? AND attempts.result = ?', project_id, true)
@@ -10,7 +9,6 @@ class Level < ApplicationRecord
 
     max_level || 0
   end
-
 
   rails_admin do
     edit do
