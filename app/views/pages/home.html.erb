@@ -2,9 +2,20 @@
   <%= render partial: "banner" %>
 </div>
 
-<div class="d-flex p-3 m-3 align-items-center">
-<div class="col-9">
-      <div class=" text-center p-5 ">
+<div class="d-flex p-3 m-3 align-items-start">
+<div class="col-9 d-flex flex-column">
+<div>
+      <div class="text-center ">
+        <h3 class="text-center p-1 text-white">STATION FAILS - FACE AUX ECHECS </h3>
+      </div>
+      <hr class="ligne">
+          <div class="article">
+            <p class="text-white p-3 m-5">
+              Station Fails transcende le simple jeu pour offrir une plongée immersive dans l'univers captivant, parfois impitoyable, des startups françaises. L'objectif principal est de défier l'échec entrepreneurial en explorant un cimetière virtuel de startups éteintes. En adoptant le rôle d'un entrepreneur audacieux, les joueurs comprennent les raisons des échecs passés, tirent des leçons, et tissent leur propre success story. Une expérience engageante où l'échec devient une étape cruciale vers le succès.</p>
+            </div>
+    </div>
+    <div>
+      <div class=" text-center ">
         <h3 class="text-center p-1 text-white">ARTICLES </h3>
       </div>
       <hr class="ligne">
@@ -27,8 +38,23 @@
                   j’ai planté ma première start-up</a></li>
             </ul>
           </div>
+    </div>
 </div>
-<div class="container-fluid col-3 shadow-sm m-3 d-flex justify-content-evenly border">
+<div class="d-flex col-3 flex-column">
+
+<div class="col-12 shadow-sm m-3 d-flex justify-content-evenly">
+  <div class="mx-2 col-3 d-flex align-items-center flex-column">
+      <div class=" text-center">
+        <h3 class="text-center p-1 text-white">DERNIER ENTERREMENT</h3>
+      </div>
+      <div class="d-flex">
+          <div class="project-wrapper-lg">
+              <%= render partial: "startups/startup_card", locals: {startup: Startup.last} %>
+          </div>
+          </div>
+      </div>
+</div>
+<div class="col-12 shadow-sm m-3 d-flex justify-content-evenly border">
   <div class="mx-2 col-12 d-flex align-items-center flex-column">
         <h2 class="text-white my-3">PARIE SUR LE PROCHAIN DEFUNT !</h2>
         <div class="col-8 d-flex justify-content-between align-items-center">
@@ -46,9 +72,11 @@
       </div>
 </div>
 </div>
+</div>
+</div>
 
 
-<div class="col-12 newsletter-subscribe p-2 pb-5 d-flex flex-column text-start">
+<div class="col-12 newsletter-subscribe p-2 pb-5 m-3 d-flex flex-column text-start">
   <div>
     <h4 class="text-white mx-5">La nécrologie des startups dans tes mails chaque dernier vendredi du mois ! </h4>
   </div>
