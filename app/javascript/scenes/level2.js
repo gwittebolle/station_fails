@@ -82,8 +82,17 @@ export default class Level2 extends Phaser.Scene {
     // Declare an array to store references to sharks
     this.sharks = [];
     // Create sharks
-    this.sharks.push(SpriteFunctions.initYShark(this, 80, 200));
-    this.sharks.push(SpriteFunctions.initShark(this, 520, 400));
+    this.sharks.push(SpriteFunctions.initYShark(this, 70, 200, 32));
+    this.sharks.push(SpriteFunctions.initYShark(this, 90, 200, 32));
+    this.sharks.push(SpriteFunctions.initYShark(this, 110, 200, 32));
+    this.sharks.push(SpriteFunctions.initYShark(this, 200, 308, 52));
+    this.sharks.push(SpriteFunctions.initYShark(this, 280, 308, 52));
+    this.sharks.push(SpriteFunctions.initYShark(this, 320, 308, 52));
+    this.sharks.push(SpriteFunctions.initYShark(this, 360, 308, 52));
+    this.sharks.push(SpriteFunctions.initYShark(this, 400, 308, 52));
+
+
+    this.sharks.push(SpriteFunctions.initXShark(this, 400, 450, 100));
     // Set collide world bounds for the entire group
     this.physics.world.enable(this.sharks);
 
@@ -280,14 +289,14 @@ export default class Level2 extends Phaser.Scene {
 
               this.isMessageDisplayed = false;
 
-              // Get the form container by its class
-              const formContainer = document.querySelector(".form-actions");
-
-              // Toggle the visibility of the form based on the game state
-              formContainer.classList.remove("d-none");
-
               // Désactivez le collider après la collision pour éviter les déclenchements continus
               collider.destroy();
+
+              setTimeout(() => {
+                // Soumettre le formulaire
+                const gameForm = document.getElementById('game-form');
+                gameForm.submit();
+              }, 2000);
             }
           );
         }

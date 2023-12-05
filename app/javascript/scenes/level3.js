@@ -14,6 +14,8 @@ export default class Level3 extends Phaser.Scene {
   prevY;
   info_sent_to_html = false;
   isMessageDisplayed = false;
+  hasReceivedFunds = false;
+  hasInvested = false;
 
   preload() {
     // Chargement des images sur github pour éviter le precompile
@@ -82,8 +84,10 @@ export default class Level3 extends Phaser.Scene {
     // Declare an array to store references to sharks
     this.sharks = [];
     // Create sharks
-    this.sharks.push(SpriteFunctions.initShark(this, 75, 250));
-    this.sharks.push(SpriteFunctions.initShark(this, 520, 400));
+    this.sharks.push(SpriteFunctions.initYShark(this, 75, 250, 32));
+    this.sharks.push(SpriteFunctions.initYShark(this, 270, 420, 40));
+    this.sharks.push(SpriteFunctions.initYShark(this, 360, 420, 40));
+
     // Set collide world bounds for the entire group
     this.physics.world.enable(this.sharks);
 
@@ -156,20 +160,35 @@ export default class Level3 extends Phaser.Scene {
               // Créez un groupe pour le texte et le rectangle
               this.displayGroup = this.add.group();
               // Incrémenter
-              const fundsIncrement = Phaser.Math.Between(1, 20)*1000000;
+              const fundsIncrement = Phaser.Math.Between(1, 20);
 
-              infoGame.project_funds += fundsIncrement;
+              infoGame.project_funds += fundsIncrement * 100000;
               // Marquer la tuile comme touchée dans le Set
               infoGame.fundsAddedTiles.add(
                 this.getTileNumber(collidedTile.x, collidedTile.y)
               );
               MsgFunctions.header(infoGame, this);
 
+              // Formatage des fonds incrémentés en euros, milliers d'euros ou millions d'euros
+              const formattedFundsIncrement = formatCurrency(fundsIncrement * 100000);
+
+
               MsgFunctions.bottomText(
-                `Ci-gît une start-up, ${fundsIncrement}€ par terre, chouette ! `,
+                `Dig Dig Dig, ${formattedFundsIncrement} par terre, le ver est plein ! `,
                 this
               );
-              console.log("Nouveaux fonds :", infoGame.funds);
+
+              function formatCurrency(amount) {
+                if (amount < 1000) {
+                  return amount + ' €';
+                } else if (amount < 1000000) {
+                  return (amount / 1000) + ' k€';
+                } else {
+                  return (amount / 1000000) + ' M€';
+                }
+              }
+
+
             }
           } else {
             console.log(
@@ -185,9 +204,9 @@ export default class Level3 extends Phaser.Scene {
             const tileNumber = tileCharacterAtCoordinates.index;
             console.log(tileNumber)
             if (tileNumber === 1861 || tileNumber === 1862 || tileNumber === 1895 || tileNumber === 1896) {
-              const diggingSound = this.sound.add("laugh");
-              diggingSound.play();
 
+
+              if (!this.hasReceivedFunds) {
               // Afficher un message en bas du jeu
               // Créez un groupe pour le texte et le rectangle
               this.displayGroup = this.add.group();
@@ -204,6 +223,7 @@ export default class Level3 extends Phaser.Scene {
                 `Tiens, mes 100 employés!`,
                 this
               );
+              this.hasReceivedFunds = true;
               }
               else {
                 MsgFunctions.bottomText(
@@ -212,8 +232,19 @@ export default class Level3 extends Phaser.Scene {
                 );
               }
             }
+            else
+            {
+              // Si les 10 millions d'euros ont déjà été récupérés, affichez le message approprié
+              MsgFunctions.bottomText(
+                `Je suis fauché!`,
+                this
+        );
+            }
+          }
+
             if (tileNumber === 2065 || tileNumber === 2066 || tileNumber === 2099 || tileNumber === 2100) {
-              // Afficher un message en bas du jeu
+
+              if (!this.hasInvested) {
               // Créez un groupe pour le texte et le rectangle
               this.displayGroup = this.add.group();
               const fundsIncrement = 10_000_000;
@@ -224,7 +255,17 @@ export default class Level3 extends Phaser.Scene {
                 `J'investis 10 millions ! `,
                 this
               );
+              this.hasInvested = true;
             }
+          else {
+            const laughSound = this.sound.add("laugh");
+            laughSound.play();
+            MsgFunctions.bottomText(
+              `Va falloir me rendre des comptes maintenant ! `,
+              this
+            );
+          }
+        }
           } else {
             console.log(
               "Pas de tuile tombelayer à la position (",
@@ -279,14 +320,14 @@ export default class Level3 extends Phaser.Scene {
 
               this.isMessageDisplayed = false;
 
-              // Get the form container by its class
-              const formContainer = document.querySelector(".form-actions");
-
-              // Toggle the visibility of the form based on the game state
-              formContainer.classList.remove("d-none");
-
               // Désactivez le collider après la collision pour éviter les déclenchements continus
               collider.destroy();
+
+              setTimeout(() => {
+                // Soumettre le formulaire
+                const gameForm = document.getElementById('game-form');
+                gameForm.submit();
+              }, 2000);
             }
           );
         }

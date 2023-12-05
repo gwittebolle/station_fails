@@ -82,8 +82,16 @@ export default class Level4 extends Phaser.Scene {
     // Declare an array to store references to sharks
     this.sharks = [];
     // Create sharks
-    this.sharks.push(SpriteFunctions.initShark(this, 75, 250));
-    this.sharks.push(SpriteFunctions.initShark(this, 520, 400));
+    this.sharks.push(SpriteFunctions.initXShark(this, 75, 250, 32));
+    this.sharks.push(SpriteFunctions.initXShark(this, 520, 400, 32));
+    this.sharks.push(SpriteFunctions.initXShark(this, 0, 280, 30));
+    this.sharks.push(SpriteFunctions.initXShark(this, 0, 340, 30));
+    this.sharks.push(SpriteFunctions.initXShark(this, 580, 280, 30));
+    this.sharks.push(SpriteFunctions.initXShark(this, 580, 340, 30));
+    this.sharks.push(SpriteFunctions.initYShark(this, 90, 320, 10));
+    this.sharks.push(SpriteFunctions.initYShark(this, 150, 320, 10));
+    this.sharks.push(SpriteFunctions.initYShark(this, 470, 320, 10));
+    this.sharks.push(SpriteFunctions.initYShark(this, 530, 320, 10));
     // Set collide world bounds for the entire group
     this.physics.world.enable(this.sharks);
 
@@ -183,11 +191,13 @@ export default class Level4 extends Phaser.Scene {
             if (tileNumber === 3697 || tileNumber === 3698 || tileNumber === 3731 || tileNumber === 3732) {
               // Afficher un message en bas du jeu
               // Créez un groupe pour le texte et le rectangle
+              const laughSound = this.sound.add("laugh");
+              laughSound.play();
               this.displayGroup = this.add.group();
               infoGame.project_funds = 0;
               MsgFunctions.header(infoGame, this);
               MsgFunctions.bottomText(
-                `Crack boursier ! `,
+                `Krach boursier ! `,
                 this
               );
             }
@@ -257,14 +267,14 @@ export default class Level4 extends Phaser.Scene {
 
               this.isMessageDisplayed = false;
 
-              // Get the form container by its class
-              const formContainer = document.querySelector(".form-actions");
-
-              // Toggle the visibility of the form based on the game state
-              formContainer.classList.remove("d-none");
-
               // Désactivez le collider après la collision pour éviter les déclenchements continus
               collider.destroy();
+
+              setTimeout(() => {
+                // Soumettre le formulaire
+                const gameForm = document.getElementById('game-form');
+                gameForm.submit();
+              }, 2000);
             }
           );
         }
