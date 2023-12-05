@@ -31,10 +31,10 @@ class Level < ApplicationRecord
     case self.index
     when 1
       # Niveau 1 : Win si € > 105 €
-      if params[:level][:rank].to_i > 105
+      if params[:level][:rank].to_i > 2000
         true
       else
-        @attempt = Attempt.new(result: false)
+        false
       end
     when 2
       # Niveau 2 : Win si € > 120 €
