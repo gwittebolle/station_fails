@@ -1,7 +1,8 @@
 <div class="all">
   <div class="container">
-    <div class="d-flex">
-      <div class="grave-card col-4">
+    <div class="d-flex justify-content-center">
+
+      <div class="grave-card align-self-center col-6">
         <div class="card-gray p-2">
           <% if @attempt.result == true %>
             <%= render partial: "card_you_win", locals: {level: @level} %>
@@ -10,6 +11,7 @@
           <% end %>
         </div>
       </div>
+
       <div class="infos-card col-8 d-flex justify-content-around p-5 mt-5">
           <div class="">
           <div class="card" style="width: 40rem;">
@@ -19,7 +21,7 @@
                  <h6 class="card-subtitle mb-2 "><p><em> Etape n°<%= @level.index %> </em></p>
                 </div>
                <p class="card-text mb-3">Capital : <%= @project.funds %> €</p>
-               <p class="card-text mb-3">Tentatives : <%= @attempt_count %></p>
+               <p class="card-text mb-3">Elles ont échoué avant vous :</p>
 
                <div class="d-flex justify-content-center">
                  <% if @attempt.result == false %>
@@ -34,6 +36,7 @@
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </div>

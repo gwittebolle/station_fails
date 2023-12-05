@@ -2,21 +2,19 @@
 
 <div class="all">
   <div class="container">
-    <div class="d-flex">
-      <div class="grave-card col-4">
+    <div class="d-flex ">
+      <div class="grave-card col-4" >
         <div class="card-gray p-5  mt-5">
             <%= render partial: "level_card", locals: {level: @level} %>
         </div>
       </div>
-      <div class="infos-card col-8 d-flex justify-content-around p-5 mt-5">
-          <div class="">
+      <div class="infos-card col-8 align-self-center p-5 mx-5 mt-5">
+          <div class="d-flex justify-content-center">
           <div class="card" style="width: 40rem;">
             <div class="card-body">
-              <h3 class="card-title mb-2 text-center"><b>Description du niveau</b></h3>
-                <div class="d--flex">
-                 <h6 class="card-subtitle mb-2 text-center "><p><em> Année  <%= @level.index %> </em></p>
-                </div>
+               <h3 class="card-title mb-3 text-center"><b>Description du niveau</b></h3>
                <p class="card-text"><%= @level.description.html_safe %></p>
+               <%= render partial: "level_card_goals", locals: {level: @level} %>
                <div class="d-flex justify-content-end">
                 <%= link_to 'Play', edit_project_level_game_project_path(@project, @level), class: "button-dark"  %>
                </div>
