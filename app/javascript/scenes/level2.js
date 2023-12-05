@@ -28,8 +28,7 @@ export default class Level2 extends Phaser.Scene {
   async create() {
     await MapFunctions.initMap.call(this);
 
-    SpriteFunctions.initSprite(this, 75, 450)
-
+    SpriteFunctions.initSprite(this, 40, 450)
 
     console.log(this.worm)
 
@@ -43,12 +42,21 @@ export default class Level2 extends Phaser.Scene {
     // Chemin local vers le fichier JSON
     const jsonPath = 'https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/tilemaps/json/realLevel_2.json';
     const tombsLayer = MapFunctions.getTombsLayer();
+    const charactersLayer =  MapFunctions.getCharactersLayer();
 
     // Array of tile numbers to add collisions -> Ajouter ici tous les numéros de tuiles qui doivent être des collisions
     TileFunctions.solidTiles(jsonPath).then(data => {
       const tileNumbersToCollide = data
+      console.log(tileNumbersToCollide)
       TileFunctions.addCollisionsToTiles(tileNumbersToCollide, tombsLayer, this);
       this.collisionDetected = false;
+
+      TileFunctions.solidCharactersTiles(jsonPath).then(data => {
+        const tileCharsToCollide = data
+        TileFunctions.addCollisionsToTiles(tileCharsToCollide, charactersLayer, this);
+
+      })
+
 
         // Get the collidable tiles directly
       const my_tiles = TileFunctions.getMyTiles();

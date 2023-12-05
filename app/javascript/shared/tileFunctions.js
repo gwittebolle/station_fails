@@ -16,6 +16,47 @@ export function solidTiles(jsonPath) {
           trueIds.push(tile.id);
         }
       });
+
+      // Résout la promesse avec l'array trueIds
+      resolve(trueIds)
+    }
+
+    // Fonction pour récupérer le JSON
+    fetch(jsonPath)
+      .then(response => {
+        // Vérifie si la requête a réussi
+        if (!response.ok) {
+          throw new Error(`Erreur de chargement du JSON : ${response.statusText}`);
+        }
+        // Convertit la réponse en JSON
+        return response.json();
+      })
+      .then(jsonData => {
+        // Appelle la fonction pour traiter le JSON
+        processJsonData(jsonData);
+      })
+      .catch(error => {
+        // Rejette la promesse avec l'erreur
+        reject(`Une erreur s'est produite lors du chargement du JSON : ${error.message}`);
+      });
+  });
+}
+
+export function solidCharactersTiles(jsonPath) {
+
+  // Retourne une promesse pour permettre l'asynchronisme
+  return new Promise((resolve, reject) => {
+    // Fonction pour traiter le JSON
+    function processJsonData(jsonData) {
+      // Tableau pour stocker les IDs avec la valeur "true"
+      const trueIds = [];
+      jsonData.tilesets[1].tiles.forEach((tile) => {
+        // Vérifie si la propriété "collides" a la valeur "true"
+        if (tile.properties[0].value) {
+          trueIds.push(tile.id);
+        }
+      });
+
       // Résout la promesse avec l'array trueIds
       resolve(trueIds)
     }
