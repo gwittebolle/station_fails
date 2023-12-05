@@ -14,6 +14,7 @@ export default class Level1 extends Phaser.Scene {
   prevY;
   info_sent_to_html = false;
   isMessageDisplayed = false;
+  bgMusicVolume = 1.0;
 
   preload() {
     // Chargement des images sur github pour éviter le precompile
@@ -60,7 +61,10 @@ export default class Level1 extends Phaser.Scene {
 
     // Charger la musique
     const music = this.sound.add("bg-music", { loop: true });
-
+    this.music = this.sound.add("bg-music", {
+      loop: true,
+      volume: this.bgMusicVolume,
+    });
     // Ajouter un gestionnaire d'événements clavier
     this.input.keyboard.on("keydown", function (event) {
       // Vérifier si c'est la première touche enfoncée
@@ -239,6 +243,12 @@ export default class Level1 extends Phaser.Scene {
     SpriteFunctions.textSprite(this);
   }
 
+  lowerVolume() {
+    // Baisser le volume de 0.1 (vous pouvez ajuster cette valeur selon vos besoins)
+    this.bgMusicVolume = Phaser.Math.Clamp(this.bgMusicVolume - 0.1, 0, 1);
+    this.music.setVolume(this.bgMusicVolume);
+  }
+
   update() {
     // Store the previous position of the worm
     this.prevX = this.worm.x;
@@ -289,7 +299,8 @@ export default class Level1 extends Phaser.Scene {
   handleCollision(worm, shark) {
     // This function will be called when a collision occurs
     // Add your logic here, for example, resetting the worm's position
-
+    // Lower the background music volume
+    this.lowerVolume();
     // Reset the worm to its initial position
     this.resetWormPosition();
     MsgFunctions.bottomText(" Projet annihilé par un requin 🦈 !", this);
