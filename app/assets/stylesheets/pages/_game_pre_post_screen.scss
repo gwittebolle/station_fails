@@ -1,0 +1,22 @@
+.all-game {
+  background-color: $black;
+  color : $white;
+  border-top : 3px solid $white;
+}
+
+.game-card {
+  color : $black;
+  background-color: $grave-gray;
+  border-radius: 20px;
+  padding:30px;
+  border: 2px solid;
+
+  p {
+    font-size: larger;
+  }
+}
+
+.game-card-title {
+  letter-spacing: 3px;
+
+}

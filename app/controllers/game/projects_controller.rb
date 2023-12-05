@@ -7,6 +7,7 @@ class Game::ProjectsController < ApplicationController
     @attempt = @project.attempts.last
     @level = Level.find_by(index: Level.max_level_reached(@project) + 1) || Level.find_by(index: Level.max_level_reached(@project))
     @next_level = Level.find_by(index: @max_level_reached + 1)
+    @project.attempts.destroy_all unless @next_level.present?
   end
 
   def edit
@@ -43,8 +44,6 @@ class Game::ProjectsController < ApplicationController
   # def set_level
   #   @level = Project.find(params[:id])
   # end
-
-
 
   def project_params
     # Pour le moment, tous les paramètres sont autorisés, voir Jonathan
