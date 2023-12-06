@@ -31,6 +31,7 @@
                 <li  class="card-line"> <span class="text-gray">Secteur </span> : Divers </li>
                 <% end %>
               </li>
+             <hr class="thin-line mb-3">
                <li class="card-line"> <% if @startup.localisation.present? %>
                   <li  class="card-line"> <span class="text-gray"> Position :  </span>  <%= @startup.localisation.capitalize %>, France</li>
                   <% else %>
@@ -40,7 +41,6 @@
               </ul>
             </div>
 
-             <hr class="thin-line mb-3">
 
 
               <div class="d--flex">
