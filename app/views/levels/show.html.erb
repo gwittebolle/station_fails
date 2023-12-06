@@ -1,9 +1,9 @@
 
 
 <div class="all-game">
-  <div class="container">
-    <div class="d-flex ">
-      <div class="grave-card col-4" >
+  <div class="container mt-5">
+    <div class="d-flex  ">
+      <div class="grave-card col-4 align-self-center" >
         <div class="card-gray p-5  mt-2">
             <%= render partial: "level_card", locals: {level: @level} %>
         </div>
@@ -12,7 +12,6 @@
           <div class="d-flex justify-content-center">
           <div class="game-card" style="width: 40rem;">
             <div class="card-body">
-               <h3 class="game-card-title mb-4 text-center"><b>Description du niveau</b></h3>
                <p><%= @level.description.html_safe %></p>
                <div class="d-flex justify-content-end">
                 <%= link_to 'Play', edit_project_level_game_project_path(@project, @level), class: "button-dark"  %>
