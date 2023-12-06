@@ -1,0 +1,47 @@
+.form-new {
+  font-family: 'Press Start 2P', cursive;
+  background-color: $black; // Utilisation du noir
+  color: #fff; // Texte en blanc sur fond noir
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+
+  // Styles pour les champs du formulaire
+  input {
+    background-color: $black;
+    color: #fff;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+
+  // Styles pour le bouton de soumission
+  .button-neon-green {
+    background-color: $neon-green; // Utilisation de la couleur neon-green
+    color: $black;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: darken($neon-green, 10%); // Assombrir légèrement au survol
+    }
+  }
+
+  .form-border {
+    box-shadow: 0px 0px 10px $neon-green;
+  }
+}
+
+
+.form-new-text {
+  color: v;
+  caret-color: $white;
+
+  &:focus {
+    outline-color: $neon-green;
+    border-color: $neon-green;
+    box-shadow: 0px 2px 4px $neon-green;
+    color: $white
+  }
+}

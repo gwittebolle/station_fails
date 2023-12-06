@@ -1,17 +1,20 @@
-<div class="form-container m-0 p-3">
-  <div class="row">
-    <div class="col-12 col-md-6 m-5 mx-auto offset-lg-3">
-      <div class="rounded p-3 shadow form-area">
-        <h2 class='text-center'>Prépare ton échec !</h2>
-        <%= simple_form_for [@project] do |f|  %>
-          <%= f.input :name, label: "Nom de l'idée vouée à l'échec", input_html: {class: "bg-light"} %>
-          <%= f.input :sector, label: "Secteur", input_html: {class: "bg-light"} %>
-          <%= f.input :description, input_html: {class: "bg-light"} %>
-          <%= f.input :localisation, label: "Localisation", input_html: {class: "bg-light"} %>
-          <%= f.input :photo, as: :file, input_html: {class: "bg-light"} %>
-          <%= f.submit "Valider", class: "form-area button-neon-green" %>
-        <% end %>
-      </div>
+<div class="container-title col-12 flex-column form-new">
+<div class= "col-8 mt-3 form-border d-flex flex-column align-items-center">
+  <div class="actu-level mt-2 d-flex text-center">
+    <h1>NOUVELLE PARTIE</h1>
+  </div>
+
+  <div class="col-8 m-5 form-new-bg mx-auto offset-lg-3">
+    <div class="rounded p-3 shadow form-new">
+      <%= simple_form_for [@project] do |f|  %>
+        <%= f.input :name, label: "Quelle est le nom de ton idée brillante?", input_html: {class: "form-new-text"} %>
+        <%= f.input :sector, label: "Quel secteur?", input_html: {class: "form-new-text"} %>
+        <%= f.input :description, label: "Décris en une ligne le projet", input_html: {class: "form-new-text"} %>
+        <%= f.input :localisation, label: "Où ça?", input_html: {class: "form-new-text"} %>
+        <%= f.submit "Créer la partie", class: "form-area button-neon-green" %>
+      <% end %>
     </div>
   </div>
+
+</div>
 </div>
