@@ -113,3 +113,11 @@
 }
 
 }
+
+.style-none {
+  text-decoration: none;
+  color: $white;
+    &:hover{
+      color: $white;
+    }
+}
