@@ -3,8 +3,6 @@
   padding: 40px ;
   background-color: $black;
   padding-bottom: 100px;
-  border-bottom: 3px solid $neon-purple;
-  border-top: 3px solid $neon-purple;
 }
 
 .banner h1 {
@@ -54,11 +52,11 @@
 
 
   &:hover {
-    transform: scale(1.02);
+    transform: scale(1.01);
     background-color:  $grave-gray;
     border : 3px solid  #898181;
     color: $black;
-    font-weight: bolder;
+    //font-weight: bolder;
       border: 4px solid #fff;
       border-radius: 0px;
       box-shadow:

@@ -63,7 +63,7 @@
   box-shadow: 0px 4px 4px $neon-green;
   border-radius: 120px 120px 120px 120px;
   color: $black;
-  margin-bottom: 100px;
+  margin-bottom: 50px;
 
 }
 
@@ -76,6 +76,12 @@
   font-size: 14px;
   margin-top: 25px;
   margin-bottom: 25px;
-}
 
-//---- btn css
+
+
+.fail-reason-text {
+  display: block;
+  margin-top: 10px;
+  color: $black;
+  font-size: 32px;
+}

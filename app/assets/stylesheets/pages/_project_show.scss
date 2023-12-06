@@ -1,49 +1,83 @@
-.all {
-  background-color: $black;
-}
-
-.card-infos {
-  width: 300px;
-  height: 200px;
-  background-color: $gray;
-
-}
-
 .project-card {
-  border: 2px solid $gray;
-  border-radius: 8px;
+  border: 4px solid #d3d3d3;
+  border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   transition: transform 0.3s ease-in-out;
   margin-bottom: 20px;
   margin-top: 50px;
   width: 1200px;
-  height: 1000px;
-  background-color: $black;
+  height: 1550px;
+  background-color: $white;
 
   &:hover {
     transform: scale(1.02);
-    box-shadow: 0px 0px 40px $neon-green;
-  }
-
-  .project-header {
-    background-color: $black;
-    color: $white;
-    padding: 20px;
-    text-align: center;
-    border: 1px solid $gray;
-
-    h1 {
-      margin: 0;
-      font-size: 5em;
-      font-family: 'Bebas Neue', sans-serif;
-    }
   }
 }
 
+.project-header {
+  background-color: $white;
+  color: $white;
+  padding: 20px;
+  text-align: center;
+
+
+  h1 {
+    // margin: 0;
+    // font-size: 5em;
+    // font-family: 'Bebas Neue', sans-serif;
+    // color: $black;
+
+  }
+}
+
+.container-box{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+
+
+.list-item {
+  list-style-type: none;
+}
+
+.vertical-line {
+  height: 750px;
+  border-left: 4px solid #a9a9a9;
+  margin: 0 10px;
+}
+
+.btn-special {
+  padding-left:60px;
+  padding-right:60px;
+  padding-top: 60px;
+  padding-bottom: 60px;
+  font-size: 18px;
+  border-radius: 10px;
+  text-decoration: none;
+  min-height: 3rem;
+  background-color: $grave-gray;
+  border : 2px solid  #bababa;
+  font-family: 'Dhurjati', sans-serif;
+  font-size: 20px;
+  color: $gray;
+  text-align: center;
+
+  &:hover {
+    transform: scale(1.02);
+    background-color:  $grave-gray;
+    border : 3px solid  #898181;
+    color: $black;
+    font-weight: bolder;
+
+}
+}
 .card {
   width: 800px;
-
 
   &:hover {
     transform: scale(1.02);
@@ -67,8 +101,6 @@
   font-family: 'Bebas Neue', sans-serif;
 }
 
-
-
 .card-header {
   color: $black;
 }
@@ -78,18 +110,120 @@
 
 }
 
-.gradient-dark-button {
-  background: linear-gradient(to bottom, #444, #222);
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 10px;
-  font-size: 16px;
-  cursor: pointer;
-  text-decoration: none;
+.box-title {
+  width: 600px;
+  height: 150px;
+  padding: 15px;
+  color: $black;
+  font-size: 25px;
+  margin: 0 auto;
+  h2 {
+    font-size: 30px;
+    color: $black;
+  }
 }
 
-.gradient-dark-button:hover {
-  background: linear-gradient(to bottom, #222, #000);
+.container-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-play {
+  padding-left: 180px;
+  padding-right: 180px;
+  border: 4px solid #fff;
+  border-radius: 0px;
+  box-shadow:
+    0 0 8px #fff,
+    inset 0 0 8px #fff,
+    0 0 16px #37f713,
+    inset 0 0 16px #37f713,
+    0 0 32px #37f713,
+    inset 0 0 32px #37f713;
+  background-color: #ffffff;
+  color:$black;
+   &:hover{
+    background-color: $white;
+  }
+}
+
+.my-line {
+  border: none;
+  border-top:  4px solid #a9a9a9;
+  margin : 0 auto;
+  padding:10px;
+  width: 550px;
+}
+
+.box {
+  width: 600px;
+  height: 737px;
+  padding: 15px;
+  color: $black;
+  font-size: 25px;
+}
+
+.actu-level {
+
+  width: 600px;
+  height: 230px;
+  padding: 30px;
+  color: $black;
+  font-size: 25px;
+  text-align: center;
+
+  h1{
+    font-family: $players-font;
+    font-size: 80px;
+    color: #ffffff;
+    text-shadow:
+    0 0 6px rgba(77, 255, 0, 0.92),
+    0 0 30px rgb(68, 255, 0),
+    0 0 12px rgba(4, 255, 0, 0.975),
+    0 0 21px rgba(30, 242, 58, 0.92),
+    0 0 34px rgba(102, 255, 0, 0.78),
+    0 0 54px rgba(140, 255, 0, 0.92)
+  }
+}
+
+.money-box {
+  width: 500px;
+  height: 200px;
+  padding: 15px;
+  color: $black;
+  font-size: 25px;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+
+  p {
+
+    font-family:$players-font;
+    font-size: 60px;
+
+  }
+  h1{
+    font-family: $players-font;
+    font-size: 50px;
+  }
+}
+
+.progression-box {
+
+  width: 750px;
+
+}
+
+.card-progress {
+
+  width: 1000px;
+}
+
+.style-none {
   text-decoration: none;
+  color: $white;
+    &:hover{
+      color: $white;
+    }
 }
