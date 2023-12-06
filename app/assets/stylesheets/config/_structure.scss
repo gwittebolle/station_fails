@@ -7,10 +7,12 @@ html, body {
   position: relative;
 }
 .container {
-
   border-radius: 8px;
-  background: black;
+}
 
+.container-footer {
+  border-radius: 8px;
+  background: $black;
 }
 
 #page-container {
