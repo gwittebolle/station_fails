@@ -10,11 +10,13 @@
           <li class="card-text text-center"><span class="text-gray"> <%= @project.localisation.capitalize || 'N/A' %> -  <%= @project.sector.capitalize || 'N/A' %> </span></li>
         </ul>
     </div>
+
     <hr class="vertical-line">
     <div class="box">
       <div class= "play">
        <% if @project.attempts.count > 0 %>
                 <%= link_to 'CONTINUER', project_level_path(@project, @next_level), class: "btn-special" %>
+
               <% else %>
                 <%= link_to 'COMMENCER', project_level_path(@project, @next_level), class: "btn-special" %>
               <% end %>
