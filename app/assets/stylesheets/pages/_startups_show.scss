@@ -26,7 +26,7 @@
     list-style: none;
     padding: 0;
     margin: 0;
-    animation: scrollCredits infinite 30s linear;
+    animation: scrollCredits infinite 60s linear;
   }
 
 }
@@ -46,7 +46,7 @@
     transform: translateY(190%);
   }
   100% {
-    transform: translateY(-1000%);
+    transform: translateY(-500%);
   }
 }
 
