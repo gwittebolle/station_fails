@@ -4,8 +4,7 @@
 }
 
 #page-container {
-
-  min-height: 87vh;
+  min-height: 84vh;
   background: $black;
   margin-bottom: 0px;
 }
@@ -17,6 +16,11 @@ body {
   flex-direction: column;
 }
 
-.footer {
+footer {
+  height: 8vh;
   margin-top: auto;
+
+  .footer-padding {
+    padding: 2rem;
+  }
 }
