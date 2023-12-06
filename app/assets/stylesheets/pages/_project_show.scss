@@ -1,49 +1,87 @@
-.all {
-  background-color: $black;
-}
-
-.card-infos {
-  width: 300px;
-  height: 200px;
-  background-color: $gray;
-
-}
-
 .project-card {
-  border: 2px solid $gray;
-  border-radius: 8px;
+  border: 4px solid #d3d3d3;
+  border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   transition: transform 0.3s ease-in-out;
   margin-bottom: 20px;
   margin-top: 50px;
   width: 1200px;
-  height: 1000px;
-  background-color: $black;
+  height: 1400px;
+  background-color: $grave-gray;
 
   &:hover {
     transform: scale(1.02);
-    box-shadow: 0px 0px 40px $neon-green;
-  }
-
-  .project-header {
-    background-color: $black;
-    color: $white;
-    padding: 20px;
-    text-align: center;
-    border: 1px solid $gray;
-
-    h1 {
-      margin: 0;
-      font-size: 5em;
-      font-family: 'Bebas Neue', sans-serif;
-    }
   }
 }
 
+.project-header {
+  background-color: $grave-gray;
+  color: $white;
+  padding: 20px;
+  text-align: center;
+  border-bottom: 4px solid #d3d3d3;
+
+  h1 {
+    margin: 0;
+    font-size: 5em;
+    font-family: 'Bebas Neue', sans-serif;
+    color: #989898;
+
+  }
+}
+
+.container-box{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.box {
+  width: 600px;
+  height: 737px;
+  padding: 15px;
+  color: $black;
+  font-size: 25px;
+}
+
+.list-item {
+  list-style-type: none;
+}
+
+.vertical-line {
+  height: 750px;
+  border-left: 4px solid #a9a9a9;
+  margin: 0 10px;
+}
+
+.btn-special {
+  padding-left:60px;
+  padding-right:60px;
+  font-size: 18px;
+  border-radius: 10px;
+  text-decoration: none;
+  min-height: 3rem;
+  background-color: $grave-gray;
+  border : 2px solid  #bababa;
+  font-family: 'Dhurjati', sans-serif;
+  font-size: 20px;
+  color: $gray;
+  text-align: center;
+
+  &:hover {
+    transform: scale(1.02);
+    background-color:  $grave-gray;
+    border : 3px solid  #898181;
+    color: $black;
+    font-weight: bolder;
+
+}
+}
 .card {
   width: 800px;
-
 
   &:hover {
     transform: scale(1.02);
@@ -67,8 +105,6 @@
   font-family: 'Bebas Neue', sans-serif;
 }
 
-
-
 .card-header {
   color: $black;
 }
@@ -76,20 +112,4 @@
   color: $white;
 }
 
-}
-
-.gradient-dark-button {
-  background: linear-gradient(to bottom, #444, #222);
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 10px;
-  font-size: 16px;
-  cursor: pointer;
-  text-decoration: none;
-}
-
-.gradient-dark-button:hover {
-  background: linear-gradient(to bottom, #222, #000);
-  text-decoration: none;
 }

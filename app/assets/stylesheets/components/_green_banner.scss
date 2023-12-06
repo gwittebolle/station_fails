@@ -1,40 +1,19 @@
-.banner {
-  background-size: cover;
-  padding: 40px ;
-  background-color: $black;
-  padding-bottom: 100px;
-  border-bottom: 3px solid $neon-purple;
-  border-top: 3px solid $neon-purple;
-}
-
-.banner h1 {
+.green-banner {
+  background-color: $white;
+  display: flex;
+  justify-content: space-around;
   padding: 20px;
-  color: $white;
-  font-size: 80px;
-  font-family: $headers-font
-  // color:#c9ffc6;
-  // text-shadow:
-  //   0 0 4px rgba(202,228,225,0.92),
-  //   0 0 30px rgba(202,228,225,0.34),
-  //   0 0 12px rgba(0, 255, 0, 0.52),
-  //   0 0 21px rgba(17, 255, 0, 0.92),
-  //   0 0 34px rgba(76, 242, 30, 0.78),
-  //   0 0 54px rgba(38, 255, 0, 0.92);
-
-}
-.banner img {
-  height: 80px;
-  margin-top: 20px;
 }
 
-.banner h3 {
-    padding: 20px;
+.banner-title {
+  font-size: calc(1.157684630738523vw + -0.20109780439121744em);
+  text-transform: uppercase;
+  font-weight: 400;
+  line-height: 1.7;
+  margin-bottom: 1em;
+}
 
-  }
-
-
-
-.btn-special-gray {
+.btn-green-banner {
   padding-left:60px;
   padding-right:60px;
   padding-top: 0px;
@@ -45,7 +24,7 @@
   min-height: 3rem;
   background-color: $black;
   border : 2px solid #3d3d3d;
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: $players-font;
   font-size: 20px;
   color: $white;
   display: flex;
@@ -71,8 +50,3 @@
     }
 
 }
-
-.animate-text {
-	visibility:hidden;
-
-  color: $white}

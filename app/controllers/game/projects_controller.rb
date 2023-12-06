@@ -19,10 +19,10 @@ class Game::ProjectsController < ApplicationController
     @level = Level.find(params[:id])
 
     if @level.win?(params)
-        @attempt = Attempt.create(result: true)
-        @project.funds = params[:level][:funds]
-        @project.employees = params[:level][:employees]
-        @project.save
+      @attempt = Attempt.create(result: true)
+      @project.funds = params[:level][:funds]
+      @project.employees = params[:level][:employees]
+      @project.save
 
     else
       @attempt = Attempt.create(result: false)
@@ -31,6 +31,7 @@ class Game::ProjectsController < ApplicationController
     @attempt.project = @project
     @attempt.level = @level
     @attempt.save
+    
     redirect_to project_level_game_project_path(@project, @level)
   end
 
