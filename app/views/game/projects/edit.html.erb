@@ -1,6 +1,8 @@
+
 <div class="container m-0 d-flex flex-column">
+<h1 class="green-level">LEVEL <%= @level.index %></h1>
   <div class="col-12" data-controller="game" data-game-target="div">
-    <div id="level" class="canva" data-project="<%= { name: @project.name, level: @level.index, project_funds: @project.funds, level_funds: @level.funds, level_employees: @level.employees, metrics: @level.metrics, project_employees: @project.employees }.to_json %>">
+    <div id="level" class="canvas canvas-border" data-project="<%= { name: @project.name, level: @level.index, project_funds: @project.funds, level_funds: @level.funds, level_employees: @level.employees, metrics: @level.metrics, project_employees: @project.employees }.to_json %>">
     </div>
   </div>
 

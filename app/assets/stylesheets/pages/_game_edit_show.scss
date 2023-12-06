@@ -4,4 +4,10 @@ canvas {
   margin : auto;
   width: 70%;
   z-index: 1;
+
+
+  .canvas-border {
+    box-shadow: 0px 0px 10px $neon-green;
+    border-radius: 4px;
+  }
   }

@@ -6,9 +6,9 @@ export function header(info, context) {
     context.nameText.destroy();
   }
 
-  if (context.levelText) {
-    context.levelText.destroy();
-  }
+  // if (context.levelText) {
+  //   context.levelText.destroy();
+  // }
 
   if (context.foundText) {
     context.foundText.destroy();
@@ -18,11 +18,11 @@ export function header(info, context) {
     context.employeesText.destroy();
   }
 
-  context.nameText = context.add.text(10, 10, 'Projet ' + info.name, { fontSize: '25px', fill: '#fff' });
+  context.nameText = context.add.text(10, 30, 'Projet ' + info.name, { fontSize: '25px', fill: '#fff' });
   context.nameText.setDepth(4);
 
-  context.levelText = context.add.text(10, 40, 'Niveau ' + info.level, { fontSize: '20px', fill: '#1EDD88' });
-  context.levelText.setDepth(4);
+  // context.levelText = context.add.text(10, 40, 'Niveau ' + info.level, { fontSize: '20px', fill: '#1EDD88' });
+  // context.levelText.setDepth(4);
 
   // Formatage des fonds en euros, milliers d'euros ou millions d'euros
   const formattedFunds = formatCurrency(info.project_funds);
