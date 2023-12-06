@@ -28,40 +28,6 @@ class Level < ApplicationRecord
   end
 
   def win?(params)
-    case self.index
-    when 1
-      # Niveau 1 : Win si € > 105 €
-      if params[:level][:funds].to_i > 2000
-        true
-      else
-        false
-      end
-    when 2
-      # Niveau 2 : Win si € > 120 €
-      if params[:level][:funds].to_i > 120
-        true
-      else
-        false
-      end
-    when 3
-      # Niveau 3 : Win si € > 130 €
-      if params[:level][:funds].to_i > 130
-        true
-      else
-        false
-      end
-    when 4
-      # Niveau 4 : Win si € > 140 €
-      if params[:level][:funds].to_i > 140
-        true
-      else
-        false
-      end
-    else
-      # Gérer les autres niveaux (facultatif)
-      false
-    end
+    params[:level][:funds].to_i >= self.min_funds && params[:level][:employees].to_i >= self.min_employees
   end
-
-
 end

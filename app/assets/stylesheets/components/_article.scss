@@ -2,20 +2,20 @@
 
 .article {
   list-style-type: none;
-  padding:20px;
+  padding:10px;
   text-align: center;
 
 
   li {
     margin-bottom: 8px;
     position: relative;
-    padding-left: 20px;
+    padding-left: 10px;
     text-align: left; // Ajuster l'espace à gauche pour le contenu
 
   }
 
   .article-list {
-    padding: 30px; // Ajouter du padding à droite pour la liste
+    padding: 10px; // Ajouter du padding à droite pour la liste
   }
 
   a {
