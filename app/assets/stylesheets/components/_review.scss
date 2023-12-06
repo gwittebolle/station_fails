@@ -1,0 +1,16 @@
+.review {
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+.rating {
+  font-size: 24px;
+  font-weight: bold;
+  color: $neon-green; /* Green color for positive reviews */
+}
+
+.comment {
+  margin-top: 10px;
+  font-size: 18px;
+  font-style: italic;
+}

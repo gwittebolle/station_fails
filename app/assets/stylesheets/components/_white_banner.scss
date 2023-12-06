@@ -1,0 +1,42 @@
+.white-banner {
+  background-color: $neon-green;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  align-items: left;
+  position: relative;
+  max-width: 120em;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 10em;
+  padding-right: 10em;
+
+}
+
+.info-card {
+  padding: 20px;
+  text-align: left;
+  border: 2px solid black; /* Bordure solide noire */
+  width: 30%;
+  margin: 10px;
+  text-transform: uppercase; /* Tout en majuscule */
+}
+
+.info-card h1 {
+  font-size: 4em; /* Chiffre agrandi */
+  font-weight: 700;
+  color: var(--dark-green);
+  margin-bottom: 10px;
+}
+
+.info-card p {
+  font-size: 1.2em;
+  color: var(--grey);
+  margin-bottom: 20px;
+}
+
+.info-card .explanation {
+  font-size: 1em;
+  color: var(--grey);
+}

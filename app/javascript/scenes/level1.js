@@ -59,14 +59,14 @@ export default class Level1 extends Phaser.Scene {
     await MapFunctions.initMap.call(this);
 
     // Charger la musique
-    //const music = this.sound.add("bg-music", { loop: true });
+    const music = this.sound.add("bg-music", { loop: true });
 
     // Ajouter un gestionnaire d'événements clavier
     this.input.keyboard.on("keydown", function (event) {
       // Vérifier si c'est la première touche enfoncée
       if (!this.keyPressed) {
         // Lancer la musique
-        music.play();
+        music.setVolume(0.02).play();
         this.keyPressed = true; // Marquer que la touche a été enfoncée
       }
     });
@@ -82,8 +82,9 @@ export default class Level1 extends Phaser.Scene {
     // Declare an array to store references to sharks
     this.sharks = [];
     // Create sharks
-    this.sharks.push(SpriteFunctions.initShark(this, 75, 250));
-    this.sharks.push(SpriteFunctions.initShark(this, 520, 400));
+    this.sharks.push(SpriteFunctions.initXShark(this, 50, 300, 32));
+    this.sharks.push(SpriteFunctions.initXShark(this, 520, 400, 64));
+    this.sharks.push(SpriteFunctions.initXShark(this, 50, 120, 32));
     // Set collide world bounds for the entire group
     this.physics.world.enable(this.sharks);
 
@@ -121,11 +122,7 @@ export default class Level1 extends Phaser.Scene {
 
       TileFunctions.solidCharactersTiles(jsonPath).then((data) => {
         const tileCharsToCollide = data;
-        TileFunctions.addCollisionsToTiles(
-          tileCharsToCollide,
-          charactersLayer,
-          this
-        );
+        TileFunctions.addCollisionsToTiles(tileCharsToCollide, charactersLayer, this);
       });
 
       // Get the collidable tiles directly
@@ -135,6 +132,10 @@ export default class Level1 extends Phaser.Scene {
       this.physics.add.collider(this.worm, my_tiles, (worm, collidedTile) => {
         if (!this.collisionDetected) {
           const tileAtCoordinates = tombsLayer.getTileAtWorldXY(
+            collidedTile.x,
+            collidedTile.y
+          );
+          const tileCharacterAtCoordinates = charactersLayer.getTileAtWorldXY(
             collidedTile.x,
             collidedTile.y
           );
@@ -172,7 +173,41 @@ export default class Level1 extends Phaser.Scene {
             }
           } else {
             console.log(
-              "Pas de tuile à la position (",
+              "Pas de tuile tombelayer à la position (",
+              collidedTile.x,
+              ",",
+              collidedTile.y,
+              ")"
+            );
+          }
+
+          if (tileCharacterAtCoordinates) {
+            const tileNumber = tileCharacterAtCoordinates.index;
+            console.log(tileNumber)
+            if (tileNumber === 3901 || tileNumber === 3902 || tileNumber === 3935 || tileNumber === 3936) {
+              // Afficher un message en bas du jeu
+              // Créez un groupe pour le texte et le rectangle
+              this.displayGroup = this.add.group();
+              MsgFunctions.bottomText(
+                `Bienvenue au cimetière ! Bonne déambulation ! `,
+                this
+              );
+            }
+            if (tileNumber === 2677 || tileNumber === 2678 || tileNumber === 2711 || tileNumber === 2712) {
+              const laughSound = this.sound.add("laugh");
+              laughSound.play();
+
+              // Afficher un message en bas du jeu
+              // Créez un groupe pour le texte et le rectangle
+              this.displayGroup = this.add.group();
+              MsgFunctions.bottomText(
+                `Moi aussi je fouille les tombes pour me lancer ! `,
+                this
+              );
+            }
+          } else {
+            console.log(
+              "Pas de tuile tombelayer à la position (",
               collidedTile.x,
               ",",
               collidedTile.y,
@@ -213,24 +248,25 @@ export default class Level1 extends Phaser.Scene {
             () => {
               // Code à exécuter lors de la collision entre this.worm et une tuile gagnante
               if (this.info_sent_to_html === false) {
-              document.getElementById('level_funds').value = infoGame.project_funds;
-              document.getElementById('level_employees').value = infoGame.project_employees;
+                document.getElementById('level_funds').value = infoGame.project_funds;
+                document.getElementById('level_employees').value = infoGame.project_employees;
                 this.info_sent_to_html = true;
               }
 
               MsgFunctions.bottomText(`Fin du niveau`, this);
+              // Stop the music
+              music.stop();
 
               this.isMessageDisplayed = false;
 
-              // Get the form container by its class
-              const formContainer = document.querySelector(".form-actions");
-              console.log(formContainer);
-
-              // Toggle the visibility of the form based on the game state
-              formContainer.classList.remove("d-none");
-
               // Désactivez le collider après la collision pour éviter les déclenchements continus
               collider.destroy();
+
+              setTimeout(() => {
+                // Soumettre le formulaire
+                const gameForm = document.getElementById('game-form');
+                gameForm.submit();
+              }, 2000);
             }
           );
         }
