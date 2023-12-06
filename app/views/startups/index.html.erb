@@ -1,27 +1,38 @@
-<div class="banner cim-ban" style="background-color: $black">
+<div class="banner mb-0" style="background: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+url('https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/images/cementary-banner.png') right/cover;
+;">
   <h1 class="text-center p-4">LE CIMETIERE</h1>
 </div>
 
-<div class="all">
-    <div class="search-light d-flex justify-content-center">
-     <div class="">
-      <%= form_with url: startups_path, method: :get, class: "search-bar" do %>
-      <%= text_field_tag :query,
-              params[:query],
-              class: "search-input",
-              placeholder: "Creuser ..."
-          %>
-      <%= submit_tag "Search", name: "", class: "btn-special " %>
-      <% end %>
+
+
+<div class="green-banner">
+  <div class="col-12 search-bar-subscribe p-0 pb-5 mx-0 my-2 d-flex flex-column text-start">
+    <h3 class="ml-3">Recherche un proche</h3>
+    <%= form_with url: startups_path, method: :get, class: "search-bar d-flex" do %>
+      <div class="input-group align-items-center" style="width: 80%;">
+        <%= text_field_tag :query,
+          params[:query],
+          class: "custom-input mx-5 d-flex justify-content-start",
+          placeholder: "Nom d'une startup défunte ..."
+        %>
       </div>
+      <div class="input-group-append" style="width: 20%;">
+        <%= submit_tag "Search", name: "", class: "btn btn-special-gray" %>
+      </div>
+    <% end %>
+  </div>
+</div>
 
 
-      
+<div class="">
+    <div class="search-light d-flex justify-content-center pt-4">
+<h3 class="text-white">-  Que leur âme repose en paix  -</h3>
     </div>
   <div class="container">
-    <div class="row ">
+    <div class="row">
       <% @startups.each do |startup| %>
-      <div class="col-lg-4 d-flex justify-content-center">
+      <div class="col-lg-4 shadow-bottom-sm d-flex justify-content-center">
         <div class="project-wrapper-lg">
           <%= render partial: "startup_card", locals: {startup: startup} %>
         </div>

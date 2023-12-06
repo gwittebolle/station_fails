@@ -1,4 +1,19 @@
 class GetStartupData
+
+  FAIL_REASONS = [
+    'Manque de financement',
+    'Saturation du marché',
+    'Mauvaise direction',
+    'Obsolescence technologique',
+    'Problèmes juridiques',
+    'Concurrence féroce',
+    'Problèmes de gestion',
+    'Produit non viable',
+    'Marché mal compris',
+    'Autres raisons...'
+  ].freeze
+
+
   def initialize
     @file_path = Rails.root.join('app/data/data_startup.json')
   end
@@ -15,12 +30,16 @@ class GetStartupData
       startup_birth_year = item['create_date']
       startup_death_year = item['kpi_summary']['last_update_date']
       startup_funds = item['total_funding_enhanced']['amount']
-      startup_founder = item['founders']&.first&.fetch('name', nil)
+      startup_founder = item['founders']&.map { |founder| founder['name'] }
+      startup_founder = startup_founder&.join(', ')
       startup_founders_number = (item['founders']&.map { |founder| founder['name'] } || []).size
       startup_logo = item['images']['100x100']
       startup_employees = item['employees']&.to_s
       startup_description = item['tagline']
       startup_sector = item['industries']&.first&.fetch('name', nil)
+
+      # Generate a random fail reason
+      fail_reason = FAIL_REASONS.sample
 
       Startup.create!(name: startup_name,
                       founder: startup_founder,
@@ -32,7 +51,8 @@ class GetStartupData
                       funds: startup_funds,
                       description: startup_description,
                       sector: startup_sector,
-                      founders_number: startup_founders_number )
+                      founders_number: startup_founders_number,
+                      fail_reason: fail_reason)
      end
   end
 end
