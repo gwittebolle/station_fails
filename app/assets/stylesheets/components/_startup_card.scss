@@ -12,6 +12,9 @@
   margin-top: 15px;
   margin-bottom: 50px;
   font-size: 10px;
+  .hide-year{
+    display: none;
+  }
 
 }
 .startup-card {
@@ -28,6 +31,8 @@
     box-shadow: $neon-green 0px 6px 10px;
   }
 }
+
+
 
 
 .startup-card h3{
