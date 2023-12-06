@@ -16,30 +16,34 @@
         <div class="row justify-content-center">
           <div class="infos-card col-12 d-flex justify-content-around p-5">
             <div class="game-card" style="width: 40rem;">
-              <div class="card-body d-flex flex-column align-items-center gap-3">
+              <div class="card-body d-flex flex-column align-items-center gap-1">
                 <h1 class="game-card-title text-center"><b>Statistiques</b></h3>
 
-                <% if @attempt.result == true %>
+
+                <h6 class="game-card-title">- Ma progression -</h6>
+                <p class="card-text">Capital du projet : <%= @project.funds.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\1 ').reverse %> €</p>
+
+                <p class="card-text mb-0"><strong>Ces startups ont échoué à ce stade :</strong></p>
+
+                <div class="project-wrapper-game d-flex gap-5 p-1 justify-content-around" >
+                 <% @failed_startups.each do |startup| %>
+                 <div class="project-wrapper-mini mb-2">
+                    <%= render partial: "startups/startup_card", locals: {startup: startup} %>
+                 </div>
+                <% end %>
+                </div>
+
+                 <% if @attempt.result == true %>
                   <h6 class="game-card-title">- Niveau <%= @level.index %> : Prochains objectifs -</h6>
                 <% else %>
                   <h6 class="game-card-title">Niveau <%= @level.index %> - Objectifs du niveau :</h6>
                 <% end %>
 
                 <p class="card-text">Capital minimum : <%= @level.min_funds.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\1 ').reverse %> €</p>
-                <p class="card-text">Nombre d'employés minimum : <%= @level.min_employees %></p>
-                <h6 class="game-card-title">- Ma progression -</h6>
-                <p class="card-text">Capital du projet : <%= @project.funds.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\1 ').reverse %> €</p>
+                <p class="card-text">Nombre d'employé(s) minimum : <%= @level.min_employees %></p>
+              </div>
 
-                <p class="card-text"><strong>Ces startups ont échoué à ce stade :</strong></p>
-
-                <div class="project-wrapper-game d-flex gap-5 p-1 justify-content-around" >
-                 <% @failed_startups.each do |startup| %>
-                  <%= render partial: "startups/startup_card", locals: {startup: startup} %>
-                <% end %>
-                </div>
-
-
-                <div class="d-flex justify-content-end">
+                         <div class="d-flex justify-content-end">
                   <% if @attempt.result == false %>
                     <%= link_to 'Rejouer', edit_project_level_game_project_path(@project, @level), class: "button-dark" %>
                   <% elsif @next_level.present? && @attempt.result == true  %>
@@ -47,9 +51,8 @@
                   <% elsif !@next_level.present?  %>
                     <%= link_to 'Page finale', win_page_path, class: "button-dark" %>
                   <% end %>
+                            </div>
                 </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
