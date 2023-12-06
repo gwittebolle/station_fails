@@ -8,6 +8,8 @@ class Game::ProjectsController < ApplicationController
     @level = Level.find_by(index: Level.max_level_reached(@project) + 1) || Level.find_by(index: Level.max_level_reached(@project))
     @next_level = Level.find_by(index: @max_level_reached + 1)
     @project.attempts.destroy_all unless @next_level.present?
+    @failed_startups = []
+    @failed_startups = Startup.all.sample(2)
   end
 
   def edit
@@ -31,7 +33,7 @@ class Game::ProjectsController < ApplicationController
     @attempt.project = @project
     @attempt.level = @level
     @attempt.save
-    
+
     redirect_to project_level_game_project_path(@project, @level)
   end
 
