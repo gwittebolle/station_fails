@@ -7,6 +7,7 @@ Level.destroy_all
 startup_data = GetStartupData.new
 startup_data.load_data
 
+
 #localisations = [
 #     'Bordeaux',
 #     'Toulouse',

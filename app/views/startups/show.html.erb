@@ -1,4 +1,4 @@
-<div class="all">
+<div class="">
   <div class="container">
     <div class="d-flex ">
       <div class="grave-card col-4  ">
@@ -10,6 +10,10 @@
 
           <div class="card card-white mb-5" style="width: 40rem;">
             <div class="card-body ">
+              <div class="start-up-card fail-reason">
+                <h2 class="fail-reason-text"><%= @startup.fail_reason %></h2>
+              </div>
+
             <div class="tiltle-box ">
                 <h1 class="card-line-title  text-center"> <b><%= @startup.name %></b></h1>
             </div>
@@ -21,7 +25,9 @@
                   <% end %>
                 </p>
 
-          <div class="tiltle-box ">
+
+
+          <div class="title-box ">
               <p class="card-line"> <span class="text-gray"> <b> Informations </b> </span> </p>
 
               <ul>
@@ -33,9 +39,9 @@
               </li>
              <hr class="thin-line mb-3">
                <li class="card-line"> <% if @startup.localisation.present? %>
-                  <li  class="card-line"> <span class="text-gray"> Position :  </span>  <%= @startup.localisation.capitalize %>, France</li>
+                  <li  class="card-line"> <span class="text-gray"> Localisation :  </span>  <%= @startup.localisation.capitalize %>, France</li>
                   <% else %>
-                  <li class="card-line"> <span class="text-gray"> Position : </span>  Paris, France</li>
+                  <li class="card-line"> <span class="text-gray"> Localisation : </span>  Paris, France</li>
                   <% end %>
                 </li>
               </ul>
@@ -47,9 +53,9 @@
                 <p class="card-line"> <span class="text-gray"> <b> Fondateurs et employés</b> </span> </p>
                   <ul>
                   <li class="card-line "><% if @startup.founder.present? %>
-                <li  class="card-line"> <span class="text-gray"> Fondateur principal - </span> <%= @startup.founder %></li>
+                <li  class="card-line"> <span class="text-gray"> Fondateur(s) - </span> <%= @startup.founder %></li>
                 <% else %>
-                <li  class="card-line"> <span class="text-gray"> Fondateur principal  </span> : Non renseigné </li>
+                <li  class="card-line"> <span class="text-gray"> Fondateur(s)  </span> : Non renseigné </li>
                 <% end %>
                <li class="card-line "><% if @startup.founders_number > 0 %>
                 <li  class="card-line"> <span class="text-gray"> Nombre de fondateur.s : </span> <%= @startup.founders_number %></li>
