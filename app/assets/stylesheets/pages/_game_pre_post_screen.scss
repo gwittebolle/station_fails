@@ -11,19 +11,20 @@
   padding:30px;
   box-shadow:
     0 0 8px #fff,
-    inset 0 0 8px #fff,
-    0 0 16px $neon-green,
-    inset 0 0 16px $neon-green,
-    0 0 32px $neon-green,
-    inset 0 0 32px $neon-green;
+    inset 0 0 8px rgb(255, 255, 255),
+    0 0 16px rgb(255, 255, 255),
+    inset 0 0 16px  rgb(255, 255, 255) ,
+    0 0 32px  rgb(255, 255, 255),
+    inset 0 0 32px  rgb(255, 255, 255);
 
   p {
     font-size: larger;
   }
 }
 
-.game-card-title {
-  letter-spacing: 3px;
+.title-level {
+  font-family: $players-font;
+  text-align: center;
 
 }
 
@@ -55,4 +56,8 @@
     0 0 34px rgba(102, 255, 0, 0.78),
     0 0 54px rgba(140, 255, 0, 0.92);
 
+}
+.level-text {
+ padding: 20px;
+ font-weight: bold;
 }

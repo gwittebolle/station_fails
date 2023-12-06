@@ -1,7 +1,15 @@
 <div class="level-card">
   <div class="text-center p-3 d-flex align-items-center flex-column">
     <div class="">
-      <span class="p-1 level-index level align-items-center"> LEVEL  <b><%= @level.index %></b></span>
+     <% if @level.index == 1 %>
+          <span class="p-1 align-items-center green-level"> LEVEL  <%= @level.index %></span>
+      <% elsif @level.index == 2 %>
+         <span class="p-1  align-items-center blue-level"> LEVEL  <%= @level.index %></span>
+      <% elsif @level.index == 3 %>
+          <span class="p-1  align-items-center red-level"> LEVEL  <%= @level.index %></span>
+      <% elsif @level.index == 4 %>
+         <span class="p-1  align-items-center purple-level"> LEVEL  <%= @level.index %></span>
+        <% end %>
     </div>
   </div>
 </div>
