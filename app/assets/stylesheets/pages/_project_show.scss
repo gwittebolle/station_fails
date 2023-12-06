@@ -173,18 +173,7 @@
   font-size: 25px;
   text-align: center;
 
-  h1{
-    font-family: $players-font;
-    font-size: 80px;
-    color: #ffffff;
-    text-shadow:
-    0 0 6px rgba(77, 255, 0, 0.92),
-    0 0 30px rgb(68, 255, 0),
-    0 0 12px rgba(4, 255, 0, 0.975),
-    0 0 21px rgba(30, 242, 58, 0.92),
-    0 0 34px rgba(102, 255, 0, 0.78),
-    0 0 54px rgba(140, 255, 0, 0.92)
-  }
+
 }
 
 .money-box {
@@ -200,12 +189,12 @@
   p {
 
     font-family:$players-font;
-    font-size: 60px;
+    font-size: 40px;
 
   }
   h1{
     font-family: $players-font;
-    font-size: 50px;
+    font-size: 30px;
   }
 }
 
@@ -226,4 +215,53 @@
     &:hover{
       color: $white;
     }
+}
+
+.green-level {
+  font-family: $players-font;
+  font-size: 80px;
+  color: #ffffff;
+  text-shadow:
+  0 0 6px rgba(77, 255, 0, 0.92),
+  0 0 30px rgb(68, 255, 0),
+  0 0 12px rgba(4, 255, 0, 0.975),
+  0 0 21px rgba(30, 242, 58, 0.92),
+  0 0 34px rgba(102, 255, 0, 0.78),
+  0 0 54px rgba(140, 255, 0, 0.92)
+}
+.blue-level {
+  font-family: $players-font;
+  font-size: 80px;
+  color: #ffffff;
+  text-shadow:
+  0 0 6px rgba(0, 0, 255, 0.92),
+  0 0 30px rgb(0, 0, 255),
+  0 0 12px rgba(54, 54, 203, 0.975),
+  0 0 21px rgba(0, 0, 255, 0.92),
+  0 0 34px rgba(0, 0, 255, 0.78),
+  0 0 54px rgba(0, 0, 255, 0.92);
+}
+.red-level {
+  font-family: $players-font;
+  font-size: 80px;
+  color: #ffffff;
+  text-shadow:
+  0 0 6px rgba(255, 0, 0, 0.92),
+  0 0 30px rgb(255, 0, 0),
+  0 0 12px rgba(255, 0, 0, 0.975),
+  0 0 21px rgba(255, 0, 0, 0.92),
+  0 0 34px rgba(255, 0, 0, 0.78),
+  0 0 54px rgba(255, 0, 0, 0.92);
+}
+.purple-level {
+  font-family: $players-font;
+  font-size: 80px;
+  color: #ffffff;
+  text-shadow:
+  0 0 6px rgba(128, 0, 128, 0.92),
+  0 0 30px rgb(128, 0, 128),
+  0 0 12px rgba(128, 0, 128, 0.975),
+  0 0 21px rgba(128, 0, 128, 0.92),
+  0 0 34px rgba(128, 0, 128, 0.78),
+  0 0 54px rgba(128, 0, 128, 0.92);
 }

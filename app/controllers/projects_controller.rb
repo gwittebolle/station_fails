@@ -30,7 +30,7 @@ class ProjectsController < ApplicationController
 
   def destroy
     @project.destroy
-    redirect_to root_path
+    redirect_to new_project_path
   end
 
   private
