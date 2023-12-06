@@ -234,12 +234,12 @@
   font-size: 80px;
   color: #ffffff;
   text-shadow:
-  0 0 6px rgba(0, 0, 255, 0.92),
-  0 0 30px rgb(0, 0, 255),
-  0 0 12px rgba(54, 54, 203, 0.975),
-  0 0 21px rgba(0, 0, 255, 0.92),
-  0 0 34px rgba(0, 0, 255, 0.78),
-  0 0 54px rgba(0, 0, 255, 0.92);
+  0 0 6px rgba(173, 216, 230, 0.92),     /* Bleu clair */
+  0 0 30px rgb(0, 221, 250),          /* Bleu clair */
+  0 0 12px rgba(173, 216, 230, 0.975),   /* Bleu clair */
+  0 0 21px rgba(173, 216, 230, 0.92),    /* Bleu clair */
+  0 0 34px rgba(173, 216, 230, 0.78),    /* Bleu clair */
+  0 0 54px rgba(173, 216, 230, 0.92);
 }
 .red-level {
   font-family: $players-font;
