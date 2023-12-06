@@ -1,30 +1,48 @@
 export function header(info, context) {
-  console.log(info)
-// Supprimez les textes existants s'ils existent déjà
-if (context.nameText) {
-  context.nameText.destroy();
+  console.log(info);
+
+  // Supprimez les textes existants s'ils existent déjà
+  if (context.nameText) {
+    context.nameText.destroy();
+  }
+
+  if (context.levelText) {
+    context.levelText.destroy();
+  }
+
+  if (context.foundText) {
+    context.foundText.destroy();
+  }
+
+  if (context.employeesText) {
+    context.employeesText.destroy();
+  }
+
+  context.nameText = context.add.text(10, 10, 'Projet ' + info.name, { fontSize: '25px', fill: '#fff' });
+  context.nameText.setDepth(4);
+
+  context.levelText = context.add.text(10, 40, 'Niveau ' + info.level, { fontSize: '20px', fill: '#1EDD88' });
+  context.levelText.setDepth(4);
+
+  // Formatage des fonds en euros, milliers d'euros ou millions d'euros
+  const formattedFunds = formatCurrency(info.project_funds);
+
+  context.foundText = context.add.text(10, 60, 'Fonds ' + formattedFunds, { fontSize: '20px', fill: '#1EDD88' });
+  context.foundText.setDepth(4);
+
+  context.employeesText = context.add.text(10, 80, 'Employé(s) : ' + info.project_employees, { fontSize: '20px', fill: '#1EDD88' });
+  context.employeesText.setDepth(4);
 }
 
-if (context.levelText) {
-  context.levelText.destroy();
-}
-
-if (context.foundText) {
-  context.foundText.destroy();
-}
-
-if (context.employeesText) {
-  context.employeesText.destroy();
-}
-
-context.nameText = context.add.text(10, 10, 'Projet ' + info.name, { fontSize: '25px', fill: '#fff' });
-context.nameText.setDepth(2);
-context.levelText = context.add.text(10, 40, 'Niveau ' + info.level, { fontSize: '20px', fill: '#1EDD88' });
-context.levelText.setDepth(2);
-context.foundText = context.add.text(10, 60, 'Fonds ' + info.project_funds + ' €', { fontSize: '20px', fill: '#1EDD88' });
-context.foundText.setDepth(2);
-context.employeesText = context.add.text(10, 80, 'Employés : ' + info.project_employees, { fontSize: '20px', fill: '#1EDD88' });
-context.employeesText.setDepth(2)
+// Fonction pour formater le montant en euros, milliers d'euros ou millions d'euros
+function formatCurrency(amount) {
+  if (amount < 1000) {
+    return amount + ' €';
+  } else if (amount < 1000000) {
+    return (amount / 1000).toFixed(1) + ' k€';
+  } else {
+    return (amount / 1000000).toFixed(1) + ' M€';
+  }
 }
 
 export function showWormText(context) {
@@ -72,6 +90,7 @@ export function bottomText(message, context) {
 
   // Ajoutez le texte au groupe
   context.displayGroup.add(msgText);
+  context.displayGroup.setDepth(4);
 
   // Animation du fade in
   context.tweens.add({

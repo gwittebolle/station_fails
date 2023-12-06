@@ -80,7 +80,9 @@ Level.create(
         </p>",
 
   metrics: "funds",
-  index: 1
+  index: 1,
+  min_funds: 2000,
+  min_employees: 0
 )
 
 # Niveau 2 - Bourse BPI
@@ -97,7 +99,9 @@ Level.create(
         </p>",
 
   metrics: "1000",
-  index: 2
+  index: 2,
+  min_funds: 10000,
+  min_employees: 1
 )
 
 # Niveau 3 - Série A
@@ -113,7 +117,9 @@ Level.create(
         </p>",
 
   metrics: "funds",
-  index: 3
+  index: 3,
+  min_funds: 1000000,
+  min_employees: 100
 )
 
 # Niveau 4 - IPO
@@ -130,5 +136,7 @@ Level.create(
         </p>",
 
   metrics: "funds",
-  index: 4
+  index: 4,
+  min_funds: 100000000,
+  min_employees: 0
 )

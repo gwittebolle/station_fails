@@ -1,27 +1,12 @@
-<div class="banner mb-2" style="background: url('https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/images/station-fails-background.png') right/cover,
-linear-gradient(to right, rgba(210, 210, 210, 0.8), rgba(210, 210, 210, 0.3));">
+<%# <div class="banner mb-0" style="background: url('https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/images/station-fails-background.png') right/cover,
+linear-gradient(to right, rgba(210, 210, 210, 0.8), rgba(210, 210, 210, 0.3));"> %>
+<div class="banner mb-0" style="background:url('https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/images/station-fails-background.png') right/cover,
+linear-gradient(to right, rgba(210, 210, 210, 0.1), rgba(210, 210, 210, 0.3));">
   <div class="container">
-
-    <div class="d-flex align-items-center mb-4">
+    <div class="d-flex align-items-center mb-2">
       <%= image_tag("logo-station-fails.png", width: 700, class: "img-fluid station ") %>
     </div>
-     <h1 class="text-white mb-4 ">Explorez le cimetière des startups françaises </h1>
-     <div class="d-flex justify-content-center mt-5">
-  <%= link_to "VISITER LE CIMETIERE", startups_path, class:"btn-special-gray mx-3" %>
-<% if user_signed_in? %>
-  <% if current_user.projects.last %>
-    <%= link_to "DEFIER L'ECHEC", project_path(current_user.projects.last), class:"btn-special-gray mx-3" %>
-  <% else %>
-    <%= link_to "DEFIER L'ECHEC", new_project_path, class:"btn-special-gray mx-3" %>
-  <% end %>
-<% else %>
-  <%= link_to "DEFIER L'ECHEC", new_user_session_path, class:"btn-special-gray mx-3" %>
-<% end %>
-  <div>
-  </div>
-</div>
-
+      <h1 class="text-white mb-5">Explore le plus grand <del>incubateur</del><br> cimetière des startups françaises</h1>
   </div>
 
-
-</div>
+  </div>

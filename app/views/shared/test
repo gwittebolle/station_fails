@@ -1,0 +1,172 @@
+<div class="div">
+  <div class="project-card ">
+
+    <div class="project-header">
+      <h1><%= @project.name %></h1>
+    </div>
+
+    <div class="row d-flex p-3 ">
+
+      <div class=" col-6 p-5 mb-2">
+
+        <div class="card" style="width: 30rem; height: 20rem;">
+          <div class="card-body">
+            <h3 class="card-title mb-2"> <b>L'IDEE VOUEE A L'ECHEC</b> </h3>
+            <p class="card-subtitle mb-2 "> Lieu de création : <%= @project.localisation || 'N/A' %></p>
+            <p class="card-text"> Concept : <%= @project.description || 'N/A' %></p>
+            <p class="card-text">Secteur d'activité : <%= @project.sector || 'N/A' %></p>
+            <p class="card-text"> Capital déployé : <%= @project.funds || 'N/A' %> €</p>
+          </div>
+        </div>
+      </div>
+
+      <div class=" col-6 p-5 mb-2">
+        <div class="card" style="width: 30rem; height: 20rem;">
+          <div class="card-body">
+            <h3 class="card-title mb-2"> <b>APPRENDRE DES ECHECS</b> </h3>
+            <div>
+            <h4>MES BADGES</h4>
+            <div>
+              <ul class="list-inline">
+                <li class="list-inline-item"><i class="fa-solid fa-heart text-white mx-1"></i>Love money</li>
+                <li class="list-inline-item"><i class="fa-solid fa-coins text-white mx-1"></i>BPI</li>
+                <li class="list-inline-item"><i class="fa-solid fa-money-bill text-white mx-1"></i>Serie A</li>
+                <li class="list-inline-item"><i class="fa-solid fa-building-columns text-white mx-1"></i>IPO</li>
+                <li class="list-inline-item">Unicorn</li>
+              </ul>
+            </div>
+            <h6 class="card-subtitle mb-2 "></h6>
+            <p class="card-text text-end p-1"></p>
+              <% if @project.attempts.count > 0 %>
+                <%= link_to 'CONTINUER', project_level_path(@project, @next_level), class: "big-button-neon-green m-2" %>
+              <% else %>
+                <%= link_to 'COMMENCER', project_level_path(@project, @next_level), class: "big-button-neon-green m-2" %>
+              <% end %>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+
+
+    <div class="col-12 p-5 d-flex justify-content-center">
+      <div class="card card-favorites bg-white text-center">
+        <h5 class="card-header">Mes proches</h5>
+        <div class="card-body">
+          <div class="d-flex justify-content-between">
+            <% @favorites.each do |favorite| %>
+            <div class="project-wrapper-mini ">
+              <%= render "startups/startup_card", startup: favorite.startup %>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+      <%= link_to "Supprimer le projet", project_path(@project), data: {turbo_method: :delete, turbo_confirm: "Etes vous sur ?" }, class: 'btn btn-warning' %>
+</div>
+
+
+
+
+.all {
+  background-color: $black;
+}
+
+.card-infos {
+  width: 300px;
+  height: 200px;
+  background-color: $gray;
+
+}
+
+.project-card {
+  border: 2px solid $gray;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out;
+  margin-bottom: 20px;
+  margin-top: 50px;
+  width: 1200px;
+  height: 1000px;
+  background-color: $black;
+
+  &:hover {
+    transform: scale(1.02);
+    box-shadow: 0px 0px 40px $neon-green;
+  }
+
+  .project-header {
+    background-color: $black;
+    color: $white;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid $gray;
+
+    h1 {
+      margin: 0;
+      font-size: 5em;
+      font-family: 'Bebas Neue', sans-serif;
+    }
+  }
+}
+
+.card {
+  width: 800px;
+
+
+  &:hover {
+    transform: scale(1.02);
+  }
+
+.card-title {
+  color: $white;
+  font-size: 30px;
+}
+
+.card-text {
+  font-size: 24px;
+  border-bottom: 16px;
+  color: $white;
+  font-family: 'Rubik', sans-serif;
+
+}
+.card-subtitle {
+  font-size: 24px;
+  color: $white;
+  font-family: 'Bebas Neue', sans-serif;
+}
+
+
+
+.card-header {
+  color: $black;
+}
+.card-body {
+  color: $white;
+}
+
+}
+
+.gradient-dark-button {
+  background: linear-gradient(to bottom, #444, #222);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.gradient-dark-button:hover {
+  background: linear-gradient(to bottom, #222, #000);
+  text-decoration: none;
+}
