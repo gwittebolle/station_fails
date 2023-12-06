@@ -11,13 +11,15 @@
      <%# <%= javascript_include_tag 'banner' %>
   </head>
   <body>
-    <%= render "shared/navbar" %>
-    <div id="page-container" class="m-0 p-0">
-      <%= render "shared/flashes" %>
-      <%= yield %>
-      <div class="mt-3">
-      <%= render "shared/footer" %>
+
+      <%= render "shared/navbar" %>
+      <div id="page-container" class="m-0 p-0">
+        <%= render "shared/flashes" %>
+        <%= yield %>
+        <div class="mt-3">
+          <%= render "shared/footer" %>
+        </div>
       </div>
-    </div>
+
   </body>
 </html>
