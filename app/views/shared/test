@@ -170,3 +170,21 @@
   background: linear-gradient(to bottom, #222, #000);
   text-decoration: none;
 }
+
+<div class="container-box ">
+  <div class="box ">
+
+  </div>
+
+  <hr class="vertical-line">
+  <div class="box">
+    <div class= "play">
+     <% if @project.attempts.count > 0 %>
+              <%= link_to 'CONTINUER', project_level_path(@project, @next_level), class: "btn-green-banner mx-3" %>
+
+            <% else %>
+              <%= link_to 'JOUER', project_level_path(@project, @next_level), class: "btn-green-banner mx-3" %>
+            <% end %>
+    </div>
+  </div>
+</div>
