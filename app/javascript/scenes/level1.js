@@ -213,8 +213,11 @@ export default class Level1 extends Phaser.Scene {
             () => {
               // Code à exécuter lors de la collision entre this.worm et une tuile gagnante
               if (this.info_sent_to_html === false) {
-              document.getElementById('level_funds').value = infoGame.project_funds;
-              document.getElementById('level_employees').value = infoGame.project_employees;
+                console.log("bba");
+                document.getElementById("level_funds").value =
+                  infoGame.project_funds;
+                document.getElementById("level_employees").value =
+                  infoGame.project_employees;
                 this.info_sent_to_html = true;
               }
 
