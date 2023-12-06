@@ -1,0 +1,32 @@
+/* Style pour la barre de souscription à la newsletter */
+.search-bar-subscribe {
+  text-align: center;
+  margin-top: 40px;
+  border-bottom: 3px solid $white;
+}
+
+.search-bar-subscribe h4 {
+  margin-bottom: 10px;
+}
+
+.search-bar-subscribe form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-bar-subscribe input {
+  padding: 8px;
+  margin-right: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 80%;
+}
+
+.search-bar-subscribe button {
+  padding: 0px 16px;
+  color: #fff;
+  border: none;
+  border-radius: 0px;
+  cursor: pointer;
+}

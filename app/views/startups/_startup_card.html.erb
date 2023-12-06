@@ -1,8 +1,6 @@
   <div class="startup-card">
     <div class="text-center p-3">
     <%= link_to startup_path(startup) do %>
-
-
          <% if startup.logo.present?%>
         <img src="<%= startup.logo %>", class="logo">
         <% end %>
@@ -11,7 +9,8 @@
      <% end  %>
      <div class=" d-flex flex-column">
        <div class="div mt-1 mb-3">
-          <h3 class="p-1"><b><%= startup.name %></b></h3>
+          <h3 class="p-1 m-0"><b><%= startup.name %></b></h3>
+          <h6 class=""><small><%= startup.birth_year %> - <%= startup.death_year %></small></h6>
        </div>
      </div>
    </div>
