@@ -4,23 +4,54 @@
   <div class="container-title flex-column">
 
     <div class="actu-level mt-5">
-      <h1> LEVEL <%=  @next_level.index %><h1>
-    </div>
+      <% if @next_level.index == 1 %>
+          <h1 class="green-level"> LEVEL <%=  @next_level.index %></h1>
+      <% elsif @next_level.index == 2 %>
+          <h1 class="blue-level"> LEVEL <%=  @next_level.index %></h1>
+      <% elsif @next_level.index == 3 %>
+          <h1 class="red-level"> LEVEL <%=  @next_level.index %></h1>
+      <% elsif @next_level.index == 4 %>
+          <h1 class="purple-level"> LEVEL <%=  @next_level.index %></h1>
+        <% end %>
+      </div>
 
 
 <div class="col-12 d-flex justify-content-center">
     <div class="card card-progress bg-white text-center mt-5 mb-5">
-      <h3 class="card-header"> MA PROGRESSION</h3>
+      <h3 class="card-header"><b><%= @project.name %> - MES STATS</b></h3>
       <div class="card-body">
         <div class="d-flex justify-content-between">
+          <div class="d-flex justify-content-center">
+          <h5 class="text-center">MES STATS</h5>
+          </div>
            <div class="money-box p-3  ">
-        <p class=""><%= @project.funds %></p>
-        <h1 class="text-center">€</h1>
+
+            <% if @project.funds <= 1000 %>
+                <p class=""><%= @project.funds %></p>
+                <h1 class="text-center">€</h1>
+              <% elsif @project.funds <= 10000 %>
+                <p class=""><%= @project.funds / 1000 %>K </p>
+                <h1 class="text-center">€</h1><!-- Affiche les premiers chiffres + 'K' -->
+              <% elsif @project.funds <= 100000 %>
+                <p class=""><%= @project.funds / 1000 %>K </p>
+                <h1 class="text-center">€</h1><!-- Affiche les premiers chiffres + 'K' -->
+              <% else %>
+                <p class=""><%= @project.funds / 1_000_000 %>M </p>
+                <h1 class="text-center">€</h1><!-- Affiche les premiers chiffres + 'M' pour 1 million et plus -->
+              <% end %>
+
+
+
       </div>
 
       <div class="money-box p-2">
-        <p class=""><%= @project.employees %></p>
-        <h1 class="text-center"> EMPLOYES</h1>
+        <% if @project.employees <= 1  %>
+          <p class=""><%= @project.employees %></p>
+          <h1 class="text-center"> EMPLOYE</h1>
+        <% else %>
+          <p class=""><%= @project.employees %></p>
+          <h1 class="text-center"> EMPLOYES</h1>
+        <% end %>
       </div>
         </div>
       </div>
@@ -43,13 +74,15 @@
 
   <div class="box-title mt-5 mb-3">
        <hr class="my-line mb-3">
-      <h2 class="text-gray text-center"> <b><%= @project.name %></b> </h2>
+      <h2 class="text-gray text-center">  </h2>
       <ul class="list-item">
-        <li class="card-text text-center"><em>- <%= @project.description.capitalize|| 'N/A' %> -</em></li>
+        <li class="card-text text-center"><em> - <%= @project.description.capitalize|| 'N/A' %> -</em></li>
         <li class="card-text text-center"><span class="text-gray"> <%= @project.localisation.capitalize || 'N/A' %> -
             <%= @project.sector.capitalize || 'N/A' %> </span></li>
       </ul>
     </div>
+
+ <% if @favorites.present? %>
 
   <div class="col-12 d-flex justify-content-center">
     <div class="card card-favorites bg-white text-center mt-5 mb-5">
@@ -65,8 +98,15 @@
       </div>
     </div>
   </div>
-        <hr class="my-line mb-3">
+
+  <% else %>
+   <div class="d-flex justify-content-center p-4">
+
+     <%= link_to "VISITER LE CIMETIERE", startups_path, class:"btn-green-banner mx-3 " %>
+  </div>
+  <% end %>
+        <hr class="my-line mb-3 mt-3">
   <div class="d-flex justify-content-center p-4">
-    <%= link_to "Supprimer le projet", project_path(@project), data: {turbo_method: :delete, turbo_confirm: "Etes vous sur ?" }, class: 'btn-green-banner mx-3' %>
+    <%= link_to "NOUVELLE PARTIE", project_path(@project), data: {turbo_method: :delete, turbo_confirm: "Une nouvelle partie écrasera la partie précédente. Confirme ton choix." }, class: 'btn-green-banner mx-3' %>
   </div>
 </div>
