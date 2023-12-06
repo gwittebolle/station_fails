@@ -1,5 +1,5 @@
 <div class="all-game">
-  <div class="container">
+  <div class="mx-5">
     <div class="d-flex justify-content-center">
 
       <div class="grave-card align-self-center col-6">
@@ -30,7 +30,7 @@
                 <h6 class="game-card-title">- Ma progression -</h6>
                 <p class="card-text">Capital du projet : <%= @project.funds.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\1 ').reverse %> €</p>
 
-                <p class="card-text"><strong>Cette startup a échoué à ce stade :</strong></p>
+                <p class="card-text"><strong>Ces startups ont échoué à ce stade :</strong></p>
 
                 <div class="project-wrapper-game d-flex gap-5 p-1 justify-content-around" >
                  <% @failed_startups.each do |startup| %>
@@ -41,9 +41,9 @@
 
                 <div class="d-flex justify-content-end">
                   <% if @attempt.result == false %>
-                    <%= link_to 'Rejouer', edit_project_level_game_project_path(@project, @level), class: "btn button-dark" %>
+                    <%= link_to 'Rejouer', edit_project_level_game_project_path(@project, @level), class: "button-dark" %>
                   <% elsif @next_level.present? && @attempt.result == true  %>
-                    <%= link_to 'Continuer', project_level_path(@project, @next_level), class: "btn button-dark" %>
+                    <%= link_to 'Continuer', project_level_path(@project, @next_level), class: "button-dark" %>
                   <% elsif !@next_level.present?  %>
                     <%= link_to 'Page finale', win_page_path, class: "button-dark" %>
                   <% end %>
