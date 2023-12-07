@@ -35,5 +35,6 @@ Rails.application.routes.draw do
   end
 
   get 'pages/win', to: 'pages#win', as: :win_page
+  get 'pages/phone', to: 'pages#phone', as: :phone_page
 
 end

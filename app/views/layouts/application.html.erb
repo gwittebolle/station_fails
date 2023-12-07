@@ -10,12 +10,13 @@
     <%= javascript_importmap_tags %>
      <%# <%= javascript_include_tag 'banner' %>
   </head>
-  <body>
+  <body data-controller ="phone-page">
       <%= render "shared/navbar" %>
       <div id="page-container">
         <%= render "shared/flashes" %>
         <%= yield %>
       </div>
       <%= render "shared/footer" %>
+
   </body>
 </html>
