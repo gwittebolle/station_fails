@@ -14,6 +14,7 @@ export default class Level1 extends Phaser.Scene {
   prevY;
   info_sent_to_html = false;
   isMessageDisplayed = false;
+  hasReceivedFundsParents = false;
 
   preload() {
     // Chargement des images sur github pour éviter le precompile
@@ -194,13 +195,28 @@ export default class Level1 extends Phaser.Scene {
               tileNumber === 3935 ||
               tileNumber === 3936
             ) {
-              // Afficher un message en bas du jeu
-              // Créez un groupe pour le texte et le rectangle
-              this.displayGroup = this.add.group();
-              MsgFunctions.bottomText(
-                `Bienvenue au cimetière ! Bonne déambulation ! `,
-                this
-              );
+              console.log(this.hasReceivedFundsParents);
+              if (this.hasReceivedFundsParents) {
+                MsgFunctions.bottomText(
+                  `Je t'ai déja donné tout mon pécule ! `,
+                  this
+                );
+              } else {
+                const fundsIncrementParent = Phaser.Math.Between(1000, 1800);
+                infoGame.project_funds += fundsIncrementParent;
+                infoGame.fundsAddedTiles.add(
+                  this.getTileNumber(collidedTile.x, collidedTile.y)
+                );
+                MsgFunctions.header(infoGame, this);
+
+                this.displayGroup = this.add.group();
+                MsgFunctions.bottomText(
+                  `Bonjour mon cher enfant ! Voici ${fundsIncrementParent} € pour ton projet ! `,
+
+                  this
+                );
+                this.hasReceivedFundsParents = true;
+              }
             }
             if (
               tileNumber === 2677 ||
@@ -220,13 +236,6 @@ export default class Level1 extends Phaser.Scene {
               );
             }
           } else {
-            console.log(
-              "Pas de tuile tombelayer à la position (",
-              collidedTile.x,
-              ",",
-              collidedTile.y,
-              ")"
-            );
           }
 
           this.collisionDetected = true;
@@ -318,8 +327,6 @@ export default class Level1 extends Phaser.Scene {
     this.physics.add.collider(this.worm, this.my_tiles, (worm) => {
       if (!this.collisionDetected) {
         // Indiquer la collision
-
-        console.log(this.tileNumber);
         this.collisionDetected = true;
         // Replacer le ver
         worm.x = this.prevX;
@@ -334,7 +341,6 @@ export default class Level1 extends Phaser.Scene {
 
     const tileX = Math.floor(x / tileSize);
     const tileY = Math.floor(y / tileSize);
-    console.log(x, y, tileX, tileY);
 
     const tileNumber = tileX + tileY * columns;
 
