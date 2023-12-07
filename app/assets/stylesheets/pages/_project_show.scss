@@ -246,9 +246,9 @@
   font-size: 80px;
   color: #ffffff;
   text-shadow:
-  0 0 6px rgba(255, 182, 182, 0.92),     /* Rouge clair */
-  0 0 30px rgb(255, 182, 193),           /* Rouge clair */
-  0 0 12px rgba(255, 182, 193, 0.975),   /* Rouge clair */
+  0 0 6px rgba(255, 85, 85, 0.92),     /* Rouge clair */
+  0 0 30px rgb(255, 0, 38),           /* Rouge clair */
+  0 0 12px rgba(255, 0, 38, 0.975),   /* Rouge clair */
   0 0 21px rgba(255, 182, 193, 0.92),    /* Rouge clair */
   0 0 34px rgba(255, 182, 193, 0.78),    /* Rouge clair */
   0 0 54px rgba(255, 182, 193, 0.92);    /* Rouge clair */
@@ -256,6 +256,55 @@
 .purple-level {
   font-family: $players-font;
   font-size: 80px;
+  color: #ffffff;
+  text-shadow:
+  0 0 6px rgba(220, 130, 238, 0.92),   /* Violet néon */
+  0 0 30px rgb(255, 0, 255),           /* Violet néon */
+  0 0 12px rgba(204, 130, 238, 0.975),   /* Violet néon */
+  0 0 21px rgba(238, 130, 238, 0.92),    /* Violet néon */
+  0 0 34px rgba(238, 130, 238, 0.78),    /* Violet néon */
+  0 0 54px rgba(238, 130, 238, 0.92);
+}
+
+.green-level-mini {
+  font-family: $players-font;
+  font-size: 50px;
+  color: #ffffff;
+  text-shadow:
+  0 0 6px rgba(77, 255, 0, 0.92),
+  0 0 30px rgb(68, 255, 0),
+  0 0 12px rgba(4, 255, 0, 0.975),
+  0 0 21px rgba(30, 242, 58, 0.92),
+  0 0 34px rgba(102, 255, 0, 0.78),
+  0 0 54px rgba(140, 255, 0, 0.92)
+}
+.blue-level-mini {
+  font-family: $players-font;
+  font-size: 50px;
+  color: #ffffff;
+  text-shadow:
+  0 0 6px rgba(173, 216, 230, 0.92),     /* Bleu clair */
+  0 0 30px rgb(0, 221, 250),          /* Bleu clair */
+  0 0 12px rgba(173, 216, 230, 0.975),   /* Bleu clair */
+  0 0 21px rgba(173, 216, 230, 0.92),    /* Bleu clair */
+  0 0 34px rgba(173, 216, 230, 0.78),    /* Bleu clair */
+  0 0 54px rgba(173, 216, 230, 0.92);
+}
+.red-level-mini {
+  font-family: $players-font;
+  font-size: 50px;
+  color: #ffffff;
+  text-shadow:
+  0 0 6px rgba(255, 85, 85, 0.92),     /* Rouge clair */
+  0 0 30px rgb(255, 0, 38),           /* Rouge clair */
+  0 0 12px rgba(255, 0, 38, 0.975),   /* Rouge clair */
+  0 0 21px rgba(255, 182, 193, 0.92),    /* Rouge clair */
+  0 0 34px rgba(255, 182, 193, 0.78),    /* Rouge clair */
+  0 0 54px rgba(255, 182, 193, 0.92);    /* Rouge clair */
+}
+.purple-level-mini {
+  font-family: $players-font;
+  font-size: 50px;
   color: #ffffff;
   text-shadow:
   0 0 6px rgba(220, 130, 238, 0.92),   /* Violet néon */
