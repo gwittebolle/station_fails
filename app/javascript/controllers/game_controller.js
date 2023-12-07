@@ -7,7 +7,8 @@ import Level4 from "../scenes/level4.js";
 
 // Connects to data-controller="game"
 export default class extends Controller {
-  static targets = ["div"];
+
+  static targets = ["div", "script"]
 
   CONFIG = {
     type: Phaser.AUTO,
@@ -24,6 +25,7 @@ export default class extends Controller {
     scene: null,
   };
   connect() {
+    this.writeTitle(30000);
     const infoBackString = document.querySelector("#level").dataset.project;
     const infoBack = JSON.parse(infoBackString);
     let levelIndex = infoBack.level;
@@ -58,5 +60,27 @@ export default class extends Controller {
         this.CONFIG.scene = Level1;
         console.error("Index de niveau non valide");
     }
+  }
+  writeTitle(duration) {
+    console.log("coucou");
+    const scriptElement = this.scriptTarget;
+
+    const originalScript = scriptElement.innerText;
+
+      const startTime = Date.now();
+
+      function update() {
+        const currentTime = Date.now();
+        const elapsedTime = currentTime - startTime;
+        const progress = Math.min(elapsedTime / duration, 1);
+        scriptElement.classList.add("game-story")
+        scriptElement.classList.remove("d-none")
+        scriptElement.innerText = originalScript.substring(0, Math.floor(progress * originalScript.length));
+
+        console.log(scriptElement.innerText)
+          requestAnimationFrame(update)
+      }
+
+      update();
   }
 }

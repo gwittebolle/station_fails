@@ -76,7 +76,7 @@ Level.create(
             entreprises.
         </p>
         <p>
-            Par exemple, la startup PayFit, spécialisée dans les solutions de paie en ligne, a démarré son parcours avec
+            Par exemple, la startup Sami, spécialisée dans la comptabilité carbone, a démarré son parcours avec
             des fonds de Love Money provenant de membres de la famille et d'amis proches.
         </p>",
   name: "Love Money",
@@ -90,13 +90,7 @@ Level.create(
 Level.create(
   description: "
         <p>
-            La Bourse BPI (Banque Publique d'Investissement) est une plateforme permettant aux entreprises d'accéder à des
-            financements via le marché boursier. C'est une étape importante pour les entreprises en croissance qui cherchent
-            à lever des fonds de manière plus large.
-        </p>
-        <p>
-            Un exemple notable est la startup Criteo, qui a réussi à lever des fonds significatifs en entrant sur le marché
-            boursier grâce à la Bourse BPI.
+        La Bourse French Tech, initiée par Bpifrance, représente une opportunité cruciale pour les entrepreneurs à la recherche de financements et de soutien dans le développement de leur start-up. Ce programme vise à encourager l'innovation et la croissance des jeunes entreprises françaises à fort potentiel. L'accès à la Bourse French Tech offre aux entrepreneurs une visibilité accrue et une reconnaissance au sein de l'écosystème entrepreneurial.
         </p>",
   name: "Bourse BPI",
   metrics: "1000",
@@ -132,7 +126,7 @@ Level.create(
             grand public d'acheter des actions de l'entreprise.
         </p>
         <p>
-            Un exemple célèbre d'IPO est la société Deezer, qui a connu un succès fulgurant sur le marché. L'IPO a permis à la
+            Un exemple célèbre d'IPO est la société OVHcloud, qui a connu un succès fulgurant sur le marché. L'IPO a permis à la
             société de lever des fonds importants.
         </p>",
   name: "IPO",
