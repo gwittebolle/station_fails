@@ -67,7 +67,7 @@ export default class Level1 extends Phaser.Scene {
       // Vérifier si c'est la première touche enfoncée
       if (!this.keyPressed) {
         // Lancer la musique
-        music.setVolume(0.02).play();
+        music.setVolume(0.2).play();
         this.keyPressed = true; // Marquer que la touche a été enfoncée
       }
     });
