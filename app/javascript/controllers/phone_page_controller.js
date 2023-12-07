@@ -9,7 +9,7 @@ export default class extends Controller {
     console.log("Current page:", currentPage);
     console.log(window.innerWidth)
 
-    if (window.innerWidth < 600) {
+    if (window.visualViewport.width < 600) {
       if (currentPage !== "/pages/phone" && currentPage !== "/users/sign_in" && currentPage !== "/users/sign_up") {
         console.log("Redirecting to /pages/phone");
         document.location.href = "/pages/phone";
