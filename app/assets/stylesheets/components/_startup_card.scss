@@ -28,7 +28,13 @@
 
   &:hover {
     transform: scale(1.02);
-    box-shadow: $neon-green 0px 6px 10px;
+    box-shadow:
+    0 0 8px #fff,
+    inset 0 0 8px #fff,
+    0 0 16px #37f713,
+    inset 0 0 16px #37f713,
+    0 0 32px #37f713,
+    inset 0 0 32px #37f713;
   }
 }
 
