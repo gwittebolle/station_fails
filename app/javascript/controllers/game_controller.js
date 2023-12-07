@@ -1,13 +1,13 @@
-import { Controller } from "@hotwired/stimulus"
-import Phaser from 'phaser';
-import Level1 from '../scenes/level1.js';
-import Level2 from '../scenes/level2.js';
-import Level3 from '../scenes/level3.js';
-import Level4 from '../scenes/level4.js';
+import { Controller } from "@hotwired/stimulus";
+import Phaser from "phaser";
+import Level1 from "../scenes/level1.js";
+import Level2 from "../scenes/level2.js";
+import Level3 from "../scenes/level3.js";
+import Level4 from "../scenes/level4.js";
 
 // Connects to data-controller="game"
 export default class extends Controller {
-  static targets = ["div"]
+  static targets = ["div"];
 
   CONFIG = {
     type: Phaser.AUTO,
@@ -15,11 +15,11 @@ export default class extends Controller {
     height: 480,
     parent: "level",
     physics: {
-      default: 'arcade', // You can choose a different physics engine if needed
+      default: "arcade", // You can choose a different physics engine if needed
       arcade: {
         gravity: { y: 0 }, // Set your desired gravity
-        debug: false // Set to true for debugging physics
-      }
+        debug: true, // Set to true for debugging physics
+      },
     },
     scene: null,
   };
@@ -29,21 +29,18 @@ export default class extends Controller {
     let levelIndex = infoBack.level;
     this.setSceneByIndex(levelIndex);
 
-    if(!localStorage.loaded) {
-          localStorage.setItem('loaded', 'yes')
-          window.location.reload();
+    if (!localStorage.loaded) {
+      localStorage.setItem("loaded", "yes");
+      window.location.reload();
+    } else {
+      localStorage.setItem("loaded", "");
     }
-    else
-    {
-      localStorage.setItem('loaded', '')
-    }
-
 
     const game = new Phaser.Game(this.CONFIG);
   }
 
   setSceneByIndex(index) {
-    console.log(index)
+    console.log(index);
     switch (index) {
       case 1:
         this.CONFIG.scene = Level1;
@@ -62,5 +59,4 @@ export default class extends Controller {
         console.error("Index de niveau non valide");
     }
   }
-
 }

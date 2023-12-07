@@ -122,7 +122,11 @@ export default class Level1 extends Phaser.Scene {
 
       TileFunctions.solidCharactersTiles(jsonPath).then((data) => {
         const tileCharsToCollide = data;
-        TileFunctions.addCollisionsToTiles(tileCharsToCollide, charactersLayer, this);
+        TileFunctions.addCollisionsToTiles(
+          tileCharsToCollide,
+          charactersLayer,
+          this
+        );
       });
 
       // Get the collidable tiles directly
@@ -183,8 +187,13 @@ export default class Level1 extends Phaser.Scene {
 
           if (tileCharacterAtCoordinates) {
             const tileNumber = tileCharacterAtCoordinates.index;
-            console.log(tileNumber)
-            if (tileNumber === 3901 || tileNumber === 3902 || tileNumber === 3935 || tileNumber === 3936) {
+            console.log(tileNumber);
+            if (
+              tileNumber === 3901 ||
+              tileNumber === 3902 ||
+              tileNumber === 3935 ||
+              tileNumber === 3936
+            ) {
               // Afficher un message en bas du jeu
               // Créez un groupe pour le texte et le rectangle
               this.displayGroup = this.add.group();
@@ -193,7 +202,12 @@ export default class Level1 extends Phaser.Scene {
                 this
               );
             }
-            if (tileNumber === 2677 || tileNumber === 2678 || tileNumber === 2711 || tileNumber === 2712) {
+            if (
+              tileNumber === 2677 ||
+              tileNumber === 2678 ||
+              tileNumber === 2711 ||
+              tileNumber === 2712
+            ) {
               const laughSound = this.sound.add("laugh");
               laughSound.play();
 
@@ -248,8 +262,10 @@ export default class Level1 extends Phaser.Scene {
             () => {
               // Code à exécuter lors de la collision entre this.worm et une tuile gagnante
               if (this.info_sent_to_html === false) {
-                document.getElementById('level_funds').value = infoGame.project_funds;
-                document.getElementById('level_employees').value = infoGame.project_employees;
+                document.getElementById("level_funds").value =
+                  infoGame.project_funds;
+                document.getElementById("level_employees").value =
+                  infoGame.project_employees;
                 this.info_sent_to_html = true;
               }
 
@@ -264,7 +280,7 @@ export default class Level1 extends Phaser.Scene {
 
               setTimeout(() => {
                 // Soumettre le formulaire
-                const gameForm = document.getElementById('game-form');
+                const gameForm = document.getElementById("game-form");
                 gameForm.submit();
               }, 2000);
             }
@@ -303,7 +319,7 @@ export default class Level1 extends Phaser.Scene {
       if (!this.collisionDetected) {
         // Indiquer la collision
 
-        console.log("Collision détectée !!!");
+        console.log(this.tileNumber);
         this.collisionDetected = true;
         // Replacer le ver
         worm.x = this.prevX;
