@@ -1,20 +1,4 @@
-.card-unicorn{
 
-  color : $white;
-  background-color: $black;
-  border-radius: 20px;
-  padding:10px;
-  width: 100rem;
-  height: 20rem;
-
-  ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    animation: scrollCredits infinite 50s linear;
-  }
-
-}
 
 
 
@@ -26,7 +10,14 @@
   padding-bottom: 100px;
   border-bottom: 3px solid $white;
   border-top: 3px solid $white;
+  height: 30vh;
 
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        animation: scrollCredits infinite 15s linear;
+      }
 }
 
 @keyframes scrollCredits {
@@ -34,7 +25,7 @@
     transform: translateY(190%);
   }
   100% {
-    transform: translateY(-500%);
+    transform: translateY(-150%);
   }
 }
 

@@ -44,7 +44,7 @@ export default class Level3 extends Phaser.Scene {
       "https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/images/shark.png"
     );
     this.load.audio("bg-music", [
-      "https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/sounds/LastLevelAmbiance.mp3",
+      "https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/sounds/thirdLvlAmbiance.mp3",
     ]);
     this.load.audio("laugh", [
       "https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/sounds/sinister-laugh-140131_9X0djJUZ.mp3",
@@ -125,7 +125,11 @@ export default class Level3 extends Phaser.Scene {
 
       TileFunctions.solidCharactersTiles(jsonPath).then((data) => {
         const tileCharsToCollide = data;
-        TileFunctions.addCollisionsToTiles(tileCharsToCollide, charactersLayer, this);
+        TileFunctions.addCollisionsToTiles(
+          tileCharsToCollide,
+          charactersLayer,
+          this
+        );
       });
 
       // Get the collidable tiles directly
@@ -170,8 +174,9 @@ export default class Level3 extends Phaser.Scene {
               MsgFunctions.header(infoGame, this);
 
               // Formatage des fonds incrémentés en euros, milliers d'euros ou millions d'euros
-              const formattedFundsIncrement = formatCurrency(fundsIncrement * 100000);
-
+              const formattedFundsIncrement = formatCurrency(
+                fundsIncrement * 100000
+              );
 
               MsgFunctions.bottomText(
                 `Dig Dig Dig, ${formattedFundsIncrement} par terre, le ver est plein ! `,
@@ -180,15 +185,13 @@ export default class Level3 extends Phaser.Scene {
 
               function formatCurrency(amount) {
                 if (amount < 1000) {
-                  return amount + ' €';
+                  return amount + " €";
                 } else if (amount < 1000000) {
-                  return (amount / 1000) + ' k€';
+                  return amount / 1000 + " k€";
                 } else {
-                  return (amount / 1000000) + ' M€';
+                  return amount / 1000000 + " M€";
                 }
               }
-
-
             }
           } else {
             console.log(
@@ -202,70 +205,62 @@ export default class Level3 extends Phaser.Scene {
 
           if (tileCharacterAtCoordinates) {
             const tileNumber = tileCharacterAtCoordinates.index;
-            console.log(tileNumber)
-            if (tileNumber === 1861 || tileNumber === 1862 || tileNumber === 1895 || tileNumber === 1896) {
-
-
+            console.log(tileNumber);
+            if (
+              tileNumber === 1861 ||
+              tileNumber === 1862 ||
+              tileNumber === 1895 ||
+              tileNumber === 1896
+            ) {
               if (!this.hasReceivedFunds) {
-              // Afficher un message en bas du jeu
-              // Créez un groupe pour le texte et le rectangle
-              this.displayGroup = this.add.group();
+                // Afficher un message en bas du jeu
+                // Créez un groupe pour le texte et le rectangle
+                this.displayGroup = this.add.group();
 
-              if (infoGame.project_funds > 10000000) {
+                if (infoGame.project_funds > 10000000) {
+                  const fundsIncrement = 10000000;
+                  infoGame.project_funds -= fundsIncrement;
+                  infoGame.project_employees += 100;
+                  MsgFunctions.header(infoGame, this);
 
-              const fundsIncrement = 10000000;
-              infoGame.project_funds -= fundsIncrement;
-              infoGame.project_employees += 100;
-              MsgFunctions.header(infoGame, this);
-
-
-              MsgFunctions.bottomText(
-                `Tiens, mes 100 employés!`,
-                this
-              );
-              this.hasReceivedFunds = true;
+                  MsgFunctions.bottomText(`Tiens, mes 100 employés!`, this);
+                  this.hasReceivedFunds = true;
+                } else {
+                  MsgFunctions.bottomText(
+                    `Je te vends mes 100 employés pour 10 millions !`,
+                    this
+                  );
+                }
+              } else {
+                // Si les 10 millions d'euros ont déjà été récupérés, affichez le message approprié
+                MsgFunctions.bottomText(`Je suis fauché!`, this);
               }
-              else {
+            }
+
+            if (
+              tileNumber === 2065 ||
+              tileNumber === 2066 ||
+              tileNumber === 2099 ||
+              tileNumber === 2100
+            ) {
+              if (!this.hasInvested) {
+                // Créez un groupe pour le texte et le rectangle
+                this.displayGroup = this.add.group();
+                const fundsIncrement = 10_000_000;
+
+                infoGame.project_funds += fundsIncrement;
+                MsgFunctions.header(infoGame, this);
+                MsgFunctions.bottomText(`J'investis 10 millions ! `, this);
+                this.hasInvested = true;
+              } else {
+                const laughSound = this.sound.add("laugh");
+                laughSound.play();
                 MsgFunctions.bottomText(
-                  `Je te vends mes 100 employés pour 10 millions !`,
+                  `Va falloir me rendre des comptes maintenant ! `,
                   this
                 );
               }
             }
-            else
-            {
-              // Si les 10 millions d'euros ont déjà été récupérés, affichez le message approprié
-              MsgFunctions.bottomText(
-                `Je suis fauché!`,
-                this
-        );
-            }
-          }
-
-            if (tileNumber === 2065 || tileNumber === 2066 || tileNumber === 2099 || tileNumber === 2100) {
-
-              if (!this.hasInvested) {
-              // Créez un groupe pour le texte et le rectangle
-              this.displayGroup = this.add.group();
-              const fundsIncrement = 10_000_000;
-
-              infoGame.project_funds += fundsIncrement;
-              MsgFunctions.header(infoGame, this);
-              MsgFunctions.bottomText(
-                `J'investis 10 millions ! `,
-                this
-              );
-              this.hasInvested = true;
-            }
-          else {
-            const laughSound = this.sound.add("laugh");
-            laughSound.play();
-            MsgFunctions.bottomText(
-              `Va falloir me rendre des comptes maintenant ! `,
-              this
-            );
-          }
-        }
           } else {
             console.log(
               "Pas de tuile tombelayer à la position (",
@@ -309,8 +304,10 @@ export default class Level3 extends Phaser.Scene {
             () => {
               // Code à exécuter lors de la collision entre this.worm et une tuile gagnante
               if (this.info_sent_to_html === false) {
-                document.getElementById('level_funds').value = infoGame.project_funds;
-                document.getElementById('level_employees').value = infoGame.project_employees;
+                document.getElementById("level_funds").value =
+                  infoGame.project_funds;
+                document.getElementById("level_employees").value =
+                  infoGame.project_employees;
                 this.info_sent_to_html = true;
               }
 
@@ -325,7 +322,7 @@ export default class Level3 extends Phaser.Scene {
 
               setTimeout(() => {
                 // Soumettre le formulaire
-                const gameForm = document.getElementById('game-form');
+                const gameForm = document.getElementById("game-form");
                 gameForm.submit();
               }, 2000);
             }
