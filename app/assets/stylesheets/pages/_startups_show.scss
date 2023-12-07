@@ -144,6 +144,7 @@
   font-size: 15px;
   border:none;
   background-color: $white;
+  padding: 0px;
 
   &:hover{
   color: $neon-green;
@@ -151,6 +152,6 @@
   }
 }
 .btn-space {
- gap:140px;
+ gap:157px;
  margin-top : 30px;
 }

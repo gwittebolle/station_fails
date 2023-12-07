@@ -3,9 +3,9 @@
     <%= link_to startup_path(startup) do %>
          <% if startup.logo.present?%>
         <img src="<%= startup.logo %>", class="logo">
+        <% else %>
+     <img src="https://cdn.dribbble.com/userupload/3499938/file/original-c6341bf029f595d84f1c3f3c99a32f81.jpg?resize=450x338&vertical=center", class="logo">
         <% end %>
-        <%# <img src="<%= [image_path('logo2.png'), image_path('logo3.png'), image_path('logostartup.jpg')].sample %>
-      <%#= startup.logo.exist ? cl_image_tag(startup.logo.key, gravity: "face", :crop => "fill", class:"logo") : image_tag('logo2.png', :crop => "fill",  class:"logo") %>
      <% end  %>
      <div class=" d-flex flex-column">
        <div class="mt-1 mb-3 up-class">
