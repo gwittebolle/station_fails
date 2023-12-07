@@ -50,3 +50,73 @@
     }
 
 }
+
+.btn-blink-banner {
+  padding-left:20px;
+  padding-right:20px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  font-size: 12px;
+  border-radius: 0px;
+  text-decoration: none;
+  min-height: 6rem;
+  background-color: $black;
+  font-family: $players-font;
+  font-size: 20px;
+  color: $white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+    &:hover {
+      color: $white;
+      box-shadow: 0 0 10px 3px $neon-purple;
+      border: none;
+    }
+
+}
+
+
+.info-card {
+  position: relative;
+  padding: 20px;
+  text-align: left;
+  border: 2px solid black;
+  width: 30%;
+  margin: 10px;
+  text-transform: uppercase;
+
+  img.hover-image {
+    position: absolute;
+    top: 0;
+    right: 20px;
+    width: 80px;
+    height: 80px;
+    display: none;
+    transition: all 0.3s ease;
+  }
+
+  &:hover img.hover-image {
+    display: block;
+  }
+}
+
+
+
+.info-card h1 {
+  font-size: 4em; /* Chiffre agrandi */
+  font-weight: 700;
+  color: var(--dark-green);
+  margin-bottom: 10px;
+}
+
+.info-card p {
+  font-size: 1.2em;
+  color: var(--grey);
+  margin-bottom: 20px;
+}
+
+.info-card .explanation {
+  font-size: 1em;
+  color: var(--grey);
+}

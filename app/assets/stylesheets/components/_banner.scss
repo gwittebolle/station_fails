@@ -3,6 +3,7 @@
   padding: 40px ;
   background-color: $black;
   padding-bottom: 100px;
+  height: 500px;
 }
 
 .banner h1 {
@@ -110,3 +111,7 @@
 	visibility:hidden;
 
   color: $white}
+
+.deleted-text {
+  text-decoration: line-through;
+}

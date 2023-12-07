@@ -62,4 +62,5 @@ export default class extends Controller {
         console.error("Index de niveau non valide");
     }
   }
+
 }
