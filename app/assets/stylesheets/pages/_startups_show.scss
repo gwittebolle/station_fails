@@ -51,9 +51,6 @@
 }
 
 
-
-
-
 .card-subtitle {
   color : $white;
 }
@@ -65,17 +62,14 @@
 
 .card-line {
   color : $black;
-  font-family: 'Poppins', sans-serif;
   list-style-type: none;
+  font-weight: bold;
 
 }
 
-
-.card-white {
-  background-color: $grave-gray;
-}
 .text-gray {
-  color : #495057;
+  color : #a5a5a5;
+
 
 }
 
@@ -113,4 +107,50 @@
     font-weight: bolder;
 
 }
+}
+.spi-card {
+  color : $black;
+  background-color: $white;
+  border-radius: 20px;
+  padding:30px;
+  border: none;
+  box-shadow:
+  0 0 4px #fff,
+  inset 0 0 4px rgb(255, 255, 255),
+  0 0 8px rgb(255, 255, 255),
+  inset 0 0 8px  rgb(255, 255, 255) ,
+  0 0 16px  rgb(255, 255, 255),
+  inset 0 0 16px  rgb(255, 255, 255);
+
+  p {
+    font-size: larger;
+  }
+}
+
+.players-font {
+  font-family :$players-font;
+  font-size: 15px;
+}
+
+.title-font {
+  font-family: 'Dhurjati', sans-serif;
+  letter-spacing: 1px;
+  font-size: 28px;
+}
+.exit {
+  font-family: $players-font;
+  color:$black;
+  text-decoration: none;
+  font-size: 15px;
+  border:none;
+  background-color: $white;
+
+  &:hover{
+  color: $neon-green;
+
+  }
+}
+.btn-space {
+ gap:140px;
+ margin-top : 30px;
 }
