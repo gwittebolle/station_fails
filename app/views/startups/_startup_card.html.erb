@@ -8,7 +8,7 @@
       <%#= startup.logo.exist ? cl_image_tag(startup.logo.key, gravity: "face", :crop => "fill", class:"logo") : image_tag('logo2.png', :crop => "fill",  class:"logo") %>
      <% end  %>
      <div class=" d-flex flex-column">
-       <div class="div mt-1 mb-3">
+       <div class="mt-1 mb-3 up-class">
           <h3 class="p-1 m-0"><b><%= startup.name %></b></h3>
           <h6 class="hide-year"><small><%= startup.birth_year %> - <%= startup.death_year %></small></h6>
        </div>
