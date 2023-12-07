@@ -341,7 +341,7 @@ export default class Level4 extends Phaser.Scene {
 
     // Reset the worm to its initial position
     this.resetWormPosition();
-    MsgFunctions.bottomText(" Projet annihilé par un requin 🦈 !", this);
+    MsgFunctions.bottomText(" Projet dévoré par un requin 🦈 !", this);
   }
 
   resetWormPosition() {

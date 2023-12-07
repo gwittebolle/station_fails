@@ -10,7 +10,7 @@ class ProjectsController < ApplicationController
     @project = Project.new(project_params)
     @project.user = current_user
     if @project.save
-      redirect_to project_path(@project), notice: "Projet créé avec succès."
+      redirect_to project_path(@project), notice: "Nouvelle partie créée avec succès."
     else
       render :new, status: :unprocessable_entity
       puts "Erreur lors de l'enregistrement du projet : #{@project.errors.full_messages.join(', ')}"
