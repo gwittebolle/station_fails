@@ -12,49 +12,7 @@
 
 }
 
-.card-unicorn{
-
-  color : $white;
-  background-color: $gray;
-  border-radius: 20px;
-  padding:10px;
-  border: 2px solid $dark-gray;
-  width: 100rem;
-  height: 50rem;
-
-  ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    animation: scrollCredits infinite 60s linear;
-  }
-
-}
-
-.banner-unicorn {
-  overflow: hidden;
-  background-size: cover;
-  padding: 40px ;
-  background-color: $black;
-  padding-bottom: 100px;
-  border-bottom: 3px solid $neon-purple;
-  border-top: 3px solid $neon-purple;
-}
-
-@keyframes scrollCredits {
-  0% {
-    transform: translateY(190%);
-  }
-  100% {
-    transform: translateY(-500%);
-  }
-}
-
-
-
-
-
-.card-subtitle {
+card-subtitle {
   color : $white;
 }
 

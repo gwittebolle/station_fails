@@ -1,0 +1,66 @@
+.card-unicorn{
+
+  color : $white;
+  background-color: $black;
+  border-radius: 20px;
+  padding:10px;
+  width: 100rem;
+  height: 50rem;
+
+
+
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  animation: scrollCredits infinite 50s linear;
+}
+
+.banner-unicorn {
+  overflow: hidden;
+  background-size: cover;
+  padding: 40px ;
+  background-color: $black;
+  padding-bottom: 100px;
+  border-bottom: 3px solid $white;
+  border-top: 3px solid $white;
+
+}
+
+@keyframes scrollCredits {
+  0% {
+    transform: translateY(190%);
+  }
+  100% {
+    transform: translateY(-500%);
+  }
+}
+
+@keyframes moveLeft {
+  0%{
+    transform: translateX(-200%);
+  }
+
+   49.99% {
+    transform: translateX(200%);
+  }
+
+  50% {
+    transform: translateX(200%) scaleX(-1);
+  }
+  100% {
+    transform: translateX(-200%) scaleX(-1);
+  }
+}
+
+/* Applique les animations à l'élément que tu veux animer */
+.element {
+  animation: moveLeft 4s linear infinite; /* ajuste la durée et l'itération selon tes besoins */
+}
+
+
+.bigger {
+  font-size: 30px;
+}
