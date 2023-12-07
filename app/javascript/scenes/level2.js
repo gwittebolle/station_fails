@@ -42,7 +42,7 @@ export default class Level2 extends Phaser.Scene {
       "https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/images/shark.png"
     );
     this.load.audio("bg-music", [
-      "https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/sounds/LastLevelAmbiance.mp3",
+      "https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/sounds/secondLvlAmbiance.mp3",
     ]);
     this.load.audio("laugh", [
       "https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/sounds/sinister-laugh-140131_9X0djJUZ.mp3",
@@ -91,7 +91,6 @@ export default class Level2 extends Phaser.Scene {
     this.sharks.push(SpriteFunctions.initYShark(this, 360, 308, 52));
     this.sharks.push(SpriteFunctions.initYShark(this, 400, 308, 52));
 
-
     this.sharks.push(SpriteFunctions.initXShark(this, 400, 450, 100));
     // Set collide world bounds for the entire group
     this.physics.world.enable(this.sharks);
@@ -130,7 +129,11 @@ export default class Level2 extends Phaser.Scene {
 
       TileFunctions.solidCharactersTiles(jsonPath).then((data) => {
         const tileCharsToCollide = data;
-        TileFunctions.addCollisionsToTiles(tileCharsToCollide, charactersLayer, this);
+        TileFunctions.addCollisionsToTiles(
+          tileCharsToCollide,
+          charactersLayer,
+          this
+        );
       });
 
       // Get the collidable tiles directly
@@ -191,8 +194,13 @@ export default class Level2 extends Phaser.Scene {
 
           if (tileCharacterAtCoordinates) {
             const tileNumber = tileCharacterAtCoordinates.index;
-            console.log(tileNumber)
-            if (tileNumber === 3901 || tileNumber === 3902 || tileNumber === 3935 || tileNumber === 3936) {
+            console.log(tileNumber);
+            if (
+              tileNumber === 3901 ||
+              tileNumber === 3902 ||
+              tileNumber === 3935 ||
+              tileNumber === 3936
+            ) {
               const diggingSound = this.sound.add("laugh");
               diggingSound.play();
 
@@ -201,28 +209,28 @@ export default class Level2 extends Phaser.Scene {
               this.displayGroup = this.add.group();
 
               if (infoGame.project_funds > 5000) {
+                const fundsIncrement = 5000;
+                infoGame.project_funds -= fundsIncrement;
+                infoGame.project_employees += 1;
+                MsgFunctions.header(infoGame, this);
 
-              const fundsIncrement = 5000;
-              infoGame.project_funds -= fundsIncrement;
-              infoGame.project_employees += 1;
-              MsgFunctions.header(infoGame, this);
-
-              MsgFunctions.bottomText(
-                `Tiens, un stagiaire pour 5 000 par an € !`,
-                this
-              );
-              }
-              else {
+                MsgFunctions.bottomText(
+                  `Tiens, un stagiaire pour 5 000 par an € !`,
+                  this
+                );
+              } else {
                 MsgFunctions.bottomText(
                   `Bon courage pour trouver un stagiaire € !`,
                   this
                 );
               }
-
-
             }
-            if (tileNumber === 2677 || tileNumber === 2678 || tileNumber === 2711 || tileNumber === 2712) {
-
+            if (
+              tileNumber === 2677 ||
+              tileNumber === 2678 ||
+              tileNumber === 2711 ||
+              tileNumber === 2712
+            ) {
               // Afficher un message en bas du jeu
               // Créez un groupe pour le texte et le rectangle
               this.displayGroup = this.add.group();
@@ -278,8 +286,10 @@ export default class Level2 extends Phaser.Scene {
             () => {
               // Code à exécuter lors de la collision entre thifs.worm et une tuile gagnante
               if (this.info_sent_to_html === false) {
-                document.getElementById('level_funds').value = infoGame.project_funds;
-                document.getElementById('level_employees').value = infoGame.project_employees;
+                document.getElementById("level_funds").value =
+                  infoGame.project_funds;
+                document.getElementById("level_employees").value =
+                  infoGame.project_employees;
                 this.info_sent_to_html = true;
               }
 
@@ -294,7 +304,7 @@ export default class Level2 extends Phaser.Scene {
 
               setTimeout(() => {
                 // Soumettre le formulaire
-                const gameForm = document.getElementById('game-form');
+                const gameForm = document.getElementById("game-form");
                 gameForm.submit();
               }, 2000);
             }

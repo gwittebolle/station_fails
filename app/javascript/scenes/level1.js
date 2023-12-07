@@ -43,7 +43,7 @@ export default class Level1 extends Phaser.Scene {
       "https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/images/shark.png"
     );
     this.load.audio("bg-music", [
-      "https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/sounds/LastLevelAmbiance.mp3",
+      "https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/sounds/firstLvlAmbiance.mp3",
     ]);
     this.load.audio("laugh", [
       "https://raw.githubusercontent.com/gwittebolle/station_fails/master/app/assets/sounds/sinister-laugh-140131_9X0djJUZ.mp3",
