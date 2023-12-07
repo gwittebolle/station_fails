@@ -1,14 +1,24 @@
 import { Controller } from "@hotwired/stimulus";
 
-// Connects to data-controller="phone-page"
 export default class extends Controller {
   static targets = ["navbar"];
+
   connect() {
-    if (
-      window.innerWidth < 600 &&
-      !(document.location.pathname === "/pages/phone")
-    ) {
-      document.location.href = "/pages/phone";
+    console.log("Stimulus controller connected");
+    const currentPage = document.location.pathname;
+    console.log("Current page:", currentPage);
+    console.log(window.innerWidth)
+
+    if (window.innerWidth < 600) {
+      if (currentPage !== "/pages/phone" && currentPage !== "/users/sign_in" && currentPage !== "/users/sign_up") {
+        console.log("Redirecting to /pages/phone");
+        document.location.href = "/pages/phone";
+      }
+
+      if (currentPage === "/") {
+        console.log("Redirecting to /pages/phone from root");
+        document.location.href = "/pages/phone";
+      }
     }
 
     if (window.innerWidth < 600) {
