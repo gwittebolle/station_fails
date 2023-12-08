@@ -2,7 +2,6 @@ class StartupsController < ApplicationController
   def index
     @startups = Startup.all.shuffle
 
-
     if params[:query].present?
       sql_subquery = <<~SQL
         startups.name ILIKE :query
@@ -11,7 +10,7 @@ class StartupsController < ApplicationController
         OR startups.sector ILIKE :query
         OR startups.fail_reason ILIKE :query
       SQL
-      @startups = @startups.where(sql_subquery, query: "%#{params[:query]}%")
+      @startups = Startup.all.where(sql_subquery, query: "%#{params[:query]}%")
     end
   end
 
