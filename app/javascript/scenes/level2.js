@@ -220,7 +220,7 @@ export default class Level2 extends Phaser.Scene {
                 );
               } else {
                 MsgFunctions.bottomText(
-                  `Bon courage pour trouver un stagiaire € !`,
+                  `Bon courage pour trouver un stagiaire !`,
                   this
                 );
               }
