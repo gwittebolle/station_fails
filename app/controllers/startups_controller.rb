@@ -1,6 +1,6 @@
 class StartupsController < ApplicationController
   def index
-    @startups = Startup.all
+    @startups = Startup.all.shuffle
 
 
     if params[:query].present?
