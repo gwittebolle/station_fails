@@ -219,7 +219,7 @@ export default class Level2 extends Phaser.Scene {
                   this
                 );
               } else {
-                MsgFunctions.bottomText(
+                MsgFunctions.bottomText(  
                   `Bon courage pour trouver un stagiaire !`,
                   this
                 );
