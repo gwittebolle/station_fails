@@ -48,7 +48,8 @@
 
 /* Applique les animations à l'élément que tu veux animer */
 .element {
-  animation: moveleft infinite 4s linear /* ajuste la durée et l'itération selon tes besoins */
+  animation: moveLeft 4s linear infinite;
+  // animation: moveleft infinite 15s linear /* ajuste la durée et l'itération selon tes besoins */
 }
 
 
