@@ -7,7 +7,7 @@ export default class extends Controller {
 
  connect() {
   document.addEventListener("keyup", () => {
-    this.musicTarget.play();
+    // this.musicTarget.play();
   })
  }
 }
