@@ -104,7 +104,7 @@ export function bottomText(message, context) {
         targets: context.displayGroup.getChildren(),
         alpha: 0,
         ease: 'Linear',
-        delay: 1000, // Délai avant le début de l'animation de disparition
+        delay: 2000, // Délai avant le début de l'animation de disparition
         onComplete: () => {
           // Réinitialisez la variable après la disparition du message, permet au ver de rebouger
           context.isMessageDisplayed = false;
